@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Flag quiz</title>
+        <script src="data.js"></script>
+        <script src="scripts.js"></script>
+        <style>
+            :root {
+                --default-padding: 1em;
+            }
+            body {
+                margin: 0;
+            }
+            #quiz-section {
+                padding: var(--default-padding);
+                background: #e1f5fe;
+            }
+            button, input {
+                padding: var(--default-padding);
+                border: 0px;
+                border-radius: 7px;
+            }
+            @media screen and (max-width: 600px) {
+                input {
+                    width: calc(100vw - 4 * var(--default-padding));
+                    margin: var(--default-padding) 0;
+                }
+                button, 
+                #flag {
+                    width: calc(100vw - 2 * var(--default-padding));
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section id="quiz-section">
+            <img id="flag" src="https://www.worldometers.info/img/flags/af-flag.gif" />
+            <input />
+            <button>Submit</button>
+        </section>
+    </body>
+</html>
