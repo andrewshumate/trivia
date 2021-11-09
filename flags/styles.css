@@ -56,12 +56,12 @@ button {
     display: block;
 }
 #results,
-#next-button {
+#next-button,
+#additional-disparagement {
     display: none;
 }
-#results {
-    height: 35px;
-    line-height: 35px;
+#results,
+#additional-disparagement {
     margin: 12px 0px;
 }
 #results,
@@ -73,6 +73,10 @@ button {
     float: right;
     padding: 6px 10px;
     height: 18px;
+}
+.mini-flags {
+    max-height: 50px;
+    display: block;
 }
 
 @keyframes error-animation {

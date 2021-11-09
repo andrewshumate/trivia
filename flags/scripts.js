@@ -9,8 +9,10 @@ window.onload = function () {
     const onSubmit = function() {
         const input = document.getElementById("input").value;
         if (isCorrectAnswer(input)) {
+            setStats(currentCountry, true);
             showSuccessModal();
         } else {
+            setStats(currentCountry, false, input);
             showErrorModal(currentCountry);
         }
     };
@@ -49,13 +51,31 @@ function isCorrectAnswer(guess) {
 
 function getFlag() {
     // TODO implement the rest of the logic
+    if (eligibleCountries.length == 0) {
+        eligibleCountries = getEligibleCountries();
+    }
+
     currentCountry = eligibleCountries.pop();
     document.getElementById("flag").src = flags[currentCountry].imageUrl;
 
+    // Pre-fetch failure page images
+    const stats = getStats(currentCountry);
+    if (stats) {
+        for (let i = 0; i < stats.incorrectGuesses.length; i++) {
+            const country = flags[stats.incorrectGuesses[i]];
+            if (country) {
+                const image = new Image();
+                image.src = country.imageUrl;
+            }
+        }
+    }
+
     // Pre-fetch next image
-    const nextCountry = eligibleCountries[eligibleCountries.length - 1];
-    const image = new Image();
-    image.src = flags[nextCountry].imageUrl;
+    if (eligibleCountries.length >= 1) {
+        const nextCountry = eligibleCountries[eligibleCountries.length - 1];
+        const image = new Image();
+        image.src = flags[nextCountry].imageUrl;
+    }
 }
 
 function randomKey(obj) {
