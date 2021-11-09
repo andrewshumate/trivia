@@ -1,4 +1,5 @@
 let currentCountry;
+let eligibleCountries = getEligibleCountries();
 
 window.onload = function () {
     getFlag();
@@ -48,8 +49,13 @@ function isCorrectAnswer(guess) {
 
 function getFlag() {
     // TODO implement the rest of the logic
-    currentCountry = randomKey(flags);
+    currentCountry = eligibleCountries.pop();
     document.getElementById("flag").src = flags[currentCountry].imageUrl;
+
+    // Pre-fetch next image
+    const nextCountry = eligibleCountries[eligibleCountries.length - 1];
+    const image = new Image();
+    image.src = flags[nextCountry].imageUrl;
 }
 
 function randomKey(obj) {
@@ -59,4 +65,19 @@ function randomKey(obj) {
 
 function standardizeString(string) {
     return string.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
+}
+
+function getEligibleCountries() {
+    // TODO implement the rest of the logic
+    return shuffle(Object.keys(flags));
+}
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
 }
