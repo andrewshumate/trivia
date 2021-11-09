@@ -200,7 +200,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/kn-flag.gif"
     },
     "DRC": {
-        alternateNames: ["Democratic Republic of the Congo", "DR Congo", "Congo", "The Congo", "The DRC"],
+        alternateNames: ["Democratic Republic of the Congo", "DR Congo", "The DRC"],
         imageUrl: "https://www.worldometers.info/img/flags/congo-flag.gif"
     },
     "Ecuador": {
