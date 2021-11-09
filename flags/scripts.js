@@ -7,9 +7,7 @@ window.onload = function () {
     // Submission listener
     const onSubmit = function() {
         const input = document.getElementById("input").value;
-        const stringSimilarity = compareTwoStrings(standardizeString(input), standardizeString(currentCountry));
-        
-        if (stringSimilarity > 0.2) {
+        if (isCorrectAnswer(input)) {
             showSuccessModal();
         } else {
             showErrorModal(currentCountry);
@@ -32,10 +30,26 @@ window.onload = function () {
     }, false);
 }
 
+function isCorrectAnswer(guess) {
+    function areStringsSimilar(s1, s2) {
+        const stringSimilarity = compareTwoStrings(standardizeString(s1), standardizeString(s2));
+        if (stringSimilarity > 0.2) return true;
+    }
+
+    if (areStringsSimilar(guess, currentCountry)) return true;
+
+    const alternateNames = flags[currentCountry].alternateNames;
+    for (let i = 0; i < alternateNames.length ; i++) {
+        if (areStringsSimilar(alternateNames[i], guess)) return true;
+    }
+
+    return false;
+}
+
 function getFlag() {
     // TODO implement the rest of the logic
     currentCountry = randomKey(flags);
-    document.getElementById("flag").src = flags[currentCountry];
+    document.getElementById("flag").src = flags[currentCountry].imageUrl;
 }
 
 function randomKey(obj) {
