@@ -2,35 +2,42 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="height=device-height, initial-scale=1" />
         <title>Flag quiz</title>
         <script src="data.js"></script>
         <script src="scripts.js"></script>
         <style>
-            :root {
-                --default-padding: 1em;
-            }
+            html,
             body {
                 margin: 0;
+                padding: 0;
+                height: 100%;
             }
             #quiz-section {
-                padding: var(--default-padding);
                 background: #e1f5fe;
+                height: calc(100% - 2em);
+                padding: 1em;
             }
-            button, input {
-                padding: var(--default-padding);
+            input,
+            button {
+                height: 3em;
                 border: 0px;
                 border-radius: 7px;
             }
-            @media screen and (max-width: 600px) {
-                input {
-                    width: calc(100vw - 4 * var(--default-padding));
-                    margin: var(--default-padding) 0;
-                }
-                button, 
-                #flag {
-                    width: calc(100vw - 2 * var(--default-padding));
-                }
+            input {
+                width: calc(100% - 3px);
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
+            button {
+                width: 100%;
+            }
+            #flag {
+                max-height: calc(100% - 6em);
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
             }
         </style>
     </head>
