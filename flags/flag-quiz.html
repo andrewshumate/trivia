@@ -6,12 +6,14 @@
         <title>Flag quiz</title>
         <script src="data.js"></script>
         <script src="scripts.js"></script>
+        <script src="modals.js"></script>
         <style>
             html,
             body {
                 margin: 0;
                 padding: 0;
                 height: 100%;
+                font-family: sans-serif;
             }
             #quiz-section {
                 background: #e1f5fe;
@@ -40,13 +42,38 @@
                 margin-right: auto;
                 display: block;
             }
+            #results,
+            #next-button {
+                display: none;
+            }
+            #results {
+                height: 35px;
+                line-height: 35px;
+                margin: 12px 0px;
+            }
+            #results,
+            #input {
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+            @keyframes error-animation {
+                from {background-color: #F44336;}
+                to {background-color: #e1f5fe;}
+            }
+            .error-animation {
+                animation-name: error-animation;
+                animation-duration: 1.5s;
+            }
         </style>
     </head>
     <body>
         <section id="quiz-section">
             <img id="flag" src="https://www.worldometers.info/img/flags/af-flag.gif" />
-            <input />
-            <button>Submit</button>
+            <input id="input" />
+            <button id="submit-button" onclick="showErrorModal()">Submit</button>
+
+            <p id="results">Wrong! The answer is America</p>
+            <button id="next-button" onclick="hideErrorModal()">Next</button>
         </section>
     </body>
 </html>
