@@ -35,8 +35,8 @@ window.onload = function () {
 
 function isCorrectAnswer(guess) {
     function areStringsSimilar(s1, s2) {
-        const stringSimilarity = compareTwoStrings(standardizeString(s1), standardizeString(s2));
-        if (stringSimilarity > 0.2) return true;
+        const stringSimilarity = getStringSimilarity(standardizeString(s1), standardizeString(s2));
+        if (stringSimilarity >= 0.6) return true;
     }
 
     if (areStringsSimilar(guess, currentCountry)) return true;

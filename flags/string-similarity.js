@@ -1,7 +1,14 @@
+function getStringSimilarity(a, b) {
+	// If they don't start with the same letter, the guess is way off anyway
+	if (a[0] != b[0]) return 0;
+
+	return 1 - levenshteinDistance(a, b) * 1.0 / a.length;
+}
+
 /*
 MIT License
 
-Copyright (c) 2018 Akash Kurdekar
+Copyright (c) 2017 Gustaf Andersson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,40 +27,97 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-https://github.com/aceakash/string-similarity
-
 */
 
-function compareTwoStrings(first, second) {
-	first = first.replace(/\s+/g, '')
-	second = second.replace(/\s+/g, '')
+function _min(d0, d1, d2, bx, ay) {
+    return d0 < d1 || d2 < d1 ? (d0 > d2 ? d2 + 1 : d0 + 1) : bx === ay ? d1 : d1 + 1;
+}
 
-	if (first === second) return 1; // identical or empty
-	if (first.length < 2 || second.length < 2) return 0; // if either is a 0-letter or 1-letter string
+function levenshteinDistance(a, b) {
+    if (a === b) {
+        return 0;
+    }
 
-	let firstBigrams = new Map();
-	for (let i = 0; i < first.length - 1; i++) {
-		const bigram = first.substring(i, i + 2);
-		const count = firstBigrams.has(bigram)
-			? firstBigrams.get(bigram) + 1
-			: 1;
+    if (a.length > b.length) {
+        var tmp = a;
+        a = b;
+        b = tmp;
+    }
 
-		firstBigrams.set(bigram, count);
-	};
+    var la = a.length;
+    var lb = b.length;
 
-	let intersectionSize = 0;
-	for (let i = 0; i < second.length - 1; i++) {
-		const bigram = second.substring(i, i + 2);
-		const count = firstBigrams.has(bigram)
-			? firstBigrams.get(bigram)
-			: 0;
+    while (la > 0 && a.charCodeAt(la - 1) === b.charCodeAt(lb - 1)) {
+        la--;
+        lb--;
+    }
 
-		if (count > 0) {
-			firstBigrams.set(bigram, count - 1);
-			intersectionSize++;
-		}
-	}
+    var offset = 0;
 
-	return (2.0 * intersectionSize) / (first.length + second.length - 2);
+    while (offset < la && a.charCodeAt(offset) === b.charCodeAt(offset)) {
+        offset++;
+    }
+
+    la -= offset;
+    lb -= offset;
+
+    if (la === 0 || lb < 3) {
+        return lb;
+    }
+
+    var x = 0;
+    var y;
+    var d0;
+    var d1;
+    var d2;
+    var d3;
+    var dd;
+    var dy;
+    var ay;
+    var bx0;
+    var bx1;
+    var bx2;
+    var bx3;
+
+    var vector = [];
+
+    for (y = 0; y < la; y++) {
+        vector.push(y + 1);
+        vector.push(a.charCodeAt(offset + y));
+    }
+
+    var len = vector.length - 1;
+
+    for (; x < lb - 3; ) {
+        bx0 = b.charCodeAt(offset + (d0 = x));
+        bx1 = b.charCodeAt(offset + (d1 = x + 1));
+        bx2 = b.charCodeAt(offset + (d2 = x + 2));
+        bx3 = b.charCodeAt(offset + (d3 = x + 3));
+        dd = x += 4;
+        for (y = 0; y < len; y += 2) {
+            dy = vector[y];
+            ay = vector[y + 1];
+            d0 = _min(dy, d0, d1, bx0, ay);
+            d1 = _min(d0, d1, d2, bx1, ay);
+            d2 = _min(d1, d2, d3, bx2, ay);
+            dd = _min(d2, d3, dd, bx3, ay);
+            vector[y] = dd;
+            d3 = d2;
+            d2 = d1;
+            d1 = d0;
+            d0 = dy;
+        }
+    }
+
+    for (; x < lb; ) {
+        bx0 = b.charCodeAt(offset + (d0 = x));
+        dd = ++x;
+        for (y = 0; y < len; y += 2) {
+            dy = vector[y];
+            vector[y] = dd = _min(dy, d0, dd, bx0, vector[y + 1]);
+            d0 = dy;
+        }
+    }
+
+    return dd;
 }
