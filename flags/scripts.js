@@ -7,8 +7,9 @@ window.onload = function () {
     // Submission listener
     const onSubmit = function() {
         const input = document.getElementById("input").value;
+        const stringSimilarity = compareTwoStrings(standardizeString(input), standardizeString(currentCountry));
         
-        if (standardizeString(input) == standardizeString(currentCountry)) {
+        if (stringSimilarity > 0.2) {
             showSuccessModal();
         } else {
             showErrorModal(currentCountry);
