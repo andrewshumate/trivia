@@ -8,7 +8,7 @@ window.onload = function () {
     const onSubmit = function() {
         const input = document.getElementById("input").value;
         
-        if (input == currentCountry) {
+        if (standardizeString(input) == standardizeString(currentCountry)) {
             showSuccessModal();
         } else {
             showErrorModal(currentCountry);
@@ -24,7 +24,7 @@ window.onload = function () {
     });
 
     // Next button listener
-    const nextButton = document.getElementById("next-button");      
+    const nextButton = document.getElementById("next-button");
     nextButton.addEventListener("click", function() {
         hideModal();
         getFlag();
@@ -41,3 +41,7 @@ function randomKey(obj) {
     var keys = Object.keys(obj);
     return keys[ keys.length * Math.random() << 0];
 };
+
+function standardizeString(string) {
+    return string.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
+}
