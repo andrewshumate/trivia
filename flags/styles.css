@@ -1,12 +1,35 @@
+:root {
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #272727;
+        --foreground: white;
+        --success: #1B5E20;
+        --failure: #B71C1C;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: #CFD8DC;
+        --foreground: black;
+        --success: #4CAF50;
+        --failure: #F44336;
+    }
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: sans-serif;
+    color: var(--foreground);
 }
 #quiz-section {
-    background: #e1f5fe;
+    background: var(--background);
     height: calc(100% - 24px);
     padding: 12px;
 }
@@ -47,16 +70,16 @@ button {
     padding-bottom: 0px;
 }
 @keyframes error-animation {
-    from {background-color: #F44336;}
-    to {background-color: #e1f5fe;}
+    from {background-color: var(--failure);}
+    to {background-color: var(--background);}
 }
 .error-animation {
     animation-name: error-animation;
     animation-duration: 1.5s;
 }
 @keyframes success-animation {
-    from {background-color: #4CAF50;}
-    to {background-color: #e1f5fe;}
+    from {background-color: var(--success);}
+    to {background-color: var(--background);}
 }
 .success-animation {
     animation-name: success-animation;
