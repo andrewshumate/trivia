@@ -64,6 +64,14 @@
                 animation-name: error-animation;
                 animation-duration: 1.5s;
             }
+            @keyframes success-animation {
+                from {background-color: #4CAF50;}
+                to {background-color: #e1f5fe;}
+            }
+            .success-animation {
+                animation-name: success-animation;
+                animation-duration: 1.5s;
+            }
         </style>
     </head>
     <body>
@@ -72,8 +80,8 @@
             <input id="input" />
             <button id="submit-button" onclick="showErrorModal()">Submit</button>
 
-            <p id="results">Wrong! The answer is America</p>
-            <button id="next-button" onclick="hideErrorModal()">Next</button>
+            <p id="results"></p>
+            <button id="next-button" onclick="hideModal()">Next</button>
         </section>
     </body>
 </html>
