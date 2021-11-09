@@ -1,8 +1,8 @@
 let currentCountry;
 
 window.onload = function () {
-    // Load up the first county
     getFlag();
+    document.getElementById("input").focus();
 
     // Submission listener
     const onSubmit = function() {
