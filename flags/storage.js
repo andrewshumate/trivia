@@ -4,7 +4,7 @@ function setStats(country, wasGuessCorrect, guess) {
         numIncorrectGuesses: 0,
         numTotalGuesses: 0,
         percentCorrect: 0.0,
-        incorrectGuesses: []
+        incorrectGuesses: [],
     };
 
     stats.numTotalGuesses += 1;
@@ -12,7 +12,13 @@ function setStats(country, wasGuessCorrect, guess) {
         stats.numCorrectGuesses += 1;
     } else {
         stats.numIncorrectGuesses += 1;
-        if (guess.trim()) stats.incorrectGuesses.push(guess);
+
+        let standardizedGuess = standardizeString(guess);
+        standardizedGuess = possibleNameToOfficalName[standardizedGuess];
+        if (standardizedGuess == null) standardizedGuess = guess.trim();
+        if (standardizedGuess && !stats.incorrectGuesses.includes(standardizedGuess)) {
+            stats.incorrectGuesses.push(standardizedGuess)
+        };
     }
     stats.percentCorrect = stats.numCorrectGuesses / stats.numTotalGuesses;
 

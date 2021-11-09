@@ -42,7 +42,7 @@ function hideModal() {
 }
 
 function getAdditionalDisparagement(stats) {
-    const result = [`You've gotten this right only ${parseInt(stats.percentCorrect * 100)}% of the time`];
+    const result = [`You've only gotten this right <b>${parseInt(stats.percentCorrect * 100)}%</b> of the time`];
     if (stats.incorrectGuesses.length == 0) return result.join("");
 
     result.push(", with stupid guesses like:")
