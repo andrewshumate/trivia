@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --background-background: #272727;
+        --background-background: white;
         --background: #CFD8DC;
         --foreground: black;
         --success: #4CAF50;
@@ -31,21 +31,22 @@ body {
     background: var(--background-background);
     color: var(--foreground);
 }
-#quiz-section {
+#quiz-section,
+#settings-section {
     background: var(--background);
     max-width: 500px;
     height: calc(100% - 24px);
     padding: 12px;
     margin: auto;
 }
-input,
+input[type=text],
 button {
     height: 35px;
     border: 0px;
     border-radius: 7px;
 }
-input {
-    width: 100%;
+input[type=text] {
+    width: calc(100% - 7px);
     margin-top: 12px;
     margin-bottom: 12px;
     padding-left: 7px;
@@ -62,7 +63,8 @@ button {
 }
 #results,
 #next-button,
-#additional-disparagement {
+#additional-disparagement,
+#settings-section {
     display: none;
 }
 #results,
@@ -73,6 +75,26 @@ button {
 #input {
     padding-top: 0px;
     padding-bottom: 0px;
+}
+#settings {
+    float: right;
+    padding: 6px 10px;
+    height: 18px;
+}
+#settings-section {
+    position: absolute;
+    width: calc(100% - 24px);
+    left: 0;
+    right: 0;
+}
+#settings-section form {
+    margin-bottom: 12px;
+}
+svg {
+    fill: var(--foreground);
+}
+.individual-setting {
+    height: 35px;
 }
 .mini-flags {
     max-height: 50px;

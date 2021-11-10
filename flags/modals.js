@@ -1,3 +1,21 @@
+function showSettings() {
+    document.forms["mode-selector"].elements["mode"].value = getMode();
+    document.forms["mode-selector"].elements["reshow-unknown"].checked = getShouldReshowUnknown();
+    document.getElementById("settings-section").style.display = "revert";
+}
+
+function hideSettings() {
+    document.getElementById("settings-section").style.display = "none";
+
+    const mode = document.forms["mode-selector"].elements["mode"].value;
+    const shouldReshowUnknown = document.forms["mode-selector"].elements["reshow-unknown"].checked;
+
+    localStorage.setItem("mode", mode);
+    localStorage.setItem("shouldReshowUnknown", shouldReshowUnknown);
+
+    recalculateEligibleCountries();
+}
+
 function showModal() {
     document.getElementById("input").style.display = "none";
     document.getElementById("submit-button").style.display = "none";

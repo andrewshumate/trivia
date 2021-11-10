@@ -1,7 +1,8 @@
 let currentCountry;
-let eligibleCountries = getEligibleCountries();
+let eligibleCountries;
 
 window.onload = function () {
+    recalculateEligibleCountries();
     getFlag();
     document.getElementById("input").focus();
 
@@ -49,13 +50,25 @@ function isCorrectAnswer(guess) {
     return false;
 }
 
+let seenCount = 0;
 function getFlag() {
-    // TODO implement the rest of the logic
+    seenCount++;
     if (eligibleCountries.length == 0) {
-        eligibleCountries = getEligibleCountries();
+        recalculateEligibleCountries();
     }
 
-    currentCountry = eligibleCountries.pop();
+    if (seenCount % 5 == 0 && getShouldReshowUnknown()) {
+        const keys = shuffle(Object.keys(localStorage));
+        for (let i = 0; keys.length; i++) {
+            const stats = getStats(keys[i]);
+            if (stats && stats.percentCorrect < 0.6) {
+                currentCountry = keys[i];
+                break;
+            }
+        }
+    } else {
+        currentCountry = eligibleCountries.pop();
+    }
     document.getElementById("flag").src = flags[currentCountry].imageUrl;
 
     // Pre-fetch failure page images
@@ -87,9 +100,33 @@ function standardizeString(string) {
     return string.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
 }
 
-function getEligibleCountries() {
-    // TODO implement the rest of the logic
-    return shuffle(Object.keys(flags));
+function recalculateEligibleCountries() {
+    const temp = shuffle(Object.keys(flags));
+    const mode = getMode();
+
+    console.log("mode is " + mode);
+    if (mode == "Show all mode") {
+        eligibleCountries = temp;
+    } else if (mode == "Show unseen mode") {
+        const keys = Object.keys(localStorage);
+        eligibleCountries = temp.filter(function(x) { return keys.indexOf(x) < 0 });
+    } else if (mode == "Show unknown mode") {
+        const keys = Object.keys(flags);
+        eligibleCountries = keys.filter(key => {
+            if (getStats(key)) {
+                return getStats(key).percentCorrect < 0.6;
+            } else {
+                return false;
+            }
+        });
+    }
+
+    if (eligibleCountries.length == 0) {
+        console.log("Before" + eligibleCountries);
+        eligibleCountries = temp;
+        console.log("After" + eligibleCountries);
+
+    }
 }
 
 function shuffle(array) {

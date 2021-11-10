@@ -26,5 +26,17 @@ function setStats(country, wasGuessCorrect, guess) {
 }
 
 function getStats(country) {
-    return JSON.parse(localStorage.getItem(country));
+    try {
+        return JSON.parse(localStorage.getItem(country));
+    } catch(e) {
+        return null;
+    }
+}
+
+function getMode() {
+    return localStorage.getItem("mode") || "Show unseen mode";
+}
+
+function getShouldReshowUnknown() {
+    return localStorage.getItem("shouldReshowUnknown") !== "false";
 }
