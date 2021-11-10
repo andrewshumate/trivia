@@ -1,8 +1,17 @@
+function areStringsSimilar(s1, s2) {
+    const stringSimilarity = getStringSimilarity(standardizeString(s1), standardizeString(s2));
+    if (stringSimilarity >= 0.6) return true;
+}
+
 function getStringSimilarity(a, b) {
 	// If they don't start with the same letter, the guess is way off anyway
 	if (a[0] != b[0]) return 0;
 
 	return 1 - levenshteinDistance(a, b) * 1.0 / a.length;
+}
+
+function standardizeString(string) {
+    return string.replace(/[^0-9a-zA-Z]/g, "").toLowerCase();
 }
 
 /*

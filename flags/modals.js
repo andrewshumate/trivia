@@ -16,7 +16,7 @@ function hideSettings() {
     recalculateEligibleCountries();
 }
 
-function showModal() {
+function showResultsModal() {
     document.getElementById("input").style.display = "none";
     document.getElementById("submit-button").style.display = "none";
 
@@ -26,25 +26,26 @@ function showModal() {
     document.getElementById("next-button").focus();
 }
 
-function showErrorModal(correctAnswer) {
+function showWrongAnswerModal(correctAnswer) {
+    showResultsModal();
+
     const stats = getStats(currentCountry);
     if (stats) {
         document.getElementById("additional-info").innerHTML = getAdditionalInfo(stats);
     }
 
-    showModal();
     document.getElementById("results").innerHTML = `No, it's <b>${correctAnswer}</b>.`;
     document.getElementById("quiz-section").classList.add("error-animation");
     document.getElementById("additional-info").style.display = "revert";
 }
 
-function showSuccessModal() {
-    showModal();
+function showRightAnswerModal() {
+    showResultsModal();
     document.getElementById("results").innerHTML = `Correct!`;
     document.getElementById("quiz-section").classList.add("success-animation");
 }
 
-function hideModal() {
+function hideResultsModal() {
     document.getElementById("input").value = "";
     document.getElementById("input").style.display = "revert";
     document.getElementById("input").focus();
