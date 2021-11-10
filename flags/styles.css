@@ -74,11 +74,6 @@ button {
     padding-top: 0px;
     padding-bottom: 0px;
 }
-#settings {
-    float: right;
-    padding: 6px 10px;
-    height: 18px;
-}
 .mini-flags {
     max-height: 50px;
     display: block;
