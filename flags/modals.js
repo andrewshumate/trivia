@@ -60,7 +60,8 @@ function hideModal() {
 }
 
 function getAdditionalDisparagement(stats) {
-    const result = [`You've only gotten this right <b>${parseInt(stats.percentCorrect * 100)}%</b> of the time`];
+    const result = [`You've only gotten this right <b>${stats.numCorrectGuesses}/${stats.numTotalGuesses}</b>`];
+    result.push(` (<b>${parseInt(stats.percentCorrect * 100)}%</b>) times`);
     if (stats.incorrectGuesses.length == 0) return result.join("");
 
     result.push(", with stupid guesses like:")
