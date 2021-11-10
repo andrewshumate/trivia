@@ -1,9 +1,11 @@
 let currentCountry;
 let eligibleCountries;
+let numEligibleCountries;
 let numQuestionsAnswered = 0;
 
 window.onload = () => {
     recalculateEligibleCountries();
+    invalidateCounter();
     getAndShowNextFlag();
     document.getElementById("input").focus();
 
@@ -29,6 +31,7 @@ window.onload = () => {
     // Next button listener
     document.getElementById("next-button").addEventListener("click", () => {
         hideResultsModal();
+        invalidateCounter();
         getAndShowNextFlag();
     });
 };
@@ -45,7 +48,6 @@ function isCorrectAnswer(guess) {
 }
 
 function getAndShowNextFlag() {
-    numQuestionsAnswered++;
     if (numQuestionsAnswered % 5 == 0 && getShouldReshowUnknown()) {
         const seenCountries = shuffle(Object.keys(localStorage));
         for (let i = 0; seenCountries.length; i++) {
@@ -61,8 +63,8 @@ function getAndShowNextFlag() {
     }
 
     document.getElementById("flag").src = flags[currentCountry].imageUrl;
-
     prefetchNextImages();
+    numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
 }
 
 function recalculateEligibleCountries() {
@@ -78,9 +80,21 @@ function recalculateEligibleCountries() {
         eligibleCountries = allCountries.filter((country) =>
             getStats(country) ? getStats(country).percentCorrect < 0.6 : false
         );
+    } else if (mode == "Nordic cross mode") {
+        eligibleCountries = shuffle([...nordicCrossFlags]);
+    } else if (mode == "Three stripe mode") {
+        eligibleCountries = shuffle([...threeStripeFlags]);
+    } else if (mode == "Hoist triangle mode") {
+        eligibleCountries = shuffle([...triangleOnHoistFlags]);
     }
 
     if (eligibleCountries.length == 0) {
         eligibleCountries = allCountries;
     }
+
+    numEligibleCountries = eligibleCountries.length;
+}
+
+function invalidateCounter() {
+    document.getElementById("counter").innerHTML = `${numQuestionsAnswered}/${numEligibleCountries}`;
 }

@@ -10,10 +10,15 @@ function hideSettings() {
     const mode = document.forms["mode-selector"].elements["mode"].value;
     const shouldReshowUnknown = document.forms["mode-selector"].elements["reshow-unknown"].checked;
 
-    localStorage.setItem("mode", mode);
-    localStorage.setItem("shouldReshowUnknown", shouldReshowUnknown);
+    if (getMode() != mode) {
+        localStorage.setItem("mode", mode);
+        numQuestionsAnswered = 0;
+        recalculateEligibleCountries();
+        invalidateCounter();
+        getAndShowNextFlag();
+    }
 
-    recalculateEligibleCountries();
+    localStorage.setItem("shouldReshowUnknown", shouldReshowUnknown);
 }
 
 function showResultsModal() {

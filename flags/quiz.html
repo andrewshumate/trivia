@@ -24,7 +24,7 @@
             <form id="mode-selector">
                 <div class="individual-setting">
                     <input type="radio" id="show-all-mode" name="mode" value="Show all mode" />
-                    <label for="show-all-mode">Show all flags</label>
+                    <label for="show-all-mode">Show all flags (195)</label>
                 </div>
                 <div class="individual-setting">
                     <input type="radio" id="show-unseen-mode" name="mode" value="Show unseen mode" />
@@ -33,6 +33,18 @@
                 <div class="individual-setting">
                     <input type="radio" id="show-unknown-mode" name="mode" value="Show unknown mode" />
                     <label for="show-unknown-mode">Only show flags I've gotten wrong</label>
+                </div>
+                <div class="individual-setting">
+                    <input type="radio" id="nordic-cross-mode" name="mode" value="Nordic cross mode" />
+                    <label for="nordic-cross-mode">Nordic cross flags (5)</label>
+                </div>
+                <div class="individual-setting">
+                    <input type="radio" id="three-stripe-mode" name="mode" value="Three stripe mode" />
+                    <label for="three-stripe-mode">Three equal stripes flags (66)</label>
+                </div>
+                <div class="individual-setting">
+                    <input type="radio" id="hoist-triangle-mode" name="mode" value="Hoist triangle mode" />
+                    <label for="hoist-triangle-mode">Triangle on hoist flags (18)</label>
                 </div>
                 <div>
                     <input type="checkbox" id="reshow-unknown" name="reshow-unknwon" value="Re-show unknown" />
@@ -43,6 +55,7 @@
         </section>
 
         <section id="quiz-section">
+            <p id="counter"></p>
             <img id="flag" alt="Image of country flag" />
             <input type="text" id="input" title="Guess the country" />
             <button id="submit-button">Submit</button>
