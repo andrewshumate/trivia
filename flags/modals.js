@@ -17,26 +17,25 @@ function hideSettings() {
 }
 
 function showResultsModal() {
+    const stats = getStats(currentCountry);
+    if (stats) {
+        document.getElementById("additional-info").innerHTML = getAdditionalInfo(stats);
+    }
+
     document.getElementById("input").style.display = "none";
     document.getElementById("submit-button").style.display = "none";
 
     document.getElementById("results").style.display = "revert";
     document.getElementById("next-button").style.display = "revert";
+    document.getElementById("additional-info").style.display = "revert";
 
     document.getElementById("next-button").focus();
 }
 
 function showWrongAnswerModal(correctAnswer) {
     showResultsModal();
-
-    const stats = getStats(currentCountry);
-    if (stats) {
-        document.getElementById("additional-info").innerHTML = getAdditionalInfo(stats);
-    }
-
     document.getElementById("results").innerHTML = `No, it's <b>${correctAnswer}</b>.`;
     document.getElementById("quiz-section").classList.add("error-animation");
-    document.getElementById("additional-info").style.display = "revert";
 }
 
 function showRightAnswerModal() {
