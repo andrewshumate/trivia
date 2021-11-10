@@ -17,8 +17,8 @@ function setStats(country, wasGuessCorrect, guess) {
         standardizedGuess = possibleNameToOfficalName[standardizedGuess];
         if (standardizedGuess == null) standardizedGuess = guess.trim();
         if (standardizedGuess && !stats.incorrectGuesses.includes(standardizedGuess)) {
-            stats.incorrectGuesses.push(standardizedGuess)
-        };
+            stats.incorrectGuesses.push(standardizedGuess);
+        }
     }
     stats.percentCorrect = stats.numCorrectGuesses / stats.numTotalGuesses;
 
@@ -28,7 +28,7 @@ function setStats(country, wasGuessCorrect, guess) {
 function getStats(country) {
     try {
         return JSON.parse(localStorage.getItem(country));
-    } catch(e) {
+    } catch (e) {
         return null;
     }
 }

@@ -7,18 +7,18 @@
         --background-background: black;
         --background: #272727;
         --foreground: white;
-        --success: #1B5E20;
-        --failure: #B71C1C;
+        --success: #1b5e20;
+        --failure: #b71c1c;
     }
 }
 
 @media (prefers-color-scheme: light) {
     :root {
         --background-background: white;
-        --background: #CFD8DC;
+        --background: #cfd8dc;
         --foreground: black;
-        --success: #4CAF50;
-        --failure: #F44336;
+        --success: #4caf50;
+        --failure: #f44336;
     }
 }
 
@@ -39,13 +39,13 @@ body {
     padding: 12px;
     margin: auto;
 }
-input[type=text],
+input[type="text"],
 button {
     height: 35px;
     border: 0px;
     border-radius: 7px;
 }
-input[type=text] {
+input[type="text"] {
     width: calc(100% - 7px);
     margin-top: 12px;
     margin-bottom: 12px;
@@ -102,16 +102,24 @@ svg {
 }
 
 @keyframes error-animation {
-    from {background-color: var(--failure);}
-    to {background-color: var(--background);}
+    from {
+        background-color: var(--failure);
+    }
+    to {
+        background-color: var(--background);
+    }
 }
 .error-animation {
     animation-name: error-animation;
     animation-duration: 1.5s;
 }
 @keyframes success-animation {
-    from {background-color: var(--success);}
-    to {background-color: var(--background);}
+    from {
+        background-color: var(--success);
+    }
+    to {
+        background-color: var(--background);
+    }
 }
 .success-animation {
     animation-name: success-animation;

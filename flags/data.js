@@ -1,785 +1,785 @@
 const flags = {
-    "Afghanistan": {
+    Afghanistan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/af-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/af-flag.gif",
     },
-    "Albania": {
+    Albania: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/al-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/al-flag.gif",
     },
-    "Algeria": {
+    Algeria: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ag-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ag-flag.gif",
     },
-    "Andorra": {
+    Andorra: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/an-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/an-flag.gif",
     },
-    "Angola": {
+    Angola: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ao-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ao-flag.gif",
     },
     "Antigua and Barbuda": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ac-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ac-flag.gif",
     },
-    "Argentina": {
+    Argentina: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ar-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ar-flag.gif",
     },
-    "Armenia": {
+    Armenia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/am-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/am-flag.gif",
     },
-    "Australia": {
+    Australia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/as-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/as-flag.gif",
     },
-    "Austria": {
+    Austria: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/au-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/au-flag.gif",
     },
-    "Azerbaijan": {
+    Azerbaijan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/aj-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/aj-flag.gif",
     },
-    "Bahamas": {
+    Bahamas: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bf-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bf-flag.gif",
     },
-    "Bahrain": {
+    Bahrain: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ba-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ba-flag.gif",
     },
-    "Bangladesh": {
+    Bangladesh: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bg-flag.gif",
     },
-    "Barbados": {
+    Barbados: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bb-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bb-flag.gif",
     },
-    "Belarus": {
+    Belarus: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bo-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bo-flag.gif",
     },
-    "Belgium": {
+    Belgium: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/be-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/be-flag.gif",
     },
-    "Belize": {
+    Belize: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bh-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bh-flag.gif",
     },
-    "Benin": {
+    Benin: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bn-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bn-flag.gif",
     },
-    "Bhutan": {
+    Bhutan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bt-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bt-flag.gif",
     },
-    "Bolivia": {
+    Bolivia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bl-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bl-flag.gif",
     },
     "Bosnia and Herzegovina": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bk-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bk-flag.gif",
     },
-    "Botswana": {
+    Botswana: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bc-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bc-flag.gif",
     },
-    "Brazil": {
+    Brazil: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/br-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/br-flag.gif",
     },
     "Brunei ": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bx-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bx-flag.gif",
     },
-    "Bulgaria": {
+    Bulgaria: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bu-flag.gif",
     },
     "Burkina Faso": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/uv-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/uv-flag.gif",
     },
-    "Burundi": {
+    Burundi: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/by-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/by-flag.gif",
     },
     "Côte d'Ivoire": {
         alternateNames: ["Cote d'Ivoire"],
-        imageUrl: "https://www.worldometers.info/img/flags/iv-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/iv-flag.gif",
     },
     "Cabo Verde": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cv-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cv-flag.gif",
     },
-    "Cambodia": {
+    Cambodia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cb-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cb-flag.gif",
     },
-    "Cameroon": {
+    Cameroon: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cm-flag.gif",
     },
-    "Canada": {
+    Canada: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ca-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ca-flag.gif",
     },
-    "CAR": {
+    CAR: {
         alternateNames: ["Central African Republic"],
-        imageUrl: "https://www.worldometers.info/img/flags/ct-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ct-flag.gif",
     },
-    "Chad": {
+    Chad: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cd-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cd-flag.gif",
     },
-    "Chile": {
+    Chile: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ci-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ci-flag.gif",
     },
-    "China": {
+    China: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ch-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ch-flag.gif",
     },
-    "Colombia": {
+    Colombia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/co-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/co-flag.gif",
     },
-    "Comoros": {
+    Comoros: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cn-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cn-flag.gif",
     },
-    "Congo": {
+    Congo: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cg-flag.gif",
     },
     "Costa Rica": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cs-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cs-flag.gif",
     },
-    "Croatia": {
+    Croatia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/hr-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/hr-flag.gif",
     },
-    "Cuba": {
+    Cuba: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cu-flag.gif",
     },
-    "Cyprus": {
+    Cyprus: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cy-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/cy-flag.gif",
     },
-    "Czechia": {
+    Czechia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ez-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ez-flag.gif",
     },
-    "Denmark": {
+    Denmark: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/da-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/da-flag.gif",
     },
-    "Djibouti": {
+    Djibouti: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/dj-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/dj-flag.gif",
     },
-    "Dominica": {
+    Dominica: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/do-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/do-flag.gif",
     },
     "Dominican Republic": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/dr-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/dr-flag.gif",
     },
-    "DPRK": {
+    DPRK: {
         alternateNames: ["North Kora", "Democratic People's Republic of Korea"],
-        imageUrl: "https://www.worldometers.info/img/flags/kn-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/kn-flag.gif",
     },
-    "DRC": {
+    DRC: {
         alternateNames: ["Democratic Republic of the Congo", "DR Congo", "The DRC"],
-        imageUrl: "https://www.worldometers.info/img/flags/congo-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/congo-flag.gif",
     },
-    "Ecuador": {
+    Ecuador: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ec-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ec-flag.gif",
     },
-    "Egypt": {
+    Egypt: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/eg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/eg-flag.gif",
     },
     "El Salvador": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/es-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/es-flag.gif",
     },
     "Equatorial Guinea": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ek-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ek-flag.gif",
     },
-    "Eritrea": {
+    Eritrea: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/er-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/er-flag.gif",
     },
-    "Estonia": {
+    Estonia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/en-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/en-flag.gif",
     },
-    "Eswatini": {
+    Eswatini: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/wz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/wz-flag.gif",
     },
-    "Ethiopia": {
+    Ethiopia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/et-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/et-flag.gif",
     },
-    "Fiji": {
+    Fiji: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/fj-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/fj-flag.gif",
     },
-    "Finland": {
+    Finland: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/fi-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/fi-flag.gif",
     },
-    "France": {
+    France: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/fr-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/fr-flag.gif",
     },
-    "Gabon": {
+    Gabon: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gb-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gb-flag.gif",
     },
-    "Gambia": {
+    Gambia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ga-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ga-flag.gif",
     },
-    "Georgia": {
+    Georgia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gg-flag.gif",
     },
-    "Germany": {
+    Germany: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gm-flag.gif",
     },
-    "Ghana": {
+    Ghana: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gh-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gh-flag.gif",
     },
-    "Greece": {
+    Greece: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gr-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gr-flag.gif",
     },
-    "Grenada": {
+    Grenada: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gj-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gj-flag.gif",
     },
-    "Guatemala": {
+    Guatemala: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gt-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gt-flag.gif",
     },
-    "Guinea": {
+    Guinea: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gv-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gv-flag.gif",
     },
     "Guinea-Bissau": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/pu-flag.gif",
     },
-    "Guyana": {
+    Guyana: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/gy-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/gy-flag.gif",
     },
-    "Haiti": {
+    Haiti: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ha-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ha-flag.gif",
     },
     "Holy See": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/vt-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/vt-flag.gif",
     },
-    "Honduras": {
+    Honduras: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ho-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ho-flag.gif",
     },
-    "Hungary": {
+    Hungary: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/hu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/hu-flag.gif",
     },
-    "Iceland": {
+    Iceland: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ic-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ic-flag.gif",
     },
-    "India": {
+    India: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/in-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/in-flag.gif",
     },
-    "Indonesia": {
+    Indonesia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/id-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/id-flag.gif",
     },
-    "Iran": {
+    Iran: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ir-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ir-flag.gif",
     },
-    "Iraq": {
+    Iraq: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/iz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/iz-flag.gif",
     },
-    "Ireland": {
+    Ireland: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ei-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ei-flag.gif",
     },
-    "Israel": {
+    Israel: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/is-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/is-flag.gif",
     },
-    "Italy": {
+    Italy: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/it-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/it-flag.gif",
     },
-    "Jamaica": {
+    Jamaica: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/jm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/jm-flag.gif",
     },
-    "Japan": {
+    Japan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ja-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ja-flag.gif",
     },
-    "Jordan": {
+    Jordan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/jo-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/jo-flag.gif",
     },
-    "Kazakhstan": {
+    Kazakhstan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/kz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/kz-flag.gif",
     },
-    "Kenya": {
+    Kenya: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ke-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ke-flag.gif",
     },
-    "Kiribati": {
+    Kiribati: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/kr-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/kr-flag.gif",
     },
-    "Kuwait": {
+    Kuwait: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ku-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ku-flag.gif",
     },
-    "Kyrgyzstan": {
+    Kyrgyzstan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/kg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/kg-flag.gif",
     },
-    "Laos": {
+    Laos: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/la-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/la-flag.gif",
     },
-    "Latvia": {
+    Latvia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/lg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/lg-flag.gif",
     },
-    "Lebanon": {
+    Lebanon: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/le-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/le-flag.gif",
     },
-    "Lesotho": {
+    Lesotho: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/lt-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/lt-flag.gif",
     },
-    "Liberia": {
+    Liberia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/li-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/li-flag.gif",
     },
-    "Libya": {
+    Libya: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ly-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ly-flag.gif",
     },
-    "Liechtenstein": {
+    Liechtenstein: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ls-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ls-flag.gif",
     },
-    "Lithuania": {
+    Lithuania: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/lh-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/lh-flag.gif",
     },
-    "Luxembourg": {
+    Luxembourg: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/lu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/lu-flag.gif",
     },
-    "Madagascar": {
+    Madagascar: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ma-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ma-flag.gif",
     },
-    "Malawi": {
+    Malawi: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mi-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mi-flag.gif",
     },
-    "Malaysia": {
+    Malaysia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/my-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/my-flag.gif",
     },
-    "Maldives": {
+    Maldives: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mv-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mv-flag.gif",
     },
-    "Mali": {
+    Mali: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ml-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ml-flag.gif",
     },
-    "Malta": {
+    Malta: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mt-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mt-flag.gif",
     },
     "Marshall Islands": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/rm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/rm-flag.gif",
     },
-    "Mauritania": {
+    Mauritania: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mr-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mr-flag.gif",
     },
-    "Mauritius": {
+    Mauritius: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mp-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mp-flag.gif",
     },
-    "Mexico": {
+    Mexico: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mx-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mx-flag.gif",
     },
-    "Micronesia": {
+    Micronesia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/fm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/fm-flag.gif",
     },
-    "Moldova": {
+    Moldova: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/md-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/md-flag.gif",
     },
-    "Monaco": {
+    Monaco: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mn-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mn-flag.gif",
     },
-    "Mongolia": {
+    Mongolia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mg-flag.gif",
     },
-    "Montenegro": {
+    Montenegro: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mj-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mj-flag.gif",
     },
-    "Morocco": {
+    Morocco: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mo-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mo-flag.gif",
     },
-    "Mozambique": {
+    Mozambique: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mz-flag.gif",
     },
-    "Myanmar": {
+    Myanmar: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bm-flag.gif",
     },
-    "Namibia": {
+    Namibia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/wa-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/wa-flag.gif",
     },
-    "Nauru": {
+    Nauru: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/nr-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/nr-flag.gif",
     },
-    "Nepal": {
+    Nepal: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/np-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/np-flag.gif",
     },
-    "Netherlands": {
+    Netherlands: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/nl-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/nl-flag.gif",
     },
     "New Zealand": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/nz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/nz-flag.gif",
     },
-    "Nicaragua": {
+    Nicaragua: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/nu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/nu-flag.gif",
     },
-    "Niger": {
+    Niger: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ng-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ng-flag.gif",
     },
-    "Nigeria": {
+    Nigeria: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ni-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ni-flag.gif",
     },
     "North Macedonia": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mk-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mk-flag.gif",
     },
-    "Norway": {
+    Norway: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/no-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/no-flag.gif",
     },
-    "Oman": {
+    Oman: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/mu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/mu-flag.gif",
     },
-    "Pakistan": {
+    Pakistan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pk-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/pk-flag.gif",
     },
-    "Palau": {
+    Palau: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ps-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ps-flag.gif",
     },
-    "Panama": {
+    Panama: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/pm-flag.gif",
     },
     "Papua New Guinea": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pp-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/pp-flag.gif",
     },
-    "Paraguay": {
+    Paraguay: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pa-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/pa-flag.gif",
     },
-    "Peru": {
+    Peru: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pe-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/pe-flag.gif",
     },
-    "Philippines": {
+    Philippines: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/rp-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/rp-flag.gif",
     },
-    "Poland": {
+    Poland: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pl-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/pl-flag.gif",
     },
-    "Portugal": {
+    Portugal: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/po-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/po-flag.gif",
     },
-    "Qatar": {
+    Qatar: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/qa-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/qa-flag.gif",
     },
-    "Romania": {
+    Romania: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ro-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ro-flag.gif",
     },
-    "Russia": {
+    Russia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/rs-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/rs-flag.gif",
     },
-    "Rwanda": {
+    Rwanda: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/rw-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/rw-flag.gif",
     },
     "Saint Kitts and Nevis": {
         alternateNames: ["St Kitts and Nevis"],
-        imageUrl: "https://www.worldometers.info/img/flags/sc-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sc-flag.gif",
     },
     "Saint Lucia": {
         alternateNames: ["St Lucia"],
-        imageUrl: "https://www.worldometers.info/img/flags/st-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/st-flag.gif",
     },
-    "Samoa": {
+    Samoa: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ws-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ws-flag.gif",
     },
     "San Marino": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sm-flag.gif",
     },
     "Sao Tome and Principe": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/tp-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/tp-flag.gif",
     },
     "Saudi Arabia": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sa-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sa-flag.gif",
     },
-    "Senegal": {
+    Senegal: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sg-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sg-flag.gif",
     },
-    "Serbia": {
+    Serbia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ri-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ri-flag.gif",
     },
-    "Seychelles": {
+    Seychelles: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/se-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/se-flag.gif",
     },
     "Sierra Leone": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sl-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sl-flag.gif",
     },
-    "Singapore": {
+    Singapore: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sn-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sn-flag.gif",
     },
-    "Slovakia": {
+    Slovakia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/lo-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/lo-flag.gif",
     },
-    "Slovenia": {
+    Slovenia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/si-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/si-flag.gif",
     },
     "Solomon Islands": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/bp-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/bp-flag.gif",
     },
-    "Somalia": {
+    Somalia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/so-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/so-flag.gif",
     },
     "South Africa": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sf-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sf-flag.gif",
     },
     "South Korea": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ks-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ks-flag.gif",
     },
     "South Sudan": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/od-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/od-flag.gif",
     },
-    "Spain": {
+    Spain: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sp-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sp-flag.gif",
     },
     "Sri Lanka": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ce-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ce-flag.gif",
     },
     "St. Vincent Grenadines": {
         alternateNames: ["Saint Vincent Grenadines"],
-        imageUrl: "https://www.worldometers.info/img/flags/vc-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/vc-flag.gif",
     },
     "State of Palestine": {
         alternateNames: ["Palestine"],
-        imageUrl: "https://www.worldometers.info/img/flags/palestine-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/palestine-flag.gif",
     },
-    "Sudan": {
+    Sudan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/su-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/su-flag.gif",
     },
-    "Suriname": {
+    Suriname: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ns-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ns-flag.gif",
     },
-    "Sweden": {
+    Sweden: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sw-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sw-flag.gif",
     },
-    "Switzerland": {
+    Switzerland: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sz-flag.gif",
     },
-    "Syria": {
+    Syria: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/sy-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/sy-flag.gif",
     },
-    "Tajikistan": {
+    Tajikistan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ti-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ti-flag.gif",
     },
-    "Tanzania": {
+    Tanzania: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/tz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/tz-flag.gif",
     },
-    "Thailand": {
+    Thailand: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/th-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/th-flag.gif",
     },
     "Timor-Leste": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/tt-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/tt-flag.gif",
     },
-    "Togo": {
+    Togo: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/to-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/to-flag.gif",
     },
-    "Tonga": {
+    Tonga: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/tn-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/tn-flag.gif",
     },
     "Trinidad and Tobago": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/td-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/td-flag.gif",
     },
-    "Tunisia": {
+    Tunisia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ts-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ts-flag.gif",
     },
-    "Turkey": {
+    Turkey: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/tu-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/tu-flag.gif",
     },
-    "Turkmenistan": {
+    Turkmenistan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/tx-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/tx-flag.gif",
     },
-    "Tuvalu": {
+    Tuvalu: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/tv-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/tv-flag.gif",
     },
     "U.A.E.": {
         alternateNames: ["United Arab Emirates"],
-        imageUrl: "https://www.worldometers.info/img/flags/ae-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ae-flag.gif",
     },
     "U.K.": {
         alternateNames: ["United Kingdom"],
-        imageUrl: "https://www.worldometers.info/img/flags/uk-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/uk-flag.gif",
     },
     "U.S.": {
         alternateNames: ["United States"],
-        imageUrl: "https://www.worldometers.info/img/flags/us-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/us-flag.gif",
     },
-    "Uganda": {
+    Uganda: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ug-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ug-flag.gif",
     },
-    "Ukraine": {
+    Ukraine: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/up-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/up-flag.gif",
     },
-    "Uruguay": {
+    Uruguay: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/uy-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/uy-flag.gif",
     },
-    "Uzbekistan": {
+    Uzbekistan: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/uz-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/uz-flag.gif",
     },
-    "Vanuatu": {
+    Vanuatu: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/nh-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/nh-flag.gif",
     },
-    "Venezuela": {
+    Venezuela: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ve-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ve-flag.gif",
     },
-    "Vietnam": {
+    Vietnam: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/vm-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/vm-flag.gif",
     },
-    "Yemen": {
+    Yemen: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/ym-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/ym-flag.gif",
     },
-    "Zambia": {
+    Zambia: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/za-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/za-flag.gif",
     },
-    "Zimbabwe": {
+    Zimbabwe: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/zi-flag.gif"
+        imageUrl: "https://www.worldometers.info/img/flags/zi-flag.gif",
     },
-}
+};
 
 /* Source: https://www.worldometers.info/geography/flags-of-the-world/
 
@@ -815,213 +815,213 @@ console.log(possibleNameToOfficalName);
 
 */
 const possibleNameToOfficalName = {
-    "afghanistan": "Afghanistan",
-    "albania": "Albania",
-    "algeria": "Algeria",
-    "andorra": "Andorra",
-    "angola": "Angola",
-    "antiguaandbarbuda": "Antigua and Barbuda",
-    "argentina": "Argentina",
-    "armenia": "Armenia",
-    "australia": "Australia",
-    "austria": "Austria",
-    "azerbaijan": "Azerbaijan",
-    "bahamas": "Bahamas",
-    "bahrain": "Bahrain",
-    "bangladesh": "Bangladesh",
-    "barbados": "Barbados",
-    "belarus": "Belarus",
-    "belgium": "Belgium",
-    "belize": "Belize",
-    "benin": "Benin",
-    "bhutan": "Bhutan",
-    "bolivia": "Bolivia",
-    "bosniaandherzegovina": "Bosnia and Herzegovina",
-    "botswana": "Botswana",
-    "brazil": "Brazil",
-    "brunei": "Brunei ",
-    "bulgaria": "Bulgaria",
-    "burkinafaso": "Burkina Faso",
-    "burundi": "Burundi",
-    "ctedivoire": "Côte d'Ivoire",
-    "cotedivoire": "Côte d'Ivoire",
-    "caboverde": "Cabo Verde",
-    "cambodia": "Cambodia",
-    "cameroon": "Cameroon",
-    "canada": "Canada",
-    "car": "CAR",
-    "centralafricanrepublic": "CAR",
-    "chad": "Chad",
-    "chile": "Chile",
-    "china": "China",
-    "colombia": "Colombia",
-    "comoros": "Comoros",
-    "congo": "Congo",
-    "costarica": "Costa Rica",
-    "croatia": "Croatia",
-    "cuba": "Cuba",
-    "cyprus": "Cyprus",
-    "czechia": "Czechia",
-    "denmark": "Denmark",
-    "djibouti": "Djibouti",
-    "dominica": "Dominica",
-    "dominicanrepublic": "Dominican Republic",
-    "dprk": "DPRK",
-    "northkora": "DPRK",
-    "democraticpeoplesrepublicofkorea": "DPRK",
-    "drc": "DRC",
-    "democraticrepublicofthecongo": "DRC",
-    "drcongo": "DRC",
-    "thedrc": "DRC",
-    "ecuador": "Ecuador",
-    "egypt": "Egypt",
-    "elsalvador": "El Salvador",
-    "equatorialguinea": "Equatorial Guinea",
-    "eritrea": "Eritrea",
-    "estonia": "Estonia",
-    "eswatini": "Eswatini",
-    "ethiopia": "Ethiopia",
-    "fiji": "Fiji",
-    "finland": "Finland",
-    "france": "France",
-    "gabon": "Gabon",
-    "gambia": "Gambia",
-    "georgia": "Georgia",
-    "germany": "Germany",
-    "ghana": "Ghana",
-    "greece": "Greece",
-    "grenada": "Grenada",
-    "guatemala": "Guatemala",
-    "guinea": "Guinea",
-    "guineabissau": "Guinea-Bissau",
-    "guyana": "Guyana",
-    "haiti": "Haiti",
-    "holysee": "Holy See",
-    "honduras": "Honduras",
-    "hungary": "Hungary",
-    "iceland": "Iceland",
-    "india": "India",
-    "indonesia": "Indonesia",
-    "iran": "Iran",
-    "iraq": "Iraq",
-    "ireland": "Ireland",
-    "israel": "Israel",
-    "italy": "Italy",
-    "jamaica": "Jamaica",
-    "japan": "Japan",
-    "jordan": "Jordan",
-    "kazakhstan": "Kazakhstan",
-    "kenya": "Kenya",
-    "kiribati": "Kiribati",
-    "kuwait": "Kuwait",
-    "kyrgyzstan": "Kyrgyzstan",
-    "laos": "Laos",
-    "latvia": "Latvia",
-    "lebanon": "Lebanon",
-    "lesotho": "Lesotho",
-    "liberia": "Liberia",
-    "libya": "Libya",
-    "liechtenstein": "Liechtenstein",
-    "lithuania": "Lithuania",
-    "luxembourg": "Luxembourg",
-    "madagascar": "Madagascar",
-    "malawi": "Malawi",
-    "malaysia": "Malaysia",
-    "maldives": "Maldives",
-    "mali": "Mali",
-    "malta": "Malta",
-    "marshallislands": "Marshall Islands",
-    "mauritania": "Mauritania",
-    "mauritius": "Mauritius",
-    "mexico": "Mexico",
-    "micronesia": "Micronesia",
-    "moldova": "Moldova",
-    "monaco": "Monaco",
-    "mongolia": "Mongolia",
-    "montenegro": "Montenegro",
-    "morocco": "Morocco",
-    "mozambique": "Mozambique",
-    "myanmar": "Myanmar",
-    "namibia": "Namibia",
-    "nauru": "Nauru",
-    "nepal": "Nepal",
-    "netherlands": "Netherlands",
-    "newzealand": "New Zealand",
-    "nicaragua": "Nicaragua",
-    "niger": "Niger",
-    "nigeria": "Nigeria",
-    "northmacedonia": "North Macedonia",
-    "norway": "Norway",
-    "oman": "Oman",
-    "pakistan": "Pakistan",
-    "palau": "Palau",
-    "panama": "Panama",
-    "papuanewguinea": "Papua New Guinea",
-    "paraguay": "Paraguay",
-    "peru": "Peru",
-    "philippines": "Philippines",
-    "poland": "Poland",
-    "portugal": "Portugal",
-    "qatar": "Qatar",
-    "romania": "Romania",
-    "russia": "Russia",
-    "rwanda": "Rwanda",
-    "saintkittsandnevis": "Saint Kitts and Nevis",
-    "stkittsandnevis": "Saint Kitts and Nevis",
-    "saintlucia": "Saint Lucia",
-    "stlucia": "Saint Lucia",
-    "samoa": "Samoa",
-    "sanmarino": "San Marino",
-    "saotomeandprincipe": "Sao Tome and Principe",
-    "saudiarabia": "Saudi Arabia",
-    "senegal": "Senegal",
-    "serbia": "Serbia",
-    "seychelles": "Seychelles",
-    "sierraleone": "Sierra Leone",
-    "singapore": "Singapore",
-    "slovakia": "Slovakia",
-    "slovenia": "Slovenia",
-    "solomonislands": "Solomon Islands",
-    "somalia": "Somalia",
-    "southafrica": "South Africa",
-    "southkorea": "South Korea",
-    "southsudan": "South Sudan",
-    "spain": "Spain",
-    "srilanka": "Sri Lanka",
-    "stvincentgrenadines": "St. Vincent Grenadines",
-    "saintvincentgrenadines": "St. Vincent Grenadines",
-    "stateofpalestine": "State of Palestine",
-    "palestine": "State of Palestine",
-    "sudan": "Sudan",
-    "suriname": "Suriname",
-    "sweden": "Sweden",
-    "switzerland": "Switzerland",
-    "syria": "Syria",
-    "tajikistan": "Tajikistan",
-    "tanzania": "Tanzania",
-    "thailand": "Thailand",
-    "timorleste": "Timor-Leste",
-    "togo": "Togo",
-    "tonga": "Tonga",
-    "trinidadandtobago": "Trinidad and Tobago",
-    "tunisia": "Tunisia",
-    "turkey": "Turkey",
-    "turkmenistan": "Turkmenistan",
-    "tuvalu": "Tuvalu",
-    "uae": "U.A.E.",
-    "unitedarabemirates": "U.A.E.",
-    "uk": "U.K.",
-    "unitedkingdom": "U.K.",
-    "us": "U.S.",
-    "unitedstates": "U.S.",
-    "uganda": "Uganda",
-    "ukraine": "Ukraine",
-    "uruguay": "Uruguay",
-    "uzbekistan": "Uzbekistan",
-    "vanuatu": "Vanuatu",
-    "venezuela": "Venezuela",
-    "vietnam": "Vietnam",
-    "yemen": "Yemen",
-    "zambia": "Zambia",
-    "zimbabwe": "Zimbabwe"
-  }
+    afghanistan: "Afghanistan",
+    albania: "Albania",
+    algeria: "Algeria",
+    andorra: "Andorra",
+    angola: "Angola",
+    antiguaandbarbuda: "Antigua and Barbuda",
+    argentina: "Argentina",
+    armenia: "Armenia",
+    australia: "Australia",
+    austria: "Austria",
+    azerbaijan: "Azerbaijan",
+    bahamas: "Bahamas",
+    bahrain: "Bahrain",
+    bangladesh: "Bangladesh",
+    barbados: "Barbados",
+    belarus: "Belarus",
+    belgium: "Belgium",
+    belize: "Belize",
+    benin: "Benin",
+    bhutan: "Bhutan",
+    bolivia: "Bolivia",
+    bosniaandherzegovina: "Bosnia and Herzegovina",
+    botswana: "Botswana",
+    brazil: "Brazil",
+    brunei: "Brunei ",
+    bulgaria: "Bulgaria",
+    burkinafaso: "Burkina Faso",
+    burundi: "Burundi",
+    ctedivoire: "Côte d'Ivoire",
+    cotedivoire: "Côte d'Ivoire",
+    caboverde: "Cabo Verde",
+    cambodia: "Cambodia",
+    cameroon: "Cameroon",
+    canada: "Canada",
+    car: "CAR",
+    centralafricanrepublic: "CAR",
+    chad: "Chad",
+    chile: "Chile",
+    china: "China",
+    colombia: "Colombia",
+    comoros: "Comoros",
+    congo: "Congo",
+    costarica: "Costa Rica",
+    croatia: "Croatia",
+    cuba: "Cuba",
+    cyprus: "Cyprus",
+    czechia: "Czechia",
+    denmark: "Denmark",
+    djibouti: "Djibouti",
+    dominica: "Dominica",
+    dominicanrepublic: "Dominican Republic",
+    dprk: "DPRK",
+    northkora: "DPRK",
+    democraticpeoplesrepublicofkorea: "DPRK",
+    drc: "DRC",
+    democraticrepublicofthecongo: "DRC",
+    drcongo: "DRC",
+    thedrc: "DRC",
+    ecuador: "Ecuador",
+    egypt: "Egypt",
+    elsalvador: "El Salvador",
+    equatorialguinea: "Equatorial Guinea",
+    eritrea: "Eritrea",
+    estonia: "Estonia",
+    eswatini: "Eswatini",
+    ethiopia: "Ethiopia",
+    fiji: "Fiji",
+    finland: "Finland",
+    france: "France",
+    gabon: "Gabon",
+    gambia: "Gambia",
+    georgia: "Georgia",
+    germany: "Germany",
+    ghana: "Ghana",
+    greece: "Greece",
+    grenada: "Grenada",
+    guatemala: "Guatemala",
+    guinea: "Guinea",
+    guineabissau: "Guinea-Bissau",
+    guyana: "Guyana",
+    haiti: "Haiti",
+    holysee: "Holy See",
+    honduras: "Honduras",
+    hungary: "Hungary",
+    iceland: "Iceland",
+    india: "India",
+    indonesia: "Indonesia",
+    iran: "Iran",
+    iraq: "Iraq",
+    ireland: "Ireland",
+    israel: "Israel",
+    italy: "Italy",
+    jamaica: "Jamaica",
+    japan: "Japan",
+    jordan: "Jordan",
+    kazakhstan: "Kazakhstan",
+    kenya: "Kenya",
+    kiribati: "Kiribati",
+    kuwait: "Kuwait",
+    kyrgyzstan: "Kyrgyzstan",
+    laos: "Laos",
+    latvia: "Latvia",
+    lebanon: "Lebanon",
+    lesotho: "Lesotho",
+    liberia: "Liberia",
+    libya: "Libya",
+    liechtenstein: "Liechtenstein",
+    lithuania: "Lithuania",
+    luxembourg: "Luxembourg",
+    madagascar: "Madagascar",
+    malawi: "Malawi",
+    malaysia: "Malaysia",
+    maldives: "Maldives",
+    mali: "Mali",
+    malta: "Malta",
+    marshallislands: "Marshall Islands",
+    mauritania: "Mauritania",
+    mauritius: "Mauritius",
+    mexico: "Mexico",
+    micronesia: "Micronesia",
+    moldova: "Moldova",
+    monaco: "Monaco",
+    mongolia: "Mongolia",
+    montenegro: "Montenegro",
+    morocco: "Morocco",
+    mozambique: "Mozambique",
+    myanmar: "Myanmar",
+    namibia: "Namibia",
+    nauru: "Nauru",
+    nepal: "Nepal",
+    netherlands: "Netherlands",
+    newzealand: "New Zealand",
+    nicaragua: "Nicaragua",
+    niger: "Niger",
+    nigeria: "Nigeria",
+    northmacedonia: "North Macedonia",
+    norway: "Norway",
+    oman: "Oman",
+    pakistan: "Pakistan",
+    palau: "Palau",
+    panama: "Panama",
+    papuanewguinea: "Papua New Guinea",
+    paraguay: "Paraguay",
+    peru: "Peru",
+    philippines: "Philippines",
+    poland: "Poland",
+    portugal: "Portugal",
+    qatar: "Qatar",
+    romania: "Romania",
+    russia: "Russia",
+    rwanda: "Rwanda",
+    saintkittsandnevis: "Saint Kitts and Nevis",
+    stkittsandnevis: "Saint Kitts and Nevis",
+    saintlucia: "Saint Lucia",
+    stlucia: "Saint Lucia",
+    samoa: "Samoa",
+    sanmarino: "San Marino",
+    saotomeandprincipe: "Sao Tome and Principe",
+    saudiarabia: "Saudi Arabia",
+    senegal: "Senegal",
+    serbia: "Serbia",
+    seychelles: "Seychelles",
+    sierraleone: "Sierra Leone",
+    singapore: "Singapore",
+    slovakia: "Slovakia",
+    slovenia: "Slovenia",
+    solomonislands: "Solomon Islands",
+    somalia: "Somalia",
+    southafrica: "South Africa",
+    southkorea: "South Korea",
+    southsudan: "South Sudan",
+    spain: "Spain",
+    srilanka: "Sri Lanka",
+    stvincentgrenadines: "St. Vincent Grenadines",
+    saintvincentgrenadines: "St. Vincent Grenadines",
+    stateofpalestine: "State of Palestine",
+    palestine: "State of Palestine",
+    sudan: "Sudan",
+    suriname: "Suriname",
+    sweden: "Sweden",
+    switzerland: "Switzerland",
+    syria: "Syria",
+    tajikistan: "Tajikistan",
+    tanzania: "Tanzania",
+    thailand: "Thailand",
+    timorleste: "Timor-Leste",
+    togo: "Togo",
+    tonga: "Tonga",
+    trinidadandtobago: "Trinidad and Tobago",
+    tunisia: "Tunisia",
+    turkey: "Turkey",
+    turkmenistan: "Turkmenistan",
+    tuvalu: "Tuvalu",
+    uae: "U.A.E.",
+    unitedarabemirates: "U.A.E.",
+    uk: "U.K.",
+    unitedkingdom: "U.K.",
+    us: "U.S.",
+    unitedstates: "U.S.",
+    uganda: "Uganda",
+    ukraine: "Ukraine",
+    uruguay: "Uruguay",
+    uzbekistan: "Uzbekistan",
+    vanuatu: "Vanuatu",
+    venezuela: "Venezuela",
+    vietnam: "Vietnam",
+    yemen: "Yemen",
+    zambia: "Zambia",
+    zimbabwe: "Zimbabwe",
+};

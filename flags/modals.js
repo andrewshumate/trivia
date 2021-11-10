@@ -64,14 +64,16 @@ function getAdditionalInfo(stats) {
     result.push(` (<b>${parseInt(stats.percentCorrect * 100)}%</b>) times.`);
     if (stats.incorrectGuesses.length == 0) return result.join("");
 
-    result.push(" Previous guesses:")
+    result.push(" Previous guesses:");
     result.push("<ul>");
 
     for (let i = 0; i < stats.incorrectGuesses.length; i++) {
         const guess = stats.incorrectGuesses[i];
 
         if (flags[guess]) {
-            result.push(`<li>${guess}. This is the ${guess} flag: <img class="mini-flags" src="${flags[guess].imageUrl}" /></li>`);
+            result.push(
+                `<li>${guess}. This is the ${guess} flag: <img class="mini-flags" src="${flags[guess].imageUrl}" /></li>`
+            );
         } else {
             result.push(`<li>${guess} (not a country)</li>`);
         }
