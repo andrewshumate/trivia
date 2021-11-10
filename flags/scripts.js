@@ -61,7 +61,7 @@ function getFlag() {
         const keys = shuffle(Object.keys(localStorage));
         for (let i = 0; keys.length; i++) {
             const stats = getStats(keys[i]);
-            if (stats && stats.percentCorrect < 0.6) {
+            if (stats && keys[i] != currentCountry && stats.percentCorrect < 0.6) {
                 currentCountry = keys[i];
                 break;
             }
