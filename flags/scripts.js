@@ -60,11 +60,11 @@ function getAndShowNextFlag() {
     } else {
         if (eligibleCountries.length == 0) recalculateEligibleCountries();
         currentCountry = eligibleCountries.pop();
+        numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
     }
 
     document.getElementById("flag").src = flags[currentCountry].imageUrl;
     prefetchNextImages();
-    numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
 }
 
 function recalculateEligibleCountries() {

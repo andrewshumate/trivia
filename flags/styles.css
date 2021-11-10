@@ -28,16 +28,16 @@ body {
     padding: 0;
     height: 100%;
     font-family: sans-serif;
+    max-width: 500px;
+    margin: auto;
     background: var(--background-background);
     color: var(--foreground);
 }
 #quiz-section,
 #settings-section {
     background: var(--background);
-    max-width: 500px;
     height: calc(100% - 24px);
     padding: 12px;
-    margin: auto;
 }
 input[type="text"],
 button {
@@ -55,7 +55,7 @@ button {
     width: 100%;
 }
 #flag {
-    max-height: calc(100% - 35px - 12px - 35px - 12px - 2px);
+    max-height: calc(100% - 35px - 12px - 35px - 12px - 2px - 5px - 12px);
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -101,10 +101,11 @@ svg {
     display: block;
 }
 #counter {
-    margin: -4px 0 0 0;
+    margin: 6px 12px;
     opacity: 50%;
     font-size: 12px;
     width: fit-content;
+    float: left;
 }
 
 @keyframes error-animation {
