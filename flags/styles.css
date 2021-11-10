@@ -63,12 +63,12 @@ button {
 }
 #results,
 #next-button,
-#additional-disparagement,
+#additional-info,
 #settings-section {
     display: none;
 }
 #results,
-#additional-disparagement {
+#additional-info {
     margin: 12px 0px;
 }
 #results,

@@ -29,13 +29,13 @@ function showModal() {
 function showErrorModal(correctAnswer) {
     const stats = getStats(currentCountry);
     if (stats) {
-        document.getElementById("additional-disparagement").innerHTML = getAdditionalDisparagement(stats);
+        document.getElementById("additional-info").innerHTML = getAdditionalInfo(stats);
     }
 
     showModal();
-    document.getElementById("results").innerHTML = `No you dumbass, it's <b>${correctAnswer}</b>`;
+    document.getElementById("results").innerHTML = `No, it's <b>${correctAnswer}</b>.`;
     document.getElementById("quiz-section").classList.add("error-animation");
-    document.getElementById("additional-disparagement").style.display = "revert";
+    document.getElementById("additional-info").style.display = "revert";
 }
 
 function showSuccessModal() {
@@ -53,18 +53,18 @@ function hideModal() {
 
     document.getElementById("results").style.display = "none";
     document.getElementById("next-button").style.display = "none";
-    document.getElementById("additional-disparagement").style.display = "none";
+    document.getElementById("additional-info").style.display = "none";
 
     document.getElementById("quiz-section").classList.remove("error-animation");
     document.getElementById("quiz-section").classList.remove("success-animation");
 }
 
-function getAdditionalDisparagement(stats) {
-    const result = [`You've only gotten this right <b>${stats.numCorrectGuesses}/${stats.numTotalGuesses}</b>`];
-    result.push(` (<b>${parseInt(stats.percentCorrect * 100)}%</b>) times`);
+function getAdditionalInfo(stats) {
+    const result = [`You've gotten this right <b>${stats.numCorrectGuesses}/${stats.numTotalGuesses}</b>`];
+    result.push(` (<b>${parseInt(stats.percentCorrect * 100)}%</b>) times.`);
     if (stats.incorrectGuesses.length == 0) return result.join("");
 
-    result.push(", with stupid guesses like:")
+    result.push(" Previous guesses:")
     result.push("<ul>");
 
     for (let i = 0; i < stats.incorrectGuesses.length; i++) {
@@ -73,7 +73,7 @@ function getAdditionalDisparagement(stats) {
         if (flags[guess]) {
             result.push(`<li>${guess}. This is the ${guess} flag: <img class="mini-flags" src="${flags[guess].imageUrl}" /></li>`);
         } else {
-            result.push(`<li>${guess} (not even a country)</li>`);
+            result.push(`<li>${guess} (not a country)</li>`);
         }
     }
 
