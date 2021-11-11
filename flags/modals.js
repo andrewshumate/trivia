@@ -1,5 +1,6 @@
 function showSettings() {
     document.forms["mode-selector"].elements["mode"].value = getMode();
+    document.forms["mode-selector"].elements["flag-set"].value = getFlagSetString();
     document.forms["mode-selector"].elements["reshow-unknown"].checked = getShouldReshowUnknown();
     document.getElementById("settings-section").style.display = "revert";
 }
@@ -8,10 +9,13 @@ function hideSettings() {
     document.getElementById("settings-section").style.display = "none";
 
     const mode = document.forms["mode-selector"].elements["mode"].value;
+    const flagSet = document.forms["mode-selector"].elements["flag-set"].value;
     const shouldReshowUnknown = document.forms["mode-selector"].elements["reshow-unknown"].checked;
 
-    if (getMode() != mode) {
+    if (getMode() != mode || getFlagSet() != flagSet) {
         localStorage.setItem("mode", mode);
+        localStorage.setItem("flag-set", flagSet);
+
         numQuestionsAnswered = 0;
         recalculateEligibleCountries();
         invalidateCounter();

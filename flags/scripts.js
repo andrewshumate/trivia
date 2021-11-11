@@ -48,50 +48,48 @@ function isCorrectAnswer(guess) {
 }
 
 function getAndShowNextFlag() {
+    let reshownCountry;
     if (numQuestionsAnswered % 5 == 0 && getShouldReshowUnknown()) {
-        const seenCountries = shuffle(Object.keys(localStorage));
-        for (let i = 0; seenCountries.length; i++) {
-            const stats = getStats(seenCountries[i]);
-            if (stats && seenCountries[i] != currentCountry && stats.percentCorrect < 0.6) {
-                currentCountry = seenCountries[i];
+        const flagSet = getFlagSet();
+        for (let i = 0; i < flagSet.length; i++) {
+            const stats = getStats(flagSet[i]);
+            if (stats && flagSet[i] != currentCountry && stats.percentCorrect < 0.6) {
+                reshownCountry = flagSet[i];
+                currentCountry = reshownCountry;
                 break;
             }
         }
-    } else {
-        if (eligibleCountries.length == 0) recalculateEligibleCountries();
-        currentCountry = eligibleCountries.pop();
-        numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
     }
 
+    if (reshownCountry == null) {
+        if (eligibleCountries.length == 0) recalculateEligibleCountries();
+        currentCountry = eligibleCountries.pop();
+    }
+
+    numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
     document.getElementById("flag").src = flags[currentCountry].imageUrl;
     prefetchNextImages();
 }
 
 function recalculateEligibleCountries() {
-    const allCountries = shuffle(Object.keys(flags));
     const mode = getMode();
+    let flagSet = getFlagSet();
 
-    if (mode == "Show all mode") {
-        eligibleCountries = allCountries;
-    } else if (mode == "Show unseen mode") {
+    if (mode == "Show unseen mode") {
         const seenCountries = Object.keys(localStorage);
-        eligibleCountries = allCountries.filter((country) => !seenCountries.includes(country));
+        flagSet = flagSet.filter((country) => !seenCountries.includes(country));
     } else if (mode == "Show unknown mode") {
-        eligibleCountries = allCountries.filter((country) =>
-            getStats(country) ? getStats(country).percentCorrect < 0.6 : false
+        flagSet = flagSet.filter((country) =>
+            getStats(country) ? getStats(country).percentCorrect < 0.6 : true
         );
-    } else if (mode == "Nordic cross mode") {
-        eligibleCountries = shuffle([...nordicCrossFlags]);
-    } else if (mode == "Three stripe mode") {
-        eligibleCountries = shuffle([...threeStripeFlags]);
-    } else if (mode == "Hoist triangle mode") {
-        eligibleCountries = shuffle([...triangleOnHoistFlags]);
     }
 
-    if (eligibleCountries.length == 0) {
-        eligibleCountries = allCountries;
+    if (flagSet.length == 0) {
+        const allCountries = shuffle(Object.keys(flags));
+        flagSet = allCountries;
     }
 
+    eligibleCountries = flagSet;
     numEligibleCountries = eligibleCountries.length;
 }
 

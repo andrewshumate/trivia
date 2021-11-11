@@ -15,30 +15,39 @@
     <body>
         <section id="settings-section">
             <form id="mode-selector">
+                <p class="settings-category"><b>Flag set</b></p>
+                <div class="individual-setting">
+                    <input type="radio" id="all-flags" name="flag-set" value="All flags" />
+                    <label for="all-flags">All flags (195)</label>
+                </div>
+                <div class="individual-setting">
+                    <input type="radio" id="nordic-cross-flags" name="flag-set" value="Nordic cross flags" />
+                    <label for="nordic-cross-flags">Nordic cross flags (5)</label>
+                </div>
+                <div class="individual-setting">
+                    <input type="radio" id="three-stripe-flags" name="flag-set" value="Three stripe flags" />
+                    <label for="three-stripe-flags">Three equal stripes flags (66)</label>
+                </div>
+                <div class="individual-setting">
+                    <input type="radio" id="hoist-triangle-flags" name="flag-set" value="Hoist triangle flags" />
+                    <label for="hoist-triangle-flags">Triangle on hoist flags (18)</label>
+                </div>
+
+                <p class="settings-category"><b>Filter out</b></p>
                 <div class="individual-setting">
                     <input type="radio" id="show-all-mode" name="mode" value="Show all mode" />
-                    <label for="show-all-mode">Show all flags (195)</label>
+                    <label for="show-all-mode">Do not hide any flags</label>
                 </div>
                 <div class="individual-setting">
                     <input type="radio" id="show-unseen-mode" name="mode" value="Show unseen mode" />
-                    <label for="show-unseen-mode">Only show flags I haven't seen yet</label>
+                    <label for="show-unseen-mode">Hide flags I've already seen</label>
                 </div>
                 <div class="individual-setting">
                     <input type="radio" id="show-unknown-mode" name="mode" value="Show unknown mode" />
-                    <label for="show-unknown-mode">Only show flags I've gotten wrong</label>
+                    <label for="show-unknown-mode">Hide flags I've gotten right >60% of the time</label>
                 </div>
-                <div class="individual-setting">
-                    <input type="radio" id="nordic-cross-mode" name="mode" value="Nordic cross mode" />
-                    <label for="nordic-cross-mode">Nordic cross flags (5)</label>
-                </div>
-                <div class="individual-setting">
-                    <input type="radio" id="three-stripe-mode" name="mode" value="Three stripe mode" />
-                    <label for="three-stripe-mode">Three equal stripes flags (66)</label>
-                </div>
-                <div class="individual-setting">
-                    <input type="radio" id="hoist-triangle-mode" name="mode" value="Hoist triangle mode" />
-                    <label for="hoist-triangle-mode">Triangle on hoist flags (18)</label>
-                </div>
+
+                <p class="settings-category"><b>Extra settings</b></p>
                 <div>
                     <input type="checkbox" id="reshow-unknown" name="reshow-unknwon" value="Re-show unknown" />
                     <label for="reshow-unknown">Show flags I've gotten wrong more often</label>

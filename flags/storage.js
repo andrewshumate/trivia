@@ -33,6 +33,24 @@ function getStats(country) {
     }
 }
 
+function getFlagSetString() {
+    return localStorage.getItem("flag-set") || "All flags"
+}
+
+function getFlagSet() {
+    const flagSetString = getFlagSetString();
+
+    if (flagSetString == "All flags") {
+        return shuffle(Object.keys(flags));
+    } else if (flagSetString == "Nordic cross flags") {
+        return shuffle([...nordicCrossFlags]);
+    } else if (flagSetString == "Three stripe flags") {
+        return shuffle([...threeStripeFlags]);
+    } else if (flagSetString == "Hoist triangle flags") {
+        return shuffle([...triangleOnHoistFlags]);
+    }
+}
+
 function getMode() {
     return localStorage.getItem("mode") || "Show unseen mode";
 }

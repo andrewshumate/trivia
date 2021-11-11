@@ -97,6 +97,9 @@ svg {
 .individual-setting {
     height: 35px;
 }
+.settings-category {
+    margin: 0 0 5px 5px;
+}
 .mini-flags {
     max-height: 50px;
     display: block;
