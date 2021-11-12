@@ -9,13 +9,13 @@ window.onload = () => {
     recalculateEligibleCountries();
     invalidateCounter();
     getAndShowNextFlag();
-    document.getElementById("input").focus();
+    document.getElementById("input")!.focus();
 
     // Submission listener
     const onSubmit = () => {
         const input = inputBox.value;
         if (isCorrectAnswer(input)) {
-            setStats(currentCountry, true);
+            setStats(currentCountry, true, input);
             showRightAnswerModal();
         } else {
             setStats(currentCountry, false, input);
@@ -23,15 +23,15 @@ window.onload = () => {
         }
     };
 
-    document.getElementById("submit-button").onclick = onSubmit;
-    document.getElementById("input").addEventListener("keyup", (event) => {
+    document.getElementById("submit-button")!.onclick = onSubmit;
+    document.getElementById("input")!.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
             onSubmit();
         }
     });
 
     // Next button listener
-    document.getElementById("next-button").addEventListener("click", () => {
+    document.getElementById("next-button")!.addEventListener("click", () => {
         hideResultsModal();
         invalidateCounter();
         getAndShowNextFlag();
@@ -41,7 +41,7 @@ window.onload = () => {
 function isCorrectAnswer(guess: string) {
     if (areStringsSimilar(currentCountry, guess)) return true;
 
-    const alternateNames = flags.get(currentCountry).alternateNames;
+    const alternateNames = flags.get(currentCountry)!.alternateNames;
     for (let i = 0; i < alternateNames.length; i++) {
         if (areStringsSimilar(alternateNames[i], guess)) return true;
     }
@@ -65,11 +65,11 @@ function getAndShowNextFlag() {
 
     if (reshownCountry == null) {
         if (eligibleCountries.length == 0) recalculateEligibleCountries();
-        currentCountry = eligibleCountries.pop();
+        currentCountry = eligibleCountries.pop()!;
     }
 
     numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
-    flagImage.src = flags.get(currentCountry).imageUrl;
+    flagImage.src = flags.get(currentCountry)!.imageUrl;
     prefetchNextImages();
 }
 
@@ -81,9 +81,11 @@ function recalculateEligibleCountries() {
         const seenCountries = Object.keys(localStorage);
         flagSet = flagSet.filter((country) => !seenCountries.includes(country));
     } else if (mode == "Show unknown mode") {
-        flagSet = flagSet.filter((country) =>
-            getStats(country) ? getStats(country).percentCorrect < 0.6 : true
-        );
+        flagSet = flagSet.filter((country) => {
+            const stats = getStats(country);
+            stats ? stats.percentCorrect < 0.6 : true
+
+        });
     }
 
     if (flagSet.length == 0) {
@@ -96,5 +98,5 @@ function recalculateEligibleCountries() {
 }
 
 function invalidateCounter() {
-    document.getElementById("counter").innerHTML = `${numQuestionsAnswered}/${numEligibleCountries}`;
+    document.getElementById("counter")!.innerHTML = `${numQuestionsAnswered}/${numEligibleCountries}`;
 }

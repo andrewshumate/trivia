@@ -61,8 +61,9 @@ function getAdditionalInfo(stats) {
     result.push("<ul>");
     for (let i = 0; i < stats.incorrectGuesses.length; i++) {
         const guess = stats.incorrectGuesses[i];
-        if (flags.get(guess)) {
-            result.push(`<li>${guess}. This is the ${guess} flag: <img class="mini-flags" src="${flags.get(guess).imageUrl}" /></li>`);
+        const image = flags.get(guess);
+        if (image) {
+            result.push(`<li>${guess}. This is the ${guess} flag: <img class="mini-flags" src="${image.imageUrl}" /></li>`);
         }
         else {
             result.push(`<li>${guess} (not a country)</li>`);

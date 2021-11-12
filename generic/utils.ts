@@ -31,6 +31,6 @@ function prefetchNextImages(): void {
     if (eligibleCountries.length >= 1) {
         const nextCountry = eligibleCountries[eligibleCountries.length - 1];
         const image = new Image();
-        image.src = flags.get(nextCountry).imageUrl;
+        image.src = flags.get(nextCountry)!.imageUrl;
     }
 }

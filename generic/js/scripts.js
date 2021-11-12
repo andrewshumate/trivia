@@ -12,7 +12,7 @@ window.onload = () => {
     const onSubmit = () => {
         const input = inputBox.value;
         if (isCorrectAnswer(input)) {
-            setStats(currentCountry, true);
+            setStats(currentCountry, true, input);
             showRightAnswerModal();
         }
         else {
@@ -73,7 +73,10 @@ function recalculateEligibleCountries() {
         flagSet = flagSet.filter((country) => !seenCountries.includes(country));
     }
     else if (mode == "Show unknown mode") {
-        flagSet = flagSet.filter((country) => getStats(country) ? getStats(country).percentCorrect < 0.6 : true);
+        flagSet = flagSet.filter((country) => {
+            const stats = getStats(country);
+            stats ? stats.percentCorrect < 0.6 : true;
+        });
     }
     if (flagSet.length == 0) {
         const allCountries = shuffle(Object.keys(flags));

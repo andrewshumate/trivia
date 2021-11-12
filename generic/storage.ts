@@ -1,19 +1,23 @@
 interface Stats {
-    numCorrectGuesses: number,
-    numIncorrectGuesses: number,
-    numTotalGuesses: number,
-    percentCorrect: number,
-    incorrectGuesses: string[],
+    numCorrectGuesses: number;
+    numIncorrectGuesses: number;
+    numTotalGuesses: number;
+    percentCorrect: number;
+    incorrectGuesses: string[];
 }
 
-function setStats(country: string, wasGuessCorrect: boolean, guess?: string): void {
-    let stats = JSON.parse(localStorage.getItem(country)) || {
-        numCorrectGuesses: 0,
-        numIncorrectGuesses: 0,
-        numTotalGuesses: 0,
-        percentCorrect: 0.0,
-        incorrectGuesses: [],
-    };
+function setStats(country: string, wasGuessCorrect: boolean, guess: string): void {
+    const statsString = localStorage.getItem(country);
+
+    let stats = statsString
+        ? JSON.parse(statsString)
+        : {
+              numCorrectGuesses: 0,
+              numIncorrectGuesses: 0,
+              numTotalGuesses: 0,
+              percentCorrect: 0.0,
+              incorrectGuesses: [],
+          };
 
     stats.numTotalGuesses += 1;
     if (wasGuessCorrect) {
@@ -21,8 +25,7 @@ function setStats(country: string, wasGuessCorrect: boolean, guess?: string): vo
     } else {
         stats.numIncorrectGuesses += 1;
 
-        let standardizedGuess = standardizeString(guess);
-        standardizedGuess = possibleNameToOfficalName.get(standardizedGuess);
+        let standardizedGuess = possibleNameToOfficalName.get(standardizeString(guess));
         if (standardizedGuess == null) standardizedGuess = guess.trim();
         if (standardizedGuess && !stats.incorrectGuesses.includes(standardizedGuess)) {
             stats.incorrectGuesses.push(standardizedGuess);
@@ -33,16 +36,17 @@ function setStats(country: string, wasGuessCorrect: boolean, guess?: string): vo
     localStorage.setItem(country, JSON.stringify(stats));
 }
 
-function getStats(country: string): Stats {
-    try {
-        return JSON.parse(localStorage.getItem(country));
-    } catch (e) {
+function getStats(country: string): Stats | null {
+    const statsString = localStorage.getItem(country);
+    if (statsString) {
+        return JSON.parse(statsString);
+    } else {
         return null;
     }
 }
 
 function getFlagSetString(): string {
-    return localStorage.getItem("flag-set") || "All flags"
+    return localStorage.getItem("flag-set") || "All flags";
 }
 
 function getFlagSet(): string[] {

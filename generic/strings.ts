@@ -38,11 +38,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-function _min(d0: number, d1: number, d2: number, bx: number, ay: number) {
+function _min(d0: number, d1: number, d2: number, bx: number, ay: number): number {
     return d0 < d1 || d2 < d1 ? (d0 > d2 ? d2 + 1 : d0 + 1) : bx === ay ? d1 : d1 + 1;
 }
 
-function levenshteinDistance(a: string, b: string) {
+function levenshteinDistance(a: string, b: string): number {
     if (a === b) {
         return 0;
     }
@@ -80,7 +80,7 @@ function levenshteinDistance(a: string, b: string) {
     var d1;
     var d2;
     var d3;
-    var dd;
+    var dd = 0;
     var dy;
     var ay;
     var bx0;

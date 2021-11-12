@@ -3,10 +3,9 @@
         "target": "esnext",
         "watch": true,
         "lib": ["dom", "es2021"],
-        "noImplicitAny": true,
-        "noImplicitThis": true,
         "noImplicitReturns": true,
         "noUnusedLocals":true,
+        "strict": true,
         "outDir": "js"
     }
 }

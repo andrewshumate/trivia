@@ -2,11 +2,11 @@ function showSettings() {
     modeSetting.value = getMode();
     flagSetSetting.value = getFlagSetString();
     reshowSetting.checked = getShouldReshowUnknown();
-    document.getElementById("settings-section").style.display = "revert";
+    document.getElementById("settings-section")!.style.display = "revert";
 }
 
 function hideSettings() {
-    document.getElementById("settings-section").style.display = "none";
+    document.getElementById("settings-section")!.style.display = "none";
 
     const mode = modeSetting.value;
     const flagSet = flagSetSetting.value;
@@ -28,29 +28,29 @@ function hideSettings() {
 function showResultsModal() {
     const stats = getStats(currentCountry);
     if (stats) {
-        document.getElementById("additional-info").innerHTML = getAdditionalInfo(stats);
+        document.getElementById("additional-info")!.innerHTML = getAdditionalInfo(stats);
     }
 
     inputBox.style.display = "none";
-    document.getElementById("submit-button").style.display = "none";
+    document.getElementById("submit-button")!.style.display = "none";
 
-    document.getElementById("results").style.display = "revert";
-    document.getElementById("next-button").style.display = "revert";
-    document.getElementById("additional-info").style.display = "revert";
+    document.getElementById("results")!.style.display = "revert";
+    document.getElementById("next-button")!.style.display = "revert";
+    document.getElementById("additional-info")!.style.display = "revert";
 
-    document.getElementById("next-button").focus();
+    document.getElementById("next-button")!.focus();
 }
 
 function showWrongAnswerModal(correctAnswer: string) {
     showResultsModal();
-    document.getElementById("results").innerHTML = `No, it's <b>${correctAnswer}</b>.`;
-    document.getElementById("quiz-section").classList.add("error-animation");
+    document.getElementById("results")!.innerHTML = `No, it's <b>${correctAnswer}</b>.`;
+    document.getElementById("quiz-section")!.classList.add("error-animation");
 }
 
 function showRightAnswerModal() {
     showResultsModal();
-    document.getElementById("results").innerHTML = `Correct!`;
-    document.getElementById("quiz-section").classList.add("success-animation");
+    document.getElementById("results")!.innerHTML = `Correct!`;
+    document.getElementById("quiz-section")!.classList.add("success-animation");
 }
 
 function hideResultsModal() {
@@ -58,14 +58,14 @@ function hideResultsModal() {
     inputBox.style.display = "revert";
     inputBox.focus();
 
-    document.getElementById("submit-button").style.display = "revert";
+    document.getElementById("submit-button")!.style.display = "revert";
 
-    document.getElementById("results").style.display = "none";
-    document.getElementById("next-button").style.display = "none";
-    document.getElementById("additional-info").style.display = "none";
+    document.getElementById("results")!.style.display = "none";
+    document.getElementById("next-button")!.style.display = "none";
+    document.getElementById("additional-info")!.style.display = "none";
 
-    document.getElementById("quiz-section").classList.remove("error-animation");
-    document.getElementById("quiz-section").classList.remove("success-animation");
+    document.getElementById("quiz-section")!.classList.remove("error-animation");
+    document.getElementById("quiz-section")!.classList.remove("success-animation");
 }
 
 function getAdditionalInfo(stats: Stats) {
@@ -78,10 +78,11 @@ function getAdditionalInfo(stats: Stats) {
 
     for (let i = 0; i < stats.incorrectGuesses.length; i++) {
         const guess = stats.incorrectGuesses[i];
+        const image = flags.get(guess);
 
-        if (flags.get(guess)) {
+        if (image) {
             result.push(
-                `<li>${guess}. This is the ${guess} flag: <img class="mini-flags" src="${flags.get(guess).imageUrl}" /></li>`
+                `<li>${guess}. This is the ${guess} flag: <img class="mini-flags" src="${image.imageUrl}" /></li>`
             );
         } else {
             result.push(`<li>${guess} (not a country)</li>`);

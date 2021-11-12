@@ -67,7 +67,7 @@ function levenshteinDistance(a, b) {
     var d1;
     var d2;
     var d3;
-    var dd;
+    var dd = 0;
     var dy;
     var ay;
     var bx0;

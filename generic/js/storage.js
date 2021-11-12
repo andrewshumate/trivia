@@ -1,19 +1,21 @@
 function setStats(country, wasGuessCorrect, guess) {
-    let stats = JSON.parse(localStorage.getItem(country)) || {
-        numCorrectGuesses: 0,
-        numIncorrectGuesses: 0,
-        numTotalGuesses: 0,
-        percentCorrect: 0.0,
-        incorrectGuesses: [],
-    };
+    const statsString = localStorage.getItem(country);
+    let stats = statsString
+        ? JSON.parse(statsString)
+        : {
+            numCorrectGuesses: 0,
+            numIncorrectGuesses: 0,
+            numTotalGuesses: 0,
+            percentCorrect: 0.0,
+            incorrectGuesses: [],
+        };
     stats.numTotalGuesses += 1;
     if (wasGuessCorrect) {
         stats.numCorrectGuesses += 1;
     }
     else {
         stats.numIncorrectGuesses += 1;
-        let standardizedGuess = standardizeString(guess);
-        standardizedGuess = possibleNameToOfficalName.get(standardizedGuess);
+        let standardizedGuess = possibleNameToOfficalName.get(standardizeString(guess));
         if (standardizedGuess == null)
             standardizedGuess = guess.trim();
         if (standardizedGuess && !stats.incorrectGuesses.includes(standardizedGuess)) {
@@ -24,10 +26,11 @@ function setStats(country, wasGuessCorrect, guess) {
     localStorage.setItem(country, JSON.stringify(stats));
 }
 function getStats(country) {
-    try {
-        return JSON.parse(localStorage.getItem(country));
+    const statsString = localStorage.getItem(country);
+    if (statsString) {
+        return JSON.parse(statsString);
     }
-    catch (e) {
+    else {
         return null;
     }
 }
