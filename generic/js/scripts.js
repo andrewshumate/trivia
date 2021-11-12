@@ -1,35 +1,31 @@
-let currentCountry: string;
-let eligibleCountries: string[];
-let numEligibleCountries: number;
+let currentCountry;
+let eligibleCountries;
+let numEligibleCountries;
 let numQuestionsAnswered = 0;
-
 window.onload = () => {
     initBinding();
-    
     recalculateEligibleCountries();
     invalidateCounter();
     getAndShowNextFlag();
     document.getElementById("input").focus();
-
     // Submission listener
     const onSubmit = () => {
         const input = inputBox.value;
         if (isCorrectAnswer(input)) {
             setStats(currentCountry, true);
             showRightAnswerModal();
-        } else {
+        }
+        else {
             setStats(currentCountry, false, input);
             showWrongAnswerModal(currentCountry);
         }
     };
-
     document.getElementById("submit-button").onclick = onSubmit;
     document.getElementById("input").addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
             onSubmit();
         }
     });
-
     // Next button listener
     document.getElementById("next-button").addEventListener("click", () => {
         hideResultsModal();
@@ -37,18 +33,16 @@ window.onload = () => {
         getAndShowNextFlag();
     });
 };
-
-function isCorrectAnswer(guess: string) {
-    if (areStringsSimilar(currentCountry, guess)) return true;
-
+function isCorrectAnswer(guess) {
+    if (areStringsSimilar(currentCountry, guess))
+        return true;
     const alternateNames = flags.get(currentCountry).alternateNames;
     for (let i = 0; i < alternateNames.length; i++) {
-        if (areStringsSimilar(alternateNames[i], guess)) return true;
+        if (areStringsSimilar(alternateNames[i], guess))
+            return true;
     }
-
     return false;
 }
-
 function getAndShowNextFlag() {
     let reshownCountry;
     if (numQuestionsAnswered % 5 == 0 && getShouldReshowUnknown()) {
@@ -62,39 +56,32 @@ function getAndShowNextFlag() {
             }
         }
     }
-
     if (reshownCountry == null) {
-        if (eligibleCountries.length == 0) recalculateEligibleCountries();
+        if (eligibleCountries.length == 0)
+            recalculateEligibleCountries();
         currentCountry = eligibleCountries.pop();
     }
-
     numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
     flagImage.src = flags.get(currentCountry).imageUrl;
     prefetchNextImages();
 }
-
 function recalculateEligibleCountries() {
     const mode = getMode();
     let flagSet = getFlagSet();
-
     if (mode == "Show unseen mode") {
         const seenCountries = Object.keys(localStorage);
         flagSet = flagSet.filter((country) => !seenCountries.includes(country));
-    } else if (mode == "Show unknown mode") {
-        flagSet = flagSet.filter((country) =>
-            getStats(country) ? getStats(country).percentCorrect < 0.6 : true
-        );
     }
-
+    else if (mode == "Show unknown mode") {
+        flagSet = flagSet.filter((country) => getStats(country) ? getStats(country).percentCorrect < 0.6 : true);
+    }
     if (flagSet.length == 0) {
         const allCountries = shuffle(Object.keys(flags));
         flagSet = allCountries;
     }
-
     eligibleCountries = flagSet;
     numEligibleCountries = eligibleCountries.length;
 }
-
 function invalidateCounter() {
     document.getElementById("counter").innerHTML = `${numQuestionsAnswered}/${numEligibleCountries}`;
 }

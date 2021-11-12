@@ -1,6 +1,6 @@
-function shuffle(array: any[]): any[] {
+function shuffle(array) {
     let currentIndex = array.length;
-    let randomIndex: number;
+    let randomIndex;
     while (currentIndex != 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
@@ -8,13 +8,11 @@ function shuffle(array: any[]): any[] {
     }
     return array;
 }
-
-function randomKey(obj: any): string {
+function randomKey(obj) {
     var keys = Object.keys(obj);
     return keys[(keys.length * Math.random()) << 0];
 }
-
-function prefetchNextImages(): void {
+function prefetchNextImages() {
     // Pre-fetch failure page images
     const stats = getStats(currentCountry);
     if (stats) {
@@ -26,7 +24,6 @@ function prefetchNextImages(): void {
             }
         }
     }
-
     // Pre-fetch next image
     if (eligibleCountries.length >= 1) {
         const nextCountry = eligibleCountries[eligibleCountries.length - 1];
