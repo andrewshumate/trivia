@@ -1,0 +1,141 @@
+:root {
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-background: black;
+        --background: #272727;
+        --foreground: white;
+        --success: #1b5e20;
+        --failure: #b71c1c;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-background: white;
+        --background: #cfd8dc;
+        --foreground: black;
+        --success: #4caf50;
+        --failure: #f44336;
+    }
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+    max-width: 500px;
+    margin: auto;
+    background: var(--background-background);
+    color: var(--foreground);
+}
+#quiz-section,
+#settings-section {
+    background: var(--background);
+    height: calc(100% - 24px);
+    padding: 12px;
+}
+input[type="text"],
+button {
+    height: 35px;
+    border: 0px;
+    border-radius: 7px;
+}
+input[type="text"] {
+    width: calc(100% - 7px);
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-left: 7px;
+}
+button {
+    width: 100%;
+}
+#flag {
+    max-height: calc(100% - 35px - 12px - 35px - 12px - 2px - 5px - 12px);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+#results,
+#next-button,
+#additional-info,
+#settings-section {
+    display: none;
+}
+#results,
+#additional-info {
+    margin: 12px 0px;
+}
+#results,
+#input {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+#settings-icon {
+    float: right;
+    margin: -2px -3px 0 0;
+    height: 18px;
+}
+#settings-section {
+    position: absolute;
+    width: calc(100% - 24px);
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+#settings-section form {
+    margin-bottom: 12px;
+}
+svg {
+    fill: var(--foreground);
+}
+.individual-setting {
+    height: 35px;
+}
+.settings-category {
+    margin: 0 0 5px 5px;
+}
+.mini-flags {
+    max-height: 50px;
+    display: block;
+}
+#counter {
+    opacity: 50%;
+    margin: 0;
+    font-size: 12px;
+    width: fit-content;
+    float: left;
+}
+#top-bar {
+    height: 24px;
+}
+
+@keyframes error-animation {
+    from {
+        background-color: var(--failure);
+    }
+    to {
+        background-color: var(--background);
+    }
+}
+.error-animation {
+    animation-name: error-animation;
+    animation-duration: 1.5s;
+}
+@keyframes success-animation {
+    from {
+        background-color: var(--success);
+    }
+    to {
+        background-color: var(--background);
+    }
+}
+.success-animation {
+    animation-name: success-animation;
+    animation-duration: 1.5s;
+}
