@@ -30,7 +30,7 @@
         if (isCorrectAnswer(userInput)) {
                 storage.setStats(currentCountry, true, userInput);
                 modals.showRightAnswerModal(currentCountry);
-            } else {
+        } else {
                 storage.setStats(currentCountry, false, userInput);
                 modals.showWrongAnswerModal(currentCountry);
         }
