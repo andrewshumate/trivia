@@ -54,7 +54,9 @@ export function recalculateEligibleCountries() {
     } else if (mode == "Show unknown mode") {
         flagSet = flagSet.filter((country) => {
             const stats = storage.getStats(country);
-            stats ? stats.percentCorrect < 0.6 : true;
+            return stats
+                ? stats.percentCorrect < 0.6 || stats.numCorrectGuesses < 2
+                : true;
         });
     }
 
