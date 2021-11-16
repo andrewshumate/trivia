@@ -1,12 +1,12 @@
 // This is temporary and will be removed later with Svelte
-let inputBox: HTMLInputElement;
-let flagImage: HTMLImageElement;
-let settingsForm;
-let flagSetSetting: HTMLInputElement;
-let modeSetting: HTMLInputElement;
-let reshowSetting: HTMLInputElement;
+export let inputBox: HTMLInputElement;
+export let flagImage: HTMLImageElement;
+export let settingsForm: any;
+export let flagSetSetting: HTMLInputElement;
+export let modeSetting: HTMLInputElement;
+export let reshowSetting: HTMLInputElement;
 
-function initBinding(): void {
+export function initBinding(): void {
     inputBox = <HTMLInputElement> document.getElementById("input");
     flagImage = <HTMLImageElement> document.getElementById("flag");
     settingsForm = document.forms[0];

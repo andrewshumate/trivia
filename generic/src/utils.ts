@@ -1,4 +1,8 @@
-function shuffle(array: any[]): any[] {
+import { getStats } from "./storage";
+import { flags } from "./data";
+import { currentCountry, eligibleCountries } from "./scripts";
+
+export function shuffle(array: any[]): any[] {
     let currentIndex = array.length;
     let randomIndex: number;
     while (currentIndex != 0) {
@@ -9,12 +13,12 @@ function shuffle(array: any[]): any[] {
     return array;
 }
 
-function randomKey(obj: any): string {
+export function randomKey(obj: any): string {
     var keys = Object.keys(obj);
     return keys[(keys.length * Math.random()) << 0];
 }
 
-function prefetchNextImages(): void {
+export function prefetchNextImages(): void {
     // Pre-fetch failure page images
     const stats = getStats(currentCountry);
     if (stats) {

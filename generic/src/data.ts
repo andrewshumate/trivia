@@ -1,4 +1,11 @@
-const flags = new Map([
+import {standardizeString} from "./strings";
+
+export  interface CountryAndFlag {
+    alternateNames: string[];
+    imageUrl: string;
+}
+
+export const flags: Map<string, CountryAndFlag> = new Map([
     [
         "Afghanistan",
         {
@@ -6,6 +13,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/af-flag.gif",
         },
     ],
+
     [
         "Albania",
         {
@@ -13,6 +21,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/al-flag.gif",
         },
     ],
+
     [
         "Algeria",
         {
@@ -20,6 +29,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ag-flag.gif",
         },
     ],
+
     [
         "Andorra",
         {
@@ -27,6 +37,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/an-flag.gif",
         },
     ],
+
     [
         "Angola",
         {
@@ -34,6 +45,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ao-flag.gif",
         },
     ],
+
     [
         "Antigua and Barbuda",
         {
@@ -41,6 +53,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ac-flag.gif",
         },
     ],
+
     [
         "Argentina",
         {
@@ -48,6 +61,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ar-flag.gif",
         },
     ],
+
     [
         "Armenia",
         {
@@ -55,6 +69,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/am-flag.gif",
         },
     ],
+
     [
         "Australia",
         {
@@ -62,6 +77,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/as-flag.gif",
         },
     ],
+
     [
         "Austria",
         {
@@ -69,6 +85,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/au-flag.gif",
         },
     ],
+
     [
         "Azerbaijan",
         {
@@ -76,6 +93,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/aj-flag.gif",
         },
     ],
+
     [
         "Bahamas",
         {
@@ -83,6 +101,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bf-flag.gif",
         },
     ],
+
     [
         "Bahrain",
         {
@@ -90,6 +109,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ba-flag.gif",
         },
     ],
+
     [
         "Bangladesh",
         {
@@ -97,6 +117,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bg-flag.gif",
         },
     ],
+
     [
         "Barbados",
         {
@@ -104,6 +125,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bb-flag.gif",
         },
     ],
+
     [
         "Belarus",
         {
@@ -111,6 +133,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bo-flag.gif",
         },
     ],
+
     [
         "Belgium",
         {
@@ -118,6 +141,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/be-flag.gif",
         },
     ],
+
     [
         "Belize",
         {
@@ -125,6 +149,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bh-flag.gif",
         },
     ],
+
     [
         "Benin",
         {
@@ -132,6 +157,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bn-flag.gif",
         },
     ],
+
     [
         "Bhutan",
         {
@@ -139,6 +165,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bt-flag.gif",
         },
     ],
+
     [
         "Bolivia",
         {
@@ -146,6 +173,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bl-flag.gif",
         },
     ],
+
     [
         "Bosnia and Herzegovina",
         {
@@ -153,6 +181,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bk-flag.gif",
         },
     ],
+
     [
         "Botswana",
         {
@@ -160,6 +189,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bc-flag.gif",
         },
     ],
+
     [
         "Brazil",
         {
@@ -167,6 +197,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/br-flag.gif",
         },
     ],
+
     [
         "Brunei ",
         {
@@ -174,6 +205,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bx-flag.gif",
         },
     ],
+
     [
         "Bulgaria",
         {
@@ -181,6 +213,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bu-flag.gif",
         },
     ],
+
     [
         "Burkina Faso",
         {
@@ -188,6 +221,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/uv-flag.gif",
         },
     ],
+
     [
         "Burundi",
         {
@@ -195,6 +229,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/by-flag.gif",
         },
     ],
+
     [
         "Côte d'Ivoire",
         {
@@ -202,6 +237,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/iv-flag.gif",
         },
     ],
+
     [
         "Cabo Verde",
         {
@@ -209,6 +245,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cv-flag.gif",
         },
     ],
+
     [
         "Cambodia",
         {
@@ -216,6 +253,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cb-flag.gif",
         },
     ],
+
     [
         "Cameroon",
         {
@@ -223,6 +261,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cm-flag.gif",
         },
     ],
+
     [
         "Canada",
         {
@@ -230,6 +269,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ca-flag.gif",
         },
     ],
+
     [
         "CAR",
         {
@@ -237,6 +277,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ct-flag.gif",
         },
     ],
+
     [
         "Chad",
         {
@@ -244,6 +285,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cd-flag.gif",
         },
     ],
+
     [
         "Chile",
         {
@@ -251,6 +293,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ci-flag.gif",
         },
     ],
+
     [
         "China",
         {
@@ -258,6 +301,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ch-flag.gif",
         },
     ],
+
     [
         "Colombia",
         {
@@ -265,6 +309,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/co-flag.gif",
         },
     ],
+
     [
         "Comoros",
         {
@@ -272,6 +317,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cn-flag.gif",
         },
     ],
+
     [
         "Congo",
         {
@@ -279,6 +325,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cg-flag.gif",
         },
     ],
+
     [
         "Costa Rica",
         {
@@ -286,6 +333,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cs-flag.gif",
         },
     ],
+
     [
         "Croatia",
         {
@@ -293,6 +341,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/hr-flag.gif",
         },
     ],
+
     [
         "Cuba",
         {
@@ -300,6 +349,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cu-flag.gif",
         },
     ],
+
     [
         "Cyprus",
         {
@@ -307,6 +357,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/cy-flag.gif",
         },
     ],
+
     [
         "Czechia",
         {
@@ -314,6 +365,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ez-flag.gif",
         },
     ],
+
     [
         "Denmark",
         {
@@ -321,6 +373,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/da-flag.gif",
         },
     ],
+
     [
         "Djibouti",
         {
@@ -328,6 +381,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/dj-flag.gif",
         },
     ],
+
     [
         "Dominica",
         {
@@ -335,6 +389,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/do-flag.gif",
         },
     ],
+
     [
         "Dominican Republic",
         {
@@ -342,6 +397,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/dr-flag.gif",
         },
     ],
+
     [
         "DPRK",
         {
@@ -352,6 +408,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/kn-flag.gif",
         },
     ],
+
     [
         "DRC",
         {
@@ -363,6 +420,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/congo-flag.gif",
         },
     ],
+
     [
         "Ecuador",
         {
@@ -370,6 +428,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ec-flag.gif",
         },
     ],
+
     [
         "Egypt",
         {
@@ -377,6 +436,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/eg-flag.gif",
         },
     ],
+
     [
         "El Salvador",
         {
@@ -384,6 +444,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/es-flag.gif",
         },
     ],
+
     [
         "Equatorial Guinea",
         {
@@ -391,6 +452,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ek-flag.gif",
         },
     ],
+
     [
         "Eritrea",
         {
@@ -398,6 +460,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/er-flag.gif",
         },
     ],
+
     [
         "Estonia",
         {
@@ -405,6 +468,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/en-flag.gif",
         },
     ],
+
     [
         "Eswatini",
         {
@@ -412,6 +476,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/wz-flag.gif",
         },
     ],
+
     [
         "Ethiopia",
         {
@@ -419,6 +484,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/et-flag.gif",
         },
     ],
+
     [
         "Fiji",
         {
@@ -426,6 +492,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/fj-flag.gif",
         },
     ],
+
     [
         "Finland",
         {
@@ -433,6 +500,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/fi-flag.gif",
         },
     ],
+
     [
         "France",
         {
@@ -440,6 +508,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/fr-flag.gif",
         },
     ],
+
     [
         "Gabon",
         {
@@ -447,6 +516,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gb-flag.gif",
         },
     ],
+
     [
         "Gambia",
         {
@@ -454,6 +524,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ga-flag.gif",
         },
     ],
+
     [
         "Georgia",
         {
@@ -461,6 +532,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gg-flag.gif",
         },
     ],
+
     [
         "Germany",
         {
@@ -468,6 +540,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gm-flag.gif",
         },
     ],
+
     [
         "Ghana",
         {
@@ -475,6 +548,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gh-flag.gif",
         },
     ],
+
     [
         "Greece",
         {
@@ -482,6 +556,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gr-flag.gif",
         },
     ],
+
     [
         "Grenada",
         {
@@ -489,6 +564,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gj-flag.gif",
         },
     ],
+
     [
         "Guatemala",
         {
@@ -496,6 +572,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gt-flag.gif",
         },
     ],
+
     [
         "Guinea",
         {
@@ -503,6 +580,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gv-flag.gif",
         },
     ],
+
     [
         "Guinea-Bissau",
         {
@@ -510,6 +588,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/pu-flag.gif",
         },
     ],
+
     [
         "Guyana",
         {
@@ -517,6 +596,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/gy-flag.gif",
         },
     ],
+
     [
         "Haiti",
         {
@@ -524,6 +604,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ha-flag.gif",
         },
     ],
+
     [
         "Holy See",
         {
@@ -531,6 +612,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/vt-flag.gif",
         },
     ],
+
     [
         "Honduras",
         {
@@ -538,6 +620,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ho-flag.gif",
         },
     ],
+
     [
         "Hungary",
         {
@@ -545,6 +628,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/hu-flag.gif",
         },
     ],
+
     [
         "Iceland",
         {
@@ -552,6 +636,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ic-flag.gif",
         },
     ],
+
     [
         "India",
         {
@@ -559,6 +644,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/in-flag.gif",
         },
     ],
+
     [
         "Indonesia",
         {
@@ -566,6 +652,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/id-flag.gif",
         },
     ],
+
     [
         "Iran",
         {
@@ -573,6 +660,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ir-flag.gif",
         },
     ],
+
     [
         "Iraq",
         {
@@ -580,6 +668,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/iz-flag.gif",
         },
     ],
+
     [
         "Ireland",
         {
@@ -587,6 +676,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ei-flag.gif",
         },
     ],
+
     [
         "Israel",
         {
@@ -594,6 +684,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/is-flag.gif",
         },
     ],
+
     [
         "Italy",
         {
@@ -601,6 +692,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/it-flag.gif",
         },
     ],
+
     [
         "Jamaica",
         {
@@ -608,6 +700,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/jm-flag.gif",
         },
     ],
+
     [
         "Japan",
         {
@@ -615,6 +708,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ja-flag.gif",
         },
     ],
+
     [
         "Jordan",
         {
@@ -622,6 +716,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/jo-flag.gif",
         },
     ],
+
     [
         "Kazakhstan",
         {
@@ -629,6 +724,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/kz-flag.gif",
         },
     ],
+
     [
         "Kenya",
         {
@@ -636,6 +732,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ke-flag.gif",
         },
     ],
+
     [
         "Kiribati",
         {
@@ -643,6 +740,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/kr-flag.gif",
         },
     ],
+
     [
         "Kuwait",
         {
@@ -650,6 +748,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ku-flag.gif",
         },
     ],
+
     [
         "Kyrgyzstan",
         {
@@ -657,6 +756,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/kg-flag.gif",
         },
     ],
+
     [
         "Laos",
         {
@@ -664,6 +764,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/la-flag.gif",
         },
     ],
+
     [
         "Latvia",
         {
@@ -671,6 +772,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/lg-flag.gif",
         },
     ],
+
     [
         "Lebanon",
         {
@@ -678,6 +780,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/le-flag.gif",
         },
     ],
+
     [
         "Lesotho",
         {
@@ -685,6 +788,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/lt-flag.gif",
         },
     ],
+
     [
         "Liberia",
         {
@@ -692,6 +796,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/li-flag.gif",
         },
     ],
+
     [
         "Libya",
         {
@@ -699,6 +804,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ly-flag.gif",
         },
     ],
+
     [
         "Liechtenstein",
         {
@@ -706,6 +812,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ls-flag.gif",
         },
     ],
+
     [
         "Lithuania",
         {
@@ -713,6 +820,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/lh-flag.gif",
         },
     ],
+
     [
         "Luxembourg",
         {
@@ -720,6 +828,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/lu-flag.gif",
         },
     ],
+
     [
         "Madagascar",
         {
@@ -727,6 +836,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ma-flag.gif",
         },
     ],
+
     [
         "Malawi",
         {
@@ -734,6 +844,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mi-flag.gif",
         },
     ],
+
     [
         "Malaysia",
         {
@@ -741,6 +852,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/my-flag.gif",
         },
     ],
+
     [
         "Maldives",
         {
@@ -748,6 +860,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mv-flag.gif",
         },
     ],
+
     [
         "Mali",
         {
@@ -755,6 +868,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ml-flag.gif",
         },
     ],
+
     [
         "Malta",
         {
@@ -762,6 +876,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mt-flag.gif",
         },
     ],
+
     [
         "Marshall Islands",
         {
@@ -769,6 +884,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/rm-flag.gif",
         },
     ],
+
     [
         "Mauritania",
         {
@@ -776,6 +892,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mr-flag.gif",
         },
     ],
+
     [
         "Mauritius",
         {
@@ -783,6 +900,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mp-flag.gif",
         },
     ],
+
     [
         "Mexico",
         {
@@ -790,6 +908,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mx-flag.gif",
         },
     ],
+
     [
         "Micronesia",
         {
@@ -797,6 +916,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/fm-flag.gif",
         },
     ],
+
     [
         "Moldova",
         {
@@ -804,6 +924,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/md-flag.gif",
         },
     ],
+
     [
         "Monaco",
         {
@@ -811,6 +932,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mn-flag.gif",
         },
     ],
+
     [
         "Mongolia",
         {
@@ -818,6 +940,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mg-flag.gif",
         },
     ],
+
     [
         "Montenegro",
         {
@@ -825,6 +948,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mj-flag.gif",
         },
     ],
+
     [
         "Morocco",
         {
@@ -832,6 +956,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mo-flag.gif",
         },
     ],
+
     [
         "Mozambique",
         {
@@ -839,6 +964,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mz-flag.gif",
         },
     ],
+
     [
         "Myanmar",
         {
@@ -846,6 +972,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bm-flag.gif",
         },
     ],
+
     [
         "Namibia",
         {
@@ -853,6 +980,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/wa-flag.gif",
         },
     ],
+
     [
         "Nauru",
         {
@@ -860,6 +988,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/nr-flag.gif",
         },
     ],
+
     [
         "Nepal",
         {
@@ -867,6 +996,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/np-flag.gif",
         },
     ],
+
     [
         "Netherlands",
         {
@@ -874,6 +1004,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/nl-flag.gif",
         },
     ],
+
     [
         "New Zealand",
         {
@@ -881,6 +1012,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/nz-flag.gif",
         },
     ],
+
     [
         "Nicaragua",
         {
@@ -888,6 +1020,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/nu-flag.gif",
         },
     ],
+
     [
         "Niger",
         {
@@ -895,6 +1028,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ng-flag.gif",
         },
     ],
+
     [
         "Nigeria",
         {
@@ -902,6 +1036,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ni-flag.gif",
         },
     ],
+
     [
         "North Macedonia",
         {
@@ -909,6 +1044,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mk-flag.gif",
         },
     ],
+
     [
         "Norway",
         {
@@ -916,6 +1052,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/no-flag.gif",
         },
     ],
+
     [
         "Oman",
         {
@@ -923,6 +1060,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/mu-flag.gif",
         },
     ],
+
     [
         "Pakistan",
         {
@@ -930,6 +1068,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/pk-flag.gif",
         },
     ],
+
     [
         "Palau",
         {
@@ -937,6 +1076,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ps-flag.gif",
         },
     ],
+
     [
         "Panama",
         {
@@ -944,6 +1084,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/pm-flag.gif",
         },
     ],
+
     [
         "Papua New Guinea",
         {
@@ -951,6 +1092,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/pp-flag.gif",
         },
     ],
+
     [
         "Paraguay",
         {
@@ -958,6 +1100,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/pa-flag.gif",
         },
     ],
+
     [
         "Peru",
         {
@@ -965,6 +1108,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/pe-flag.gif",
         },
     ],
+
     [
         "Philippines",
         {
@@ -972,6 +1116,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/rp-flag.gif",
         },
     ],
+
     [
         "Poland",
         {
@@ -979,6 +1124,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/pl-flag.gif",
         },
     ],
+
     [
         "Portugal",
         {
@@ -986,6 +1132,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/po-flag.gif",
         },
     ],
+
     [
         "Qatar",
         {
@@ -993,6 +1140,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/qa-flag.gif",
         },
     ],
+
     [
         "Romania",
         {
@@ -1000,6 +1148,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ro-flag.gif",
         },
     ],
+
     [
         "Russia",
         {
@@ -1007,6 +1156,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/rs-flag.gif",
         },
     ],
+
     [
         "Rwanda",
         {
@@ -1014,6 +1164,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/rw-flag.gif",
         },
     ],
+
     [
         "Saint Kitts and Nevis",
         {
@@ -1021,6 +1172,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sc-flag.gif",
         },
     ],
+
     [
         "Saint Lucia",
         {
@@ -1028,6 +1180,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/st-flag.gif",
         },
     ],
+
     [
         "Samoa",
         {
@@ -1035,6 +1188,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ws-flag.gif",
         },
     ],
+
     [
         "San Marino",
         {
@@ -1042,6 +1196,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sm-flag.gif",
         },
     ],
+
     [
         "Sao Tome and Principe",
         {
@@ -1049,6 +1204,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/tp-flag.gif",
         },
     ],
+
     [
         "Saudi Arabia",
         {
@@ -1056,6 +1212,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sa-flag.gif",
         },
     ],
+
     [
         "Senegal",
         {
@@ -1063,6 +1220,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sg-flag.gif",
         },
     ],
+
     [
         "Serbia",
         {
@@ -1070,6 +1228,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ri-flag.gif",
         },
     ],
+
     [
         "Seychelles",
         {
@@ -1077,6 +1236,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/se-flag.gif",
         },
     ],
+
     [
         "Sierra Leone",
         {
@@ -1084,6 +1244,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sl-flag.gif",
         },
     ],
+
     [
         "Singapore",
         {
@@ -1091,6 +1252,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sn-flag.gif",
         },
     ],
+
     [
         "Slovakia",
         {
@@ -1098,6 +1260,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/lo-flag.gif",
         },
     ],
+
     [
         "Slovenia",
         {
@@ -1105,6 +1268,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/si-flag.gif",
         },
     ],
+
     [
         "Solomon Islands",
         {
@@ -1112,6 +1276,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/bp-flag.gif",
         },
     ],
+
     [
         "Somalia",
         {
@@ -1119,6 +1284,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/so-flag.gif",
         },
     ],
+
     [
         "South Africa",
         {
@@ -1126,6 +1292,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sf-flag.gif",
         },
     ],
+
     [
         "South Korea",
         {
@@ -1133,6 +1300,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ks-flag.gif",
         },
     ],
+
     [
         "South Sudan",
         {
@@ -1140,6 +1308,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/od-flag.gif",
         },
     ],
+
     [
         "Spain",
         {
@@ -1147,6 +1316,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sp-flag.gif",
         },
     ],
+
     [
         "Sri Lanka",
         {
@@ -1154,6 +1324,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ce-flag.gif",
         },
     ],
+
     [
         "St. Vincent Grenadines",
         {
@@ -1161,13 +1332,16 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/vc-flag.gif",
         },
     ],
+
     [
         "State of Palestine",
         {
             alternateNames: ["Palestine"],
-            imageUrl: "https://www.worldometers.info/img/flags/palestine-flag.gif",
+            imageUrl:
+                "https://www.worldometers.info/img/flags/palestine-flag.gif",
         },
     ],
+
     [
         "Sudan",
         {
@@ -1175,6 +1349,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/su-flag.gif",
         },
     ],
+
     [
         "Suriname",
         {
@@ -1182,6 +1357,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ns-flag.gif",
         },
     ],
+
     [
         "Sweden",
         {
@@ -1189,6 +1365,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sw-flag.gif",
         },
     ],
+
     [
         "Switzerland",
         {
@@ -1196,6 +1373,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sz-flag.gif",
         },
     ],
+
     [
         "Syria",
         {
@@ -1203,6 +1381,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/sy-flag.gif",
         },
     ],
+
     [
         "Tajikistan",
         {
@@ -1210,6 +1389,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ti-flag.gif",
         },
     ],
+
     [
         "Tanzania",
         {
@@ -1217,6 +1397,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/tz-flag.gif",
         },
     ],
+
     [
         "Thailand",
         {
@@ -1224,6 +1405,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/th-flag.gif",
         },
     ],
+
     [
         "Timor-Leste",
         {
@@ -1231,6 +1413,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/tt-flag.gif",
         },
     ],
+
     [
         "Togo",
         {
@@ -1238,6 +1421,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/to-flag.gif",
         },
     ],
+
     [
         "Tonga",
         {
@@ -1245,6 +1429,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/tn-flag.gif",
         },
     ],
+
     [
         "Trinidad and Tobago",
         {
@@ -1252,6 +1437,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/td-flag.gif",
         },
     ],
+
     [
         "Tunisia",
         {
@@ -1259,6 +1445,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ts-flag.gif",
         },
     ],
+
     [
         "Turkey",
         {
@@ -1266,6 +1453,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/tu-flag.gif",
         },
     ],
+
     [
         "Turkmenistan",
         {
@@ -1273,6 +1461,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/tx-flag.gif",
         },
     ],
+
     [
         "Tuvalu",
         {
@@ -1280,6 +1469,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/tv-flag.gif",
         },
     ],
+
     [
         "U.A.E.",
         {
@@ -1287,6 +1477,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ae-flag.gif",
         },
     ],
+
     [
         "U.K.",
         {
@@ -1294,6 +1485,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/uk-flag.gif",
         },
     ],
+
     [
         "U.S.",
         {
@@ -1301,6 +1493,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/us-flag.gif",
         },
     ],
+
     [
         "Uganda",
         {
@@ -1308,6 +1501,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ug-flag.gif",
         },
     ],
+
     [
         "Ukraine",
         {
@@ -1315,6 +1509,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/up-flag.gif",
         },
     ],
+
     [
         "Uruguay",
         {
@@ -1322,6 +1517,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/uy-flag.gif",
         },
     ],
+
     [
         "Uzbekistan",
         {
@@ -1329,6 +1525,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/uz-flag.gif",
         },
     ],
+
     [
         "Vanuatu",
         {
@@ -1336,6 +1533,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/nh-flag.gif",
         },
     ],
+
     [
         "Venezuela",
         {
@@ -1343,6 +1541,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ve-flag.gif",
         },
     ],
+
     [
         "Vietnam",
         {
@@ -1350,6 +1549,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/vm-flag.gif",
         },
     ],
+
     [
         "Yemen",
         {
@@ -1357,6 +1557,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/ym-flag.gif",
         },
     ],
+
     [
         "Zambia",
         {
@@ -1364,6 +1565,7 @@ const flags = new Map([
             imageUrl: "https://www.worldometers.info/img/flags/za-flag.gif",
         },
     ],
+
     [
         "Zimbabwe",
         {
@@ -1372,20 +1574,29 @@ const flags = new Map([
         },
     ],
 ]);
-function x(flags) {
-    const result = new Map();
+
+function x(flags: Map<string, CountryAndFlag>): Map<string, string> {
+    const result: Map<string, string> = new Map();
+
     for (let [countryName, countryAndFlag] of flags) {
         result.set(standardizeString(countryName), countryName);
-        countryAndFlag.alternateNames.forEach((name) => result.set(standardizeString(name), countryName));
+        countryAndFlag.alternateNames.forEach((name) =>
+            result.set(standardizeString(name), countryName)
+        );
     }
+
     return result;
 }
-const possibleNameToOfficalName = x(flags);
+
+export const possibleNameToOfficalName = x(flags);
+
 // Lists for different game modes
 // Source: https://en.wikipedia.org/wiki/List_of_national_flags_by_design
-const nordicCrossFlags = ["Denmark", "Finland", "Iceland", "Norway", "Sweden"];
+
+export const nordicCrossFlags = ["Denmark", "Finland", "Iceland", "Norway", "Sweden"];
+
 // All categories for 'three equal stripes'
-const threeStripeFlags = [
+export const threeStripeFlags = [
     "Barbados",
     "Guatemala",
     "Mongolia",
@@ -1453,7 +1664,8 @@ const threeStripeFlags = [
     "Venezuela",
     "Yemen",
 ];
-const triangleOnHoistFlags = [
+
+export const triangleOnHoistFlags = [
     "Bahamas",
     "Comoros",
     "Cuba",

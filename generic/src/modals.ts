@@ -1,22 +1,32 @@
-function showSettings() {
-    modeSetting.value = getMode();
-    flagSetSetting.value = getFlagSetString();
-    reshowSetting.checked = getShouldReshowUnknown();
+import * as userSettings from "./storage";
+import { flags } from "./data";
+import * as binding from "./binding";
+import {
+    recalculateEligibleCountries,
+    invalidateCounter,
+    getAndShowNextFlag,
+    resetNumQuestionAnswered,
+} from "./scripts";
+
+export function showSettings() {
+    binding.modeSetting.value = userSettings.getMode();
+    binding.flagSetSetting.value = userSettings.getFlagSetString();
+    binding.reshowSetting.checked = userSettings.getShouldReshowUnknown();
     document.getElementById("settings-section")!.style.display = "revert";
 }
 
-function hideSettings() {
+export function hideSettings() {
     document.getElementById("settings-section")!.style.display = "none";
 
-    const mode = modeSetting.value;
-    const flagSet = flagSetSetting.value;
-    const shouldReshowUnknown = reshowSetting.checked;
+    const mode = binding.modeSetting.value;
+    const flagSet = binding.flagSetSetting.value;
+    const shouldReshowUnknown = binding.reshowSetting.checked;
 
-    if (getMode() != mode || getFlagSetString() != flagSet) {
+    if (userSettings.getMode() != mode || userSettings.getFlagSetString() != flagSet) {
         localStorage.setItem("mode", mode);
         localStorage.setItem("flag-set", flagSet);
 
-        numQuestionsAnswered = 0;
+        resetNumQuestionAnswered();
         recalculateEligibleCountries();
         invalidateCounter();
         getAndShowNextFlag();
@@ -25,13 +35,13 @@ function hideSettings() {
     localStorage.setItem("shouldReshowUnknown", shouldReshowUnknown.toString());
 }
 
-function showResultsModal() {
-    const stats = getStats(currentCountry);
+export function showResultsModal(correctAnswer: string) {
+    const stats = userSettings.getStats(correctAnswer);
     if (stats) {
         document.getElementById("additional-info")!.innerHTML = getAdditionalInfo(stats);
     }
 
-    inputBox.style.display = "none";
+    binding.inputBox.style.display = "none";
     document.getElementById("submit-button")!.style.display = "none";
 
     document.getElementById("results")!.style.display = "revert";
@@ -41,22 +51,22 @@ function showResultsModal() {
     document.getElementById("next-button")!.focus();
 }
 
-function showWrongAnswerModal(correctAnswer: string) {
-    showResultsModal();
+export function showWrongAnswerModal(correctAnswer: string) {
+    showResultsModal(correctAnswer);
     document.getElementById("results")!.innerHTML = `No, it's <b>${correctAnswer}</b>.`;
     document.getElementById("quiz-section")!.classList.add("error-animation");
 }
 
-function showRightAnswerModal() {
-    showResultsModal();
+export function showRightAnswerModal(correctAnswer: string) {
+    showResultsModal(correctAnswer);
     document.getElementById("results")!.innerHTML = `Correct!`;
     document.getElementById("quiz-section")!.classList.add("success-animation");
 }
 
-function hideResultsModal() {
-    inputBox.value = "";
-    inputBox.style.display = "revert";
-    inputBox.focus();
+export function hideResultsModal() {
+    binding.inputBox.value = "";
+    binding.inputBox.style.display = "revert";
+    binding.inputBox.focus();
 
     document.getElementById("submit-button")!.style.display = "revert";
 
@@ -68,7 +78,7 @@ function hideResultsModal() {
     document.getElementById("quiz-section")!.classList.remove("success-animation");
 }
 
-function getAdditionalInfo(stats: Stats) {
+function getAdditionalInfo(stats: userSettings.Stats) {
     const result = [`You've gotten this right <b>${stats.numCorrectGuesses}/${stats.numTotalGuesses}</b>`];
     result.push(` (<b>${stats.percentCorrect * 100}%</b>) times.`);
     if (stats.incorrectGuesses.length == 0) return result.join("");
