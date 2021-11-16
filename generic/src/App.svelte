@@ -10,6 +10,8 @@
         currentCountry,
     } from "./scripts.ts";
 
+    let userInput: string;
+
     window.onload = () => {
         binding.initBinding();
 
@@ -25,12 +27,11 @@
     }
 
     function onSubmit() {
-        const input = binding.inputBox.value;
-        if (isCorrectAnswer(input)) {
-                storage.setStats(currentCountry, true, input);
+        if (isCorrectAnswer(userInput)) {
+                storage.setStats(currentCountry, true, userInput);
                 modals.showRightAnswerModal(currentCountry);
             } else {
-                storage.setStats(currentCountry, false, input);
+                storage.setStats(currentCountry, false, userInput);
                 modals.showWrongAnswerModal(currentCountry);
         }
     }
@@ -104,7 +105,14 @@
         <img id="flag" alt="Country flag" />
         <form on:submit|preventDefault={onSubmit}>
             <!-- svelte-ignore a11y-autofocus -->
-            <input type="text" id="input" title="Guess the country" autocomplete="off" autofocus />
+            <input 
+                type="text" 
+                id="input" 
+                title="Guess the country" 
+                autocomplete="off" 
+                bind:value={userInput}
+                autofocus 
+            />
             <button id="submit-button">Submit</button>
         </form>
 
