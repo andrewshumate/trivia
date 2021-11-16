@@ -16,34 +16,24 @@
         recalculateEligibleCountries();
         invalidateCounter();
         getAndShowNextFlag();
-        document.getElementById("input")!.focus();
+    };
 
-        // Submission listener
-        const onSubmit = () => {
-            const input = binding.inputBox.value;
-            if (isCorrectAnswer(input)) {
+    function onNext() {
+        modals.hideResultsModal();
+        invalidateCounter();
+        getAndShowNextFlag();
+    }
+
+    function onSubmit() {
+        const input = binding.inputBox.value;
+        if (isCorrectAnswer(input)) {
                 storage.setStats(currentCountry, true, input);
                 modals.showRightAnswerModal(currentCountry);
             } else {
                 storage.setStats(currentCountry, false, input);
                 modals.showWrongAnswerModal(currentCountry);
-            }
-        };
-
-        document.getElementById("submit-button")!.onclick = onSubmit;
-        document.getElementById("input")!.addEventListener("keyup", (event) => {
-            if (event.key === "Enter") {
-                onSubmit();
-            }
-        });
-
-        // Next button listener
-        document.getElementById("next-button")!.addEventListener("click", () => {
-            modals.hideResultsModal();
-            invalidateCounter();
-            getAndShowNextFlag();
-        });
-    };
+        }
+    }
 </script>
 
 <main>
@@ -112,11 +102,14 @@
             </svg>
         </section> 
         <img id="flag" alt="Country flag" />
-        <input type="text" id="input" title="Guess the country" />
-        <button id="submit-button">Submit</button>
+        <form on:submit|preventDefault={onSubmit}>
+            <!-- svelte-ignore a11y-autofocus -->
+            <input type="text" id="input" title="Guess the country" autocomplete="off" autofocus />
+            <button id="submit-button">Submit</button>
+        </form>
 
         <p id="results"></p>
-        <button id="next-button">Next</button>
+        <button id="next-button" on:click={onNext}>Next</button>
         <section id="additional-info"></section>
     </section>
 </main>
