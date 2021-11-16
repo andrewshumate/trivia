@@ -233,7 +233,7 @@ export const flags: Map<string, CountryAndFlag> = new Map([
     [
         "Côte d'Ivoire",
         {
-            alternateNames: ["Cote d'Ivoire"],
+            alternateNames: ["Cote d'Ivoire", "Ivory Coast"],
             imageUrl: "https://www.worldometers.info/img/flags/iv-flag.gif",
         },
     ],
