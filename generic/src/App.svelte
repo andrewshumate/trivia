@@ -2,6 +2,7 @@
     import * as binding from "./binding.ts";
     import * as modals from "./modals.ts";
     import * as storage from "./storage.ts";
+    import { flags } from "./data.ts";
     import {
         recalculateEligibleCountries,
         invalidateCounter,
@@ -10,7 +11,10 @@
         currentCountry,
     } from "./scripts.ts";
 
-    let userInput: string;
+    let userInput = "";
+    let showResults = false;
+    let stats: storage.Stats = null;
+    let wasCorrectAnswer: boolean;
 
     window.onload = () => {
         binding.initBinding();
@@ -21,19 +25,24 @@
     };
 
     function onNext() {
-        modals.hideResultsModal();
         invalidateCounter();
         getAndShowNextFlag();
+
+        userInput = "";
+        showResults = false;
     }
 
     function onSubmit() {
         if (isCorrectAnswer(userInput)) {
-                storage.setStats(currentCountry, true, userInput);
-                modals.showRightAnswerModal(currentCountry);
+            storage.setStats(currentCountry, true, userInput);
+            wasCorrectAnswer = true;
         } else {
-                storage.setStats(currentCountry, false, userInput);
-                modals.showWrongAnswerModal(currentCountry);
+            storage.setStats(currentCountry, false, userInput);
+            wasCorrectAnswer = false;
         }
+
+        showResults = true;
+        stats = storage.getStats(currentCountry);
     }
 </script>
 
@@ -103,22 +112,47 @@
             </svg>
         </section> 
         <img id="flag" alt="Country flag" />
-        <form on:submit|preventDefault={onSubmit}>
-            <!-- svelte-ignore a11y-autofocus -->
-            <input 
-                type="text" 
-                id="input" 
-                title="Guess the country" 
-                autocomplete="off" 
-                bind:value={userInput}
-                autofocus 
-            />
-            <button id="submit-button">Submit</button>
-        </form>
+        <!-- svelte-ignore a11y-autofocus -->
+        {#if showResults}
+            <p id="results">
+                {#if wasCorrectAnswer}
+                    Correct!
+                {:else}
+                    No, it's <b>{currentCountry}.</b>
+                {/if}
+            </p>
+            <button id="next-button" on:click={onNext} autofocus>Next</button>
+            <section id="additional-info">
+                You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>  (<b>{stats.percentCorrect * 100}%</b>) times.
+                {#if stats.incorrectGuesses.length > 0}
+                    Previous guesses:
+                    <ul>
+                        {#each stats.incorrectGuesses as guess}
+                            {#if flags.get(guess)}
+                                <li>
+                                    {guess}. This is the {guess} flag: <img class="mini-flags" src={flags.get(guess).imageUrl} alt="" />
+                                </li>
+                            {:else}
+                                <li>{guess} (not a country)</li>
+                            {/if}
+                        {/each}
+                    </ul>
 
-        <p id="results"></p>
-        <button id="next-button" on:click={onNext}>Next</button>
-        <section id="additional-info"></section>
+                {/if}
+            </section>
+        {:else}
+            <form on:submit|preventDefault={onSubmit}>
+                <input 
+                    type="text" 
+                    id="input" 
+                    title="Guess the country" 
+                    autocomplete="off" 
+                    bind:value={userInput}
+                    autofocus 
+                />
+                <button id="submit-button">Submit</button>
+            </form>
+        {/if}
     </section>
 </main>
 
@@ -188,9 +222,9 @@
         margin-right: auto;
         display: block;
     }
-    #results,
-    #next-button,
-    #additional-info,
+    /* #results, */
+    /* #next-button, */
+    /* #additional-info, */
     #settings-section {
         display: none;
     }
