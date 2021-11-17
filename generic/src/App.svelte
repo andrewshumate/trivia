@@ -1,6 +1,6 @@
 <script lang="ts">
+    import Settings from "./Settings.svelte"
     import * as binding from "./binding.ts";
-    import * as modals from "./modals.ts";
     import * as storage from "./storage.ts";
     import { flags } from "./data.ts";
     import {
@@ -11,6 +11,7 @@
         currentCountry,
     } from "./scripts.ts";
 
+    let showSettings = false;
     let showResults = false;
     let stats: storage.Stats = null;
     let wasCorrectAnswer: boolean;
@@ -39,48 +40,7 @@
 </script>
 
 <main>
-    <section id="settings-section">
-        <form id="mode-selector">
-            <p class="settings-category"><b>Flag set</b></p>
-            <div class="individual-setting">
-                <input type="radio" id="all-flags" name="flag-set" value="All flags" />
-                <label for="all-flags">All flags (195)</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="nordic-cross-flags" name="flag-set" value="Nordic cross flags" />
-                <label for="nordic-cross-flags">Nordic cross flags (5)</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="three-stripe-flags" name="flag-set" value="Three stripe flags" />
-                <label for="three-stripe-flags">Three equal stripes flags (66)</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="hoist-triangle-flags" name="flag-set" value="Hoist triangle flags" />
-                <label for="hoist-triangle-flags">Triangle on hoist flags (18)</label>
-            </div>
-
-            <p class="settings-category"><b>Filter out</b></p>
-            <div class="individual-setting">
-                <input type="radio" id="show-all-mode" name="mode" value="Show all mode" />
-                <label for="show-all-mode">Do not hide any flags</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="show-unseen-mode" name="mode" value="Show unseen mode" />
-                <label for="show-unseen-mode">Hide flags I've already seen</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="show-unknown-mode" name="mode" value="Show unknown mode" />
-                <label for="show-unknown-mode">Hide flags I've gotten right >60% of the time</label>
-            </div>
-
-            <p class="settings-category"><b>Extra settings</b></p>
-            <div>
-                <input type="checkbox" id="reshow-unknown" name="reshow-unknwon" value="Re-show unknown" />
-                <label for="reshow-unknown">Show flags I've gotten wrong more often</label>
-            </div>
-        </form>
-        <button on:click="{modals.hideSettings}" id="exit">Exit</button>
-    </section>
+    <Settings {showSettings} on:click={() => {showSettings = false}} />
 
     <section id="quiz-section">
         <section id="top-bar">
@@ -88,7 +48,7 @@
 
             <svg
                 id="settings-icon"
-                on:click="{modals.showSettings}"
+                on:click={() => {showSettings = true}}
                 xmlns="http://www.w3.org/2000/svg"
                 enable-background="new 0 0 24 24"
                 height="24px"
@@ -185,8 +145,7 @@
         background: var(--background-background);
         color: var(--foreground);
     }
-    #quiz-section,
-    #settings-section {
+    #quiz-section {
         background: var(--background);
         height: calc(100% - 24px);
         padding: 12px;
@@ -194,7 +153,6 @@
     input[type="text"],
     button {
         height: 35px;
-        border: 0px;
         border-radius: 7px;
     }
     input[type="text"] {
@@ -213,12 +171,6 @@
         margin-right: auto;
         display: block;
     }
-    /* #results, */
-    /* #next-button, */
-    /* #additional-info, */
-    #settings-section {
-        display: none;
-    }
     #results,
     #additional-info {
         margin: 12px 0px;
@@ -233,31 +185,8 @@
         margin: -2px -3px 0 0;
         height: 18px;
     }
-    #settings-section {
-        position: absolute;
-        width: calc(100% - 24px);
-        left: 0;
-        right: 0;
-        z-index: 999;
-    }
-    #settings-section form {
-        margin-bottom: 12px;
-    }
-    input[type="radio"],
-    input[type="checkbox"] {
-        margin: 0 6px;
-    }
-    label {
-        display: revert;
-    }
     svg {
         fill: var(--foreground);
-    }
-    .individual-setting {
-        height: 35px;
-    }
-    .settings-category {
-        margin: 0 0 5px 5px;
     }
     #counter {
         opacity: 50%;
