@@ -17,13 +17,13 @@
     let stats: storage.Stats = null;
     let wasCorrectAnswer: boolean;
 
-    function onNext() {
+    function handleNext() {
         currentCountry = getAndShowNextFlag(currentCountry, numEligibleCountries);
         numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
         showResults = false;
     }
 
-    function onSubmit(event: any) {
+    function handleSubmit(event: any) {
         const userInput = event.target.input.value;
         wasCorrectAnswer = isCorrectAnswer(currentCountry, userInput);
         storage.setStats(currentCountry, wasCorrectAnswer, userInput)
@@ -80,7 +80,7 @@
                     No, it's <b>{currentCountry}.</b>
                 {/if}
             </p>
-            <button id="next-button" on:click={onNext} autofocus>Next</button>
+            <button id="next-button" on:click={handleNext} autofocus>Next</button>
             <section id="additional-info">
                 You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>  (<b>{stats.percentCorrect * 100}%</b>) times.
                 {#if stats.incorrectGuesses.length > 0}
@@ -100,7 +100,7 @@
                 {/if}
             </section>
         {:else}
-            <form on:submit|preventDefault={onSubmit}>
+            <form on:submit|preventDefault={handleSubmit}>
                 <input 
                     type="text" 
                     id="input" 
