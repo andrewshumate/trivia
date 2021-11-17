@@ -11,7 +11,6 @@
         currentCountry,
     } from "./scripts.ts";
 
-    let userInput = "";
     let showResults = false;
     let stats: storage.Stats = null;
     let wasCorrectAnswer: boolean;
@@ -27,20 +26,13 @@
     function onNext() {
         invalidateCounter();
         getAndShowNextFlag();
-
-        userInput = "";
         showResults = false;
     }
 
-    function onSubmit() {
-        if (isCorrectAnswer(userInput)) {
-            storage.setStats(currentCountry, true, userInput);
-            wasCorrectAnswer = true;
-        } else {
-            storage.setStats(currentCountry, false, userInput);
-            wasCorrectAnswer = false;
-        }
-
+    function onSubmit(event: any) {
+        const userInput = event.target.input.value;
+        wasCorrectAnswer = isCorrectAnswer(userInput);
+        storage.setStats(currentCountry, wasCorrectAnswer, userInput)
         showResults = true;
         stats = storage.getStats(currentCountry);
     }
@@ -147,7 +139,6 @@
                     id="input" 
                     title="Guess the country" 
                     autocomplete="off" 
-                    bind:value={userInput}
                     autofocus 
                 />
                 <button id="submit-button">Submit</button>
