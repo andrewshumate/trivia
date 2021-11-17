@@ -1,51 +1,88 @@
 <script lang="ts">
-    export let showSettings = false;
+    import { createEventDispatcher } from "svelte";
+    import * as storage from "./storage.ts";
+
+    let dispatch = createEventDispatcher();
+
+    let oldFlagSet = storage.getFlagSetString();
+    let oldFlagsToFilterOut = storage.getMode();
+
+    let flagSet = oldFlagSet;
+    let flagsToFilterOut = oldFlagsToFilterOut;
+    let reshowFlags = storage.getShouldReshowUnknown();
+
+    function handleSaveSettings() {
+        const wasSettingsUpdated = flagSet != oldFlagSet || flagsToFilterOut != oldFlagsToFilterOut;
+
+        if (wasSettingsUpdated) {
+            localStorage.setItem("flag-set", flagSet);
+            localStorage.setItem("mode", flagsToFilterOut);
+        }
+
+        dispatch("settingsClosed", wasSettingsUpdated);
+    }
 </script>
 
-{#if showSettings}
-    <section id="settings-section">
-        <form id="mode-selector">
-            <p class="settings-category"><b>Flag set</b></p>
-            <div class="individual-setting">
-                <input type="radio" id="all-flags" name="flag-set" value="All flags" />
-                <label for="all-flags">All flags (195)</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="nordic-cross-flags" name="flag-set" value="Nordic cross flags" />
-                <label for="nordic-cross-flags">Nordic cross flags (5)</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="three-stripe-flags" name="flag-set" value="Three stripe flags" />
-                <label for="three-stripe-flags">Three equal stripes flags (66)</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="hoist-triangle-flags" name="flag-set" value="Hoist triangle flags" />
-                <label for="hoist-triangle-flags">Triangle on hoist flags (18)</label>
-            </div>
+<section id="settings-section">
+    <form>
+        <p class="settings-category"><b>Flag set</b></p>
+        <label for="all-flags">
+            <input type="radio" id="all-flags" name="flag-set" value="All flags" bind:group={flagSet} />
+            All flags (195)
+        </label>
+        <label for="nordic-cross-flags">
+            <input
+                type="radio"
+                id="nordic-cross-flags"
+                name="flag-set"
+                value="Nordic cross flags"
+                bind:group={flagSet}
+            />
+            Nordic cross flags (5)
+        </label>
+        <label for="three-stripe-flags">
+            <input
+                type="radio"
+                id="three-stripe-flags"
+                name="flag-set"
+                value="Three stripe flags"
+                bind:group={flagSet}
+            />
+            Three equal stripes flags (66)
+        </label>
+        <label for="hoist-triangle-flags">
+            <input
+                type="radio"
+                id="hoist-triangle-flags"
+                name="flag-set"
+                value="Hoist triangle flags"
+                bind:group={flagSet}
+            />
+            Triangle on hoist flags (18)
+        </label>
 
-            <p class="settings-category"><b>Filter out</b></p>
-            <div class="individual-setting">
-                <input type="radio" id="show-all-mode" name="mode" value="Show all mode" />
-                <label for="show-all-mode">Do not hide any flags</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="show-unseen-mode" name="mode" value="Show unseen mode" />
-                <label for="show-unseen-mode">Hide flags I've already seen</label>
-            </div>
-            <div class="individual-setting">
-                <input type="radio" id="show-unknown-mode" name="mode" value="Show unknown mode" />
-                <label for="show-unknown-mode">Hide flags I've gotten right >60% of the time</label>
-            </div>
+        <p class="settings-category"><b>Filter out</b></p>
+        <label for="show-all-mode">
+            <input type="radio" id="show-all-mode" name="mode" value="Show all mode" bind:group={flagsToFilterOut} />
+            Do not hide any flags
+        </label>
+        <label for="show-unseen-mode">
+            <input type="radio" id="show-unseen-mode" name="mode" value="Show unseen mode" bind:group={flagsToFilterOut} />
+            Hide flags I've already seen
+        </label>
+        <label for="show-unknown-mode">
+            <input type="radio" id="show-unknown-mode" name="mode" value="Show unknown mode" bind:group={flagsToFilterOut} />
+            Hide flags I've gotten right >60% of the time
+        </label>
 
-            <p class="settings-category"><b>Extra settings</b></p>
-            <div>
-                <input type="checkbox" id="reshow-unknown" name="reshow-unknwon" value="Re-show unknown" />
-                <label for="reshow-unknown">Show flags I've gotten wrong more often</label>
-            </div>
-        </form>
-        <button on:click id="exit">Exit</button>
-    </section>
-{/if}
+        <p class="settings-category"><b>Extra settings</b></p>
+        <label for="reshow-unknown">
+            <input type="checkbox" id="reshow-unknown" name="reshow-unknwon" value="Re-show unknown" bind:checked={reshowFlags} />
+            Show flags I've gotten wrong more often
+        </label>
+        <button on:click|preventDefault={handleSaveSettings} id="exit">Exit</button>
+    </form>
+</section>
 
 <style>
     #settings-section {
@@ -67,9 +104,6 @@
         margin: 0 6px;
     }
     label {
-        display: revert;
-    }
-    .individual-setting {
         height: 35px;
     }
     .settings-category {

@@ -9,6 +9,7 @@
         getAndShowNextFlag,
         isCorrectAnswer,
         currentCountry,
+        resetNumQuestionAnswered,
     } from "./scripts.ts";
 
     let showSettings = false;
@@ -37,10 +38,25 @@
         showResults = true;
         stats = storage.getStats(currentCountry);
     }
+
+    function handleSettingsClosed(event: any) {
+        const wasSettingsUpdated = event.detail;
+
+        if (wasSettingsUpdated) {
+            resetNumQuestionAnswered();
+            recalculateEligibleCountries();
+            invalidateCounter();
+            getAndShowNextFlag();
+        }
+
+        showSettings = false;
+    }
 </script>
 
 <main>
-    <Settings {showSettings} on:click={() => {showSettings = false}} />
+    {#if showSettings}
+        <Settings on:settingsClosed={handleSettingsClosed} />
+    {/if}
 
     <section id="quiz-section">
         <section id="top-bar">

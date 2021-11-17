@@ -69,10 +69,10 @@
         }
     }
 
-    export function getMode() {
+    export function getMode(): string {
         return localStorage.getItem("mode") || "Show unseen mode";
     }
 
-    export function getShouldReshowUnknown() {
+    export function getShouldReshowUnknown(): boolean {
         return localStorage.getItem("shouldReshowUnknown") !== "false";
     }
