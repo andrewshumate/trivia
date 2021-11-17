@@ -17,13 +17,13 @@
     let stats: storage.Stats = null;
     let wasCorrectAnswer: boolean;
 
-    function handleNext() {
+    const handleNext = () => {
         currentCountry = getAndShowNextFlag(currentCountry, numEligibleCountries);
         numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
         showResults = false;
     }
 
-    function handleSubmit(event: any) {
+    const handleSubmit = (event: any) => {
         const userInput = event.target.input.value;
         wasCorrectAnswer = isCorrectAnswer(currentCountry, userInput);
         storage.setStats(currentCountry, wasCorrectAnswer, userInput)
@@ -31,7 +31,7 @@
         stats = storage.getStats(currentCountry);
     }
 
-    function handleSettingsClosed(event: any) {
+    const handleSettingsClosed = (event: any) => {
         const wasSettingsUpdated = event.detail;
 
         if (wasSettingsUpdated) {

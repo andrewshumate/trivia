@@ -1575,7 +1575,7 @@ export const flags: Map<string, CountryAndFlag> = new Map([
     ],
 ]);
 
-function x(flags: Map<string, CountryAndFlag>): Map<string, string> {
+const x = (flags: Map<string, CountryAndFlag>): Map<string, string> => {
     const result: Map<string, string> = new Map();
 
     for (let [countryName, countryAndFlag] of flags) {

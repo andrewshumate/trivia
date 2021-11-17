@@ -10,7 +10,7 @@
         incorrectGuesses: string[];
     }
 
-    export function setStats(country: string, wasGuessCorrect: boolean, guess: string): void {
+    export const setStats = (country: string, wasGuessCorrect: boolean, guess: string): void => {
         const statsString = localStorage.getItem(country);
 
         let stats = statsString
@@ -40,7 +40,7 @@
         localStorage.setItem(country, JSON.stringify(stats));
     }
 
-    export function getStats(country: string): Stats | null {
+    export const getStats = (country: string): Stats | null => {
         const statsString = localStorage.getItem(country);
         if (statsString) {
             return JSON.parse(statsString);
@@ -49,11 +49,11 @@
         }
     }
 
-    export function getFlagSetString(): string {
+    export const getFlagSetString = (): string => {
         return localStorage.getItem("flag-set") || "All flags";
     }
 
-    export function getFlagSet(): string[] {
+    export const getFlagSet = (): string[] => {
         const flagSetString = getFlagSetString();
 
         if (flagSetString == "All flags") {
@@ -69,10 +69,10 @@
         }
     }
 
-    export function getMode(): string {
+    export const getMode = (): string => {
         return localStorage.getItem("mode") || "Show unseen mode";
     }
 
-    export function getShouldReshowUnknown(): boolean {
+    export const getShouldReshowUnknown = (): boolean => {
         return localStorage.getItem("shouldReshowUnknown") !== "false";
     }

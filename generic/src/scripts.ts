@@ -5,7 +5,7 @@ import * as storage from "./storage";
 
 export let eligibleCountries: string[];
 
-export function isCorrectAnswer(currentCountry:string, guess: string) {
+export const isCorrectAnswer = (currentCountry:string, guess: string): boolean => {
     if (areStringsSimilar(currentCountry, guess)) return true;
 
     const alternateNames = flags.get(currentCountry)!.alternateNames;
@@ -16,7 +16,7 @@ export function isCorrectAnswer(currentCountry:string, guess: string) {
     return false;
 }
 
-export function getAndShowNextFlag(currentCountry: string, numQuestionsAnswered: number): string {
+export const getAndShowNextFlag = (currentCountry: string, numQuestionsAnswered: number): string => {
     let result: string;
     let reshownCountry;
 
@@ -43,7 +43,7 @@ export function getAndShowNextFlag(currentCountry: string, numQuestionsAnswered:
 }
 
 /** Returns length of new eligible countries list */
-export function recalculateEligibleCountries(): number {
+export const recalculateEligibleCountries = (): number => {
     const mode = storage.getMode();
     let flagSet = storage.getFlagSet();
 

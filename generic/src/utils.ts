@@ -2,7 +2,7 @@ import { getStats } from "./storage";
 import { flags } from "./data";
 import { eligibleCountries } from "./scripts";
 
-export function shuffle(array: any[]): any[] {
+export const shuffle = <T> (array: Array<T>): Array<T> => {
     let currentIndex = array.length;
     let randomIndex: number;
     while (currentIndex != 0) {
@@ -13,12 +13,7 @@ export function shuffle(array: any[]): any[] {
     return array;
 }
 
-export function randomKey(obj: any): string {
-    var keys = Object.keys(obj);
-    return keys[(keys.length * Math.random()) << 0];
-}
-
-export function prefetchNextImages(currentCountry: string): void {
+export const prefetchNextImages = (currentCountry: string): void => {
     // Pre-fetch failure page images
     const stats = getStats(currentCountry);
     if (stats) {
