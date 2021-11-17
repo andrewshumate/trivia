@@ -1,39 +1,31 @@
 <script lang="ts">
     import Settings from "./Settings.svelte"
-    import * as binding from "./binding.ts";
     import * as storage from "./storage.ts";
     import { flags } from "./data.ts";
     import {
         recalculateEligibleCountries,
-        invalidateCounter,
         getAndShowNextFlag,
         isCorrectAnswer,
-        currentCountry,
-        resetNumQuestionAnswered,
     } from "./scripts.ts";
+
+    let numQuestionsAnswered = 0;
+    let numEligibleCountries = recalculateEligibleCountries();
+    let currentCountry = getAndShowNextFlag(null, numEligibleCountries);
 
     let showSettings = false;
     let showResults = false;
     let stats: storage.Stats = null;
     let wasCorrectAnswer: boolean;
 
-    window.onload = () => {
-        binding.initBinding();
-
-        recalculateEligibleCountries();
-        invalidateCounter();
-        getAndShowNextFlag();
-    };
-
     function onNext() {
-        invalidateCounter();
-        getAndShowNextFlag();
+        currentCountry = getAndShowNextFlag(currentCountry, numEligibleCountries);
+        numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
         showResults = false;
     }
 
     function onSubmit(event: any) {
         const userInput = event.target.input.value;
-        wasCorrectAnswer = isCorrectAnswer(userInput);
+        wasCorrectAnswer = isCorrectAnswer(currentCountry, userInput);
         storage.setStats(currentCountry, wasCorrectAnswer, userInput)
         showResults = true;
         stats = storage.getStats(currentCountry);
@@ -43,10 +35,9 @@
         const wasSettingsUpdated = event.detail;
 
         if (wasSettingsUpdated) {
-            resetNumQuestionAnswered();
-            recalculateEligibleCountries();
-            invalidateCounter();
-            getAndShowNextFlag();
+            numEligibleCountries = recalculateEligibleCountries();
+            currentCountry = getAndShowNextFlag(currentCountry, numEligibleCountries);
+            numQuestionsAnswered = 0;
         }
 
         showSettings = false;
@@ -60,7 +51,7 @@
 
     <section id="quiz-section">
         <section id="top-bar">
-            <p id="counter"></p>
+            <p id="counter">{numQuestionsAnswered}/{numEligibleCountries}</p>
 
             <svg
                 id="settings-icon"
@@ -79,7 +70,7 @@
                 </g>
             </svg>
         </section> 
-        <img id="flag" alt="Country flag" />
+        <img id="flag" alt="Country flag" src={flags.get(currentCountry).imageUrl} />
         <!-- svelte-ignore a11y-autofocus -->
         {#if showResults}
             <p id="results">

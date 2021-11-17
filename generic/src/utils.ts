@@ -1,6 +1,6 @@
 import { getStats } from "./storage";
 import { flags } from "./data";
-import { currentCountry, eligibleCountries } from "./scripts";
+import { eligibleCountries } from "./scripts";
 
 export function shuffle(array: any[]): any[] {
     let currentIndex = array.length;
@@ -18,7 +18,7 @@ export function randomKey(obj: any): string {
     return keys[(keys.length * Math.random()) << 0];
 }
 
-export function prefetchNextImages(): void {
+export function prefetchNextImages(currentCountry: string): void {
     // Pre-fetch failure page images
     const stats = getStats(currentCountry);
     if (stats) {
