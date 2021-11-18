@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Results from "./Results.svelte";
     import Settings from "./Settings.svelte";
     import * as storage from "./storage";
     import { flags } from "./data";
@@ -74,38 +75,15 @@
             </svg>
         </section>
         <img id="flag" alt="Country flag" src={flags.get(currentCountry)?.imageUrl} />
-        <!-- svelte-ignore a11y-autofocus -->
         {#if showResults}
-            <p id="results">
-                {#if wasCorrectAnswer}
-                    Correct!
-                {:else}
-                    No, it's <b>{currentCountry}.</b>
-                {/if}
-            </p>
-            <button id="next-button" on:click={handleNext} autofocus>Next</button>
-            <section id="additional-info">
-                {#if stats}
-                    You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>
-                    (<b>{stats.percentCorrect * 100}%</b>) times.
-                    {#if stats.incorrectGuesses.length > 0}
-                        Previous guesses:
-                        <ul>
-                            {#each stats.incorrectGuesses as guess}
-                                {#if flags.get(guess)}
-                                    <li>
-                                        {guess}. This is the {guess} flag:
-                                        <img class="mini-flags" src={flags.get(guess)?.imageUrl} alt="" />
-                                    </li>
-                                {:else}
-                                    <li>{guess} (not a country)</li>
-                                {/if}
-                            {/each}
-                        </ul>
-                    {/if}
-                {/if}
-            </section>
+            <Results
+                wasCorrectAnswer={wasCorrectAnswer}
+                currentCountry={currentCountry}
+                stats={stats}
+                on:click={handleNext}
+            />
         {:else}
+            <!-- svelte-ignore a11y-autofocus -->
             <form on:submit|preventDefault={handleSubmit}>
                 <input type="text" id="input" title="Guess the country" autocomplete="off" autofocus />
                 <button id="submit-button">Submit</button>
@@ -178,11 +156,6 @@
         margin-right: auto;
         display: block;
     }
-    #results,
-    #additional-info {
-        margin: 12px 0px;
-    }
-    #results,
     #input {
         padding-top: 0px;
         padding-bottom: 0px;
