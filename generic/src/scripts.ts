@@ -5,7 +5,7 @@ import * as storage from "./storage";
 
 export let eligibleCountries: string[];
 
-export const isCorrectAnswer = (currentCountry:string, guess: string): boolean => {
+export const isCorrectAnswer = (currentCountry: string, guess: string): boolean => {
     if (areStringsSimilar(currentCountry, guess)) return true;
 
     const alternateNames = flags.get(currentCountry)!.alternateNames;
@@ -14,7 +14,7 @@ export const isCorrectAnswer = (currentCountry:string, guess: string): boolean =
     }
 
     return false;
-}
+};
 
 export const getAndShowNextFlag = (currentCountry: string, numQuestionsAnswered: number): string => {
     let result: string;
@@ -40,7 +40,7 @@ export const getAndShowNextFlag = (currentCountry: string, numQuestionsAnswered:
     prefetchNextImages(currentCountry);
 
     return result!;
-}
+};
 
 /** Returns length of new eligible countries list */
 export const recalculateEligibleCountries = (): number => {
@@ -53,9 +53,7 @@ export const recalculateEligibleCountries = (): number => {
     } else if (mode == "Show unknown mode") {
         flagSet = flagSet.filter((country) => {
             const stats = storage.getStats(country);
-            return stats
-                ? stats.percentCorrect < 0.6 || stats.numCorrectGuesses < 2
-                : true;
+            return stats ? stats.percentCorrect < 0.6 || stats.numCorrectGuesses < 2 : true;
         });
     }
 
@@ -66,4 +64,4 @@ export const recalculateEligibleCountries = (): number => {
 
     eligibleCountries = flagSet;
     return eligibleCountries.length;
-}
+};

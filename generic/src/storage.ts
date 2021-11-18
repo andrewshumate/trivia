@@ -1,5 +1,5 @@
 import * as data from "./data";
-import {standardizeString} from "./strings";
+import { standardizeString } from "./strings";
 import { shuffle } from "./utils";
 
 export interface Stats {
@@ -16,12 +16,12 @@ export const setStats = (country: string, wasGuessCorrect: boolean, guess: strin
     let stats = statsString
         ? JSON.parse(statsString)
         : {
-            numCorrectGuesses: 0,
-            numIncorrectGuesses: 0,
-            numTotalGuesses: 0,
-            percentCorrect: 0.0,
-            incorrectGuesses: [],
-        };
+              numCorrectGuesses: 0,
+              numIncorrectGuesses: 0,
+              numTotalGuesses: 0,
+              percentCorrect: 0.0,
+              incorrectGuesses: [],
+          };
 
     stats.numTotalGuesses += 1;
     if (wasGuessCorrect) {
@@ -38,7 +38,7 @@ export const setStats = (country: string, wasGuessCorrect: boolean, guess: strin
     stats.percentCorrect = stats.numCorrectGuesses / stats.numTotalGuesses;
 
     localStorage.setItem(country, JSON.stringify(stats));
-}
+};
 
 export const getStats = (country: string): Stats | null => {
     const statsString = localStorage.getItem(country);
@@ -47,11 +47,11 @@ export const getStats = (country: string): Stats | null => {
     } else {
         return null;
     }
-}
+};
 
 export const getFlagSetString = (): string => {
     return localStorage.getItem("flag-set") || "All flags";
-}
+};
 
 export const getFlagSet = (): string[] => {
     const flagSetString = getFlagSetString();
@@ -67,12 +67,12 @@ export const getFlagSet = (): string[] => {
     } else {
         return [];
     }
-}
+};
 
 export const getMode = (): string => {
     return localStorage.getItem("mode") || "Show unseen mode";
-}
+};
 
 export const getShouldReshowUnknown = (): boolean => {
     return localStorage.getItem("shouldReshowUnknown") !== "false";
-}
+};

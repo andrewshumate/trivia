@@ -1,18 +1,18 @@
 export const areStringsSimilar = (s1: string, s2: string): boolean => {
     const stringSimilarity = getStringSimilarity(standardizeString(s1), standardizeString(s2));
     return stringSimilarity >= 0.6;
-}
+};
 
 const getStringSimilarity = (s1: string, s2: string): number => {
-	// If they don't start with the same letter, the guess is way off anyway
-	if (s1[0] != s2[0]) return 0;
+    // If they don't start with the same letter, the guess is way off anyway
+    if (s1[0] != s2[0]) return 0;
 
-	return 1 - levenshteinDistance(s1, s2) * 1.0 / s1.length;
-}
+    return 1 - (levenshteinDistance(s1, s2) * 1.0) / s1.length;
+};
 
 export const standardizeString = (s: string): string => {
     return s.replace(/[^0-9a-zA-Z]/g, "").toLowerCase();
-}
+};
 
 /*
 MIT License
@@ -40,7 +40,7 @@ SOFTWARE.
 
 const _min = (d0: number, d1: number, d2: number, bx: number, ay: number): number => {
     return d0 < d1 || d2 < d1 ? (d0 > d2 ? d2 + 1 : d0 + 1) : bx === ay ? d1 : d1 + 1;
-}
+};
 
 const levenshteinDistance = (a: string, b: string): number => {
     if (a === b) {
@@ -129,4 +129,4 @@ const levenshteinDistance = (a: string, b: string): number => {
     }
 
     return dd;
-}
+};

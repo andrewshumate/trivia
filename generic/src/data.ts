@@ -1,6 +1,6 @@
-import {standardizeString} from "./strings";
+import { standardizeString } from "./strings";
 
-export  interface CountryAndFlag {
+export interface CountryAndFlag {
     alternateNames: string[];
     imageUrl: string;
 }
@@ -401,10 +401,7 @@ export const flags: Map<string, CountryAndFlag> = new Map([
     [
         "DPRK",
         {
-            alternateNames: [
-                "North Korea",
-                "Democratic People's Republic of Korea",
-            ],
+            alternateNames: ["North Korea", "Democratic People's Republic of Korea"],
             imageUrl: "https://www.worldometers.info/img/flags/kn-flag.gif",
         },
     ],
@@ -412,11 +409,7 @@ export const flags: Map<string, CountryAndFlag> = new Map([
     [
         "DRC",
         {
-            alternateNames: [
-                "Democratic Republic of the Congo",
-                "DR Congo",
-                "The DRC",
-            ],
+            alternateNames: ["Democratic Republic of the Congo", "DR Congo", "The DRC"],
             imageUrl: "https://www.worldometers.info/img/flags/congo-flag.gif",
         },
     ],
@@ -1337,8 +1330,7 @@ export const flags: Map<string, CountryAndFlag> = new Map([
         "State of Palestine",
         {
             alternateNames: ["Palestine"],
-            imageUrl:
-                "https://www.worldometers.info/img/flags/palestine-flag.gif",
+            imageUrl: "https://www.worldometers.info/img/flags/palestine-flag.gif",
         },
     ],
 
@@ -1580,13 +1572,11 @@ const x = (flags: Map<string, CountryAndFlag>): Map<string, string> => {
 
     for (let [countryName, countryAndFlag] of flags) {
         result.set(standardizeString(countryName), countryName);
-        countryAndFlag.alternateNames.forEach((name) =>
-            result.set(standardizeString(name), countryName)
-        );
+        countryAndFlag.alternateNames.forEach((name) => result.set(standardizeString(name), countryName));
     }
 
     return result;
-}
+};
 
 export const possibleNameToOfficalName = x(flags);
 

@@ -20,7 +20,7 @@
         }
 
         dispatch("settingsClosed", wasSettingsUpdated);
-    }
+    };
 </script>
 
 <section id="settings-section">
@@ -67,17 +67,35 @@
             Do not hide any flags
         </label>
         <label for="show-unseen-mode">
-            <input type="radio" id="show-unseen-mode" name="mode" value="Show unseen mode" bind:group={flagsToFilterOut} />
+            <input
+                type="radio"
+                id="show-unseen-mode"
+                name="mode"
+                value="Show unseen mode"
+                bind:group={flagsToFilterOut}
+            />
             Hide flags I've already seen
         </label>
         <label for="show-unknown-mode">
-            <input type="radio" id="show-unknown-mode" name="mode" value="Show unknown mode" bind:group={flagsToFilterOut} />
+            <input
+                type="radio"
+                id="show-unknown-mode"
+                name="mode"
+                value="Show unknown mode"
+                bind:group={flagsToFilterOut}
+            />
             Hide flags I've gotten right >60% of the time
         </label>
 
         <p class="settings-category"><b>Extra settings</b></p>
         <label for="reshow-unknown">
-            <input type="checkbox" id="reshow-unknown" name="reshow-unknwon" value="Re-show unknown" bind:checked={reshowFlags} />
+            <input
+                type="checkbox"
+                id="reshow-unknown"
+                name="reshow-unknwon"
+                value="Re-show unknown"
+                bind:checked={reshowFlags}
+            />
             Show flags I've gotten wrong more often
         </label>
         <button on:click|preventDefault={handleSaveSettings} id="exit">Exit</button>

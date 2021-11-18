@@ -1,12 +1,8 @@
 <script lang="ts">
-    import Settings from "./Settings.svelte"
+    import Settings from "./Settings.svelte";
     import * as storage from "./storage.ts";
     import { flags } from "./data.ts";
-    import {
-        recalculateEligibleCountries,
-        getAndShowNextFlag,
-        isCorrectAnswer,
-    } from "./scripts.ts";
+    import { recalculateEligibleCountries, getAndShowNextFlag, isCorrectAnswer } from "./scripts.ts";
 
     let numQuestionsAnswered = 0;
     let numEligibleCountries = recalculateEligibleCountries();
@@ -21,15 +17,15 @@
         currentCountry = getAndShowNextFlag(currentCountry, numEligibleCountries);
         numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
         showResults = false;
-    }
+    };
 
     const handleSubmit = (event: any) => {
         const userInput = event.target.input.value;
         wasCorrectAnswer = isCorrectAnswer(currentCountry, userInput);
-        storage.setStats(currentCountry, wasCorrectAnswer, userInput)
+        storage.setStats(currentCountry, wasCorrectAnswer, userInput);
         showResults = true;
         stats = storage.getStats(currentCountry);
-    }
+    };
 
     const handleSettingsClosed = (event: any) => {
         const wasSettingsUpdated = event.detail;
@@ -41,7 +37,7 @@
         }
 
         showSettings = false;
-    }
+    };
 </script>
 
 <main>
@@ -55,7 +51,9 @@
 
             <svg
                 id="settings-icon"
-                on:click={() => {showSettings = true}}
+                on:click={() => {
+                    showSettings = true;
+                }}
                 xmlns="http://www.w3.org/2000/svg"
                 enable-background="new 0 0 24 24"
                 height="24px"
@@ -69,7 +67,7 @@
                     />
                 </g>
             </svg>
-        </section> 
+        </section>
         <img id="flag" alt="Country flag" src={flags.get(currentCountry).imageUrl} />
         <!-- svelte-ignore a11y-autofocus -->
         {#if showResults}
@@ -82,32 +80,27 @@
             </p>
             <button id="next-button" on:click={handleNext} autofocus>Next</button>
             <section id="additional-info">
-                You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>  (<b>{stats.percentCorrect * 100}%</b>) times.
+                You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>
+                (<b>{stats.percentCorrect * 100}%</b>) times.
                 {#if stats.incorrectGuesses.length > 0}
                     Previous guesses:
                     <ul>
                         {#each stats.incorrectGuesses as guess}
                             {#if flags.get(guess)}
                                 <li>
-                                    {guess}. This is the {guess} flag: <img class="mini-flags" src={flags.get(guess).imageUrl} alt="" />
+                                    {guess}. This is the {guess} flag:
+                                    <img class="mini-flags" src={flags.get(guess).imageUrl} alt="" />
                                 </li>
                             {:else}
                                 <li>{guess} (not a country)</li>
                             {/if}
                         {/each}
                     </ul>
-
                 {/if}
             </section>
         {:else}
             <form on:submit|preventDefault={handleSubmit}>
-                <input 
-                    type="text" 
-                    id="input" 
-                    title="Guess the country" 
-                    autocomplete="off" 
-                    autofocus 
-                />
+                <input type="text" id="input" title="Guess the country" autocomplete="off" autofocus />
                 <button id="submit-button">Submit</button>
             </form>
         {/if}
