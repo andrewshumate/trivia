@@ -18,30 +18,25 @@ export const isCorrectAnswer = (currentCountry: string, guess: string): boolean 
 
 export const getAndShowNextFlag = (numQuestionsAnswered: number, currentCountry?: string): string => {
     let result: string;
-    let reshownCountry;
 
     if (numQuestionsAnswered % 5 == 0 && storage.getShouldReshowUnknown()) {
         const flagSet = storage.getFlagSet();
         for (let i = 0; i < flagSet.length; i++) {
             const stats = storage.getStats(flagSet[i]);
             if (stats && flagSet[i] != currentCountry && stats.percentCorrect < 0.6) {
-                reshownCountry = flagSet[i];
-                result = reshownCountry;
-                break;
+                result = flagSet[i];
+                console.log(`#${numQuestionsAnswered} RESHOWING ${result}`);
+                prefetchNextImages(result);
+                return result;
             }
         }
     }
 
-    if (reshownCountry == null) {
-        if (eligibleCountries.length == 0) recalculateEligibleCountries();
-        result = eligibleCountries.pop()!;
-    }
-
-    if (currentCountry) {
-        prefetchNextImages(currentCountry);
-    }
-
-    return result!;
+    if (eligibleCountries.length == 0) recalculateEligibleCountries();
+    result = eligibleCountries.pop()!;
+    prefetchNextImages(result);
+    console.log(`#${numQuestionsAnswered} Regular showing ${result}`);
+    return result;
 };
 
 /** Returns length of new eligible countries list */

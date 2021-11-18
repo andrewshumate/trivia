@@ -11,7 +11,7 @@
     let flagsToFilterOut = oldFlagsToFilterOut;
     let reshowFlags = storage.getShouldReshowUnknown();
 
-    const handleSaveSettings = () => {
+    const handleSaveSettings = (): void => {
         const wasSettingsUpdated = flagSet != oldFlagSet || flagsToFilterOut != oldFlagsToFilterOut;
 
         if (wasSettingsUpdated) {

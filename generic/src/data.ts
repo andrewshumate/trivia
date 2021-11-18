@@ -1570,7 +1570,7 @@ export const flags: Map<string, CountryAndFlag> = new Map([
 const x = (flags: Map<string, CountryAndFlag>): Map<string, string> => {
     const result: Map<string, string> = new Map();
 
-    for (let [countryName, countryAndFlag] of flags) {
+    for (const [countryName, countryAndFlag] of flags) {
         result.set(standardizeString(countryName), countryName);
         countryAndFlag.alternateNames.forEach((name) => result.set(standardizeString(name), countryName));
     }

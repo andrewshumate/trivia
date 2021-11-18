@@ -6,37 +6,44 @@
 
     let numQuestionsAnswered = 0;
     let numEligibleCountries = recalculateEligibleCountries();
-    let currentCountry = getAndShowNextFlag(numEligibleCountries);
+    let currentCountry = getAndShowNextFlag(numQuestionsAnswered);
 
     let showSettings = false;
     let showResults = false;
     let stats: storage.Stats | null = null;
     let wasCorrectAnswer: boolean;
 
-    const handleNext = () => {
-        currentCountry = getAndShowNextFlag(numEligibleCountries, currentCountry);
+    const handleNext = (): void => {
         numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
+        currentCountry = getAndShowNextFlag(numQuestionsAnswered, currentCountry);
         showResults = false;
     };
 
-    const handleSubmit = (event: any) => {
-        const userInput = event.target.input.value;
+    const handleSubmit = (event: Event): void => {
+        const form = event.target as HTMLFormElement;
+        const userInput = (form.input as HTMLInputElement).value;
+
         wasCorrectAnswer = isCorrectAnswer(currentCountry, userInput);
         storage.setStats(currentCountry, wasCorrectAnswer, userInput);
         showResults = true;
         stats = storage.getStats(currentCountry);
     };
 
-    const handleSettingsClosed = (event: any) => {
+    const handleSettingsClosed = (event: CustomEvent<boolean>): void => {
         const wasSettingsUpdated = event.detail;
 
         if (wasSettingsUpdated) {
             numEligibleCountries = recalculateEligibleCountries();
-            currentCountry = getAndShowNextFlag(numEligibleCountries, currentCountry);
+            currentCountry = getAndShowNextFlag(numQuestionsAnswered, currentCountry);
             numQuestionsAnswered = 0;
+            showResults = false;
         }
 
         showSettings = false;
+    };
+
+    const handleShowSettings = (): void => {
+        showSettings = true;
     };
 </script>
 
@@ -51,9 +58,7 @@
 
             <svg
                 id="settings-icon"
-                on:click={() => {
-                    showSettings = true;
-                }}
+                on:click={handleShowSettings}
                 xmlns="http://www.w3.org/2000/svg"
                 enable-background="new 0 0 24 24"
                 height="24px"

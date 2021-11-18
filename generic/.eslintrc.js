@@ -18,7 +18,7 @@ module.exports = {
     },
     rules: {
         "@typescript-eslint/explicit-function-return-type": "error",
-        "@typescript-eslint/no-non-null-assertion": "none",
+        "@typescript-eslint/no-non-null-assertion": 0,
     },
     overrides: [
         {
@@ -33,5 +33,5 @@ module.exports = {
         "svelte3/ignore-styles": () => true,
     },
     plugins: ["svelte3", "@typescript-eslint"],
-    ignorePatterns: ["node_modules"],
+    ignorePatterns: ["node_modules", ".eslintrc.js", "rollup.config.js"],
 };

@@ -13,8 +13,8 @@ export interface Stats {
 export const setStats = (country: string, wasGuessCorrect: boolean, guess: string): void => {
     const statsString = localStorage.getItem(country);
 
-    let stats = statsString
-        ? JSON.parse(statsString)
+    const stats = statsString
+        ? (JSON.parse(statsString) as Stats)
         : {
               numCorrectGuesses: 0,
               numIncorrectGuesses: 0,
@@ -43,7 +43,7 @@ export const setStats = (country: string, wasGuessCorrect: boolean, guess: strin
 export const getStats = (country: string): Stats | null => {
     const statsString = localStorage.getItem(country);
     if (statsString) {
-        return JSON.parse(statsString);
+        return JSON.parse(statsString) as Stats;
     } else {
         return null;
     }
