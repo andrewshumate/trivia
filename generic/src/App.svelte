@@ -4,20 +4,20 @@
     import TopBar from "./TopBar.svelte";
     import * as storage from "./storage";
     import { flags } from "./data";
-    import { recalculateEligibleCountries, getAndShowNextFlag, isCorrectAnswer } from "./scripts";
+    import { recalculateEligibleCountries, getNextCountry, isCorrectAnswer } from "./scripts";
 
     let numQuestionsAnswered = 0;
     let numEligibleCountries = recalculateEligibleCountries();
-    let currentCountry = getAndShowNextFlag(numQuestionsAnswered);
+    let currentCountry = getNextCountry(numQuestionsAnswered);
 
     let showSettings = false;
     let showResults = false;
-    let stats: storage.Stats | null = null;
+    let stats: storage.Stats | null;
     let wasCorrectAnswer: boolean;
 
     const handleNext = (): void => {
         numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
-        currentCountry = getAndShowNextFlag(numQuestionsAnswered, currentCountry);
+        currentCountry = getNextCountry(numQuestionsAnswered, currentCountry);
         showResults = false;
     };
 
@@ -36,7 +36,7 @@
 
         if (wasSettingsUpdated) {
             numEligibleCountries = recalculateEligibleCountries();
-            currentCountry = getAndShowNextFlag(numQuestionsAnswered, currentCountry);
+            currentCountry = getNextCountry(numQuestionsAnswered, currentCountry);
             numQuestionsAnswered = 0;
             showResults = false;
         }
