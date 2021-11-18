@@ -52,4 +52,8 @@
         border-radius: 7px;
         width: 100%;
     }
+    .mini-flags {
+        max-height: 50px;
+        display: block;
+    }
 </style>
