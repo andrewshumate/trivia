@@ -1,6 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
-    import * as storage from "./storage.ts";
+    import * as storage from "./storage";
 
     let dispatch = createEventDispatcher();
 

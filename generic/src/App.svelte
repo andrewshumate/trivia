@@ -1,20 +1,20 @@
 <script lang="ts">
     import Settings from "./Settings.svelte";
-    import * as storage from "./storage.ts";
-    import { flags } from "./data.ts";
-    import { recalculateEligibleCountries, getAndShowNextFlag, isCorrectAnswer } from "./scripts.ts";
+    import * as storage from "./storage";
+    import { flags } from "./data";
+    import { recalculateEligibleCountries, getAndShowNextFlag, isCorrectAnswer } from "./scripts";
 
     let numQuestionsAnswered = 0;
     let numEligibleCountries = recalculateEligibleCountries();
-    let currentCountry = getAndShowNextFlag(null, numEligibleCountries);
+    let currentCountry = getAndShowNextFlag(numEligibleCountries);
 
     let showSettings = false;
     let showResults = false;
-    let stats: storage.Stats = null;
+    let stats: storage.Stats | null = null;
     let wasCorrectAnswer: boolean;
 
     const handleNext = () => {
-        currentCountry = getAndShowNextFlag(currentCountry, numEligibleCountries);
+        currentCountry = getAndShowNextFlag(numEligibleCountries, currentCountry);
         numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
         showResults = false;
     };
@@ -32,7 +32,7 @@
 
         if (wasSettingsUpdated) {
             numEligibleCountries = recalculateEligibleCountries();
-            currentCountry = getAndShowNextFlag(currentCountry, numEligibleCountries);
+            currentCountry = getAndShowNextFlag(numEligibleCountries, currentCountry);
             numQuestionsAnswered = 0;
         }
 
@@ -68,7 +68,7 @@
                 </g>
             </svg>
         </section>
-        <img id="flag" alt="Country flag" src={flags.get(currentCountry).imageUrl} />
+        <img id="flag" alt="Country flag" src={flags.get(currentCountry)?.imageUrl} />
         <!-- svelte-ignore a11y-autofocus -->
         {#if showResults}
             <p id="results">
@@ -80,22 +80,24 @@
             </p>
             <button id="next-button" on:click={handleNext} autofocus>Next</button>
             <section id="additional-info">
-                You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>
-                (<b>{stats.percentCorrect * 100}%</b>) times.
-                {#if stats.incorrectGuesses.length > 0}
-                    Previous guesses:
-                    <ul>
-                        {#each stats.incorrectGuesses as guess}
-                            {#if flags.get(guess)}
-                                <li>
-                                    {guess}. This is the {guess} flag:
-                                    <img class="mini-flags" src={flags.get(guess).imageUrl} alt="" />
-                                </li>
-                            {:else}
-                                <li>{guess} (not a country)</li>
-                            {/if}
-                        {/each}
-                    </ul>
+                {#if stats}
+                    You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>
+                    (<b>{stats.percentCorrect * 100}%</b>) times.
+                    {#if stats.incorrectGuesses.length > 0}
+                        Previous guesses:
+                        <ul>
+                            {#each stats.incorrectGuesses as guess}
+                                {#if flags.get(guess)}
+                                    <li>
+                                        {guess}. This is the {guess} flag:
+                                        <img class="mini-flags" src={flags.get(guess)?.imageUrl} alt="" />
+                                    </li>
+                                {:else}
+                                    <li>{guess} (not a country)</li>
+                                {/if}
+                            {/each}
+                        </ul>
+                    {/if}
                 {/if}
             </section>
         {:else}

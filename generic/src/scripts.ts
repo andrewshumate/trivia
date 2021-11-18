@@ -16,7 +16,7 @@ export const isCorrectAnswer = (currentCountry: string, guess: string): boolean 
     return false;
 };
 
-export const getAndShowNextFlag = (currentCountry: string, numQuestionsAnswered: number): string => {
+export const getAndShowNextFlag = (numQuestionsAnswered: number, currentCountry?: string): string => {
     let result: string;
     let reshownCountry;
 
@@ -37,7 +37,9 @@ export const getAndShowNextFlag = (currentCountry: string, numQuestionsAnswered:
         result = eligibleCountries.pop()!;
     }
 
-    prefetchNextImages(currentCountry);
+    if (currentCountry) {
+        prefetchNextImages(currentCountry);
+    }
 
     return result!;
 };
