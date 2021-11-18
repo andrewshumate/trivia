@@ -107,8 +107,8 @@
         background: var(--background);
         padding: 12px;
         height: calc(100% - 24px);
-        width: calc(100% - 24px);
-        max-width: 500px;
+        width: 100%;
+        max-width: calc(500px - 24px);
         position: absolute;
         left: 50%;
         transform: translate(-50%, 0);
