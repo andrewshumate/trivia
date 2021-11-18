@@ -55,19 +55,10 @@
     {/if}
 
     <section id="quiz-section">
-        <TopBar
-            numQuestionsAnswered={numQuestionsAnswered}
-            numEligibleCountries={numEligibleCountries}
-            on:click={handleShowSettings}
-        />
+        <TopBar {numQuestionsAnswered} {numEligibleCountries} on:click={handleShowSettings} />
         <img id="flag" alt="Country flag" src={flags.get(currentCountry)?.imageUrl} />
         {#if showResults}
-            <Results
-                wasCorrectAnswer={wasCorrectAnswer}
-                currentCountry={currentCountry}
-                stats={stats}
-                on:click={handleNext}
-            />
+            <Results {wasCorrectAnswer} {currentCountry} {stats} on:click={handleNext} />
         {:else}
             <!-- svelte-ignore a11y-autofocus -->
             <form on:submit|preventDefault={handleSubmit}>
