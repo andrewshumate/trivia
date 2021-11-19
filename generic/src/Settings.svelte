@@ -127,9 +127,4 @@
     .settings-category {
         margin: 0 0 5px 5px;
     }
-    button {
-        height: 35px;
-        border-radius: 7px;
-        width: 100%;
-    }
 </style>

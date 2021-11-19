@@ -47,11 +47,6 @@
         padding-top: 0px;
         padding-bottom: 0px;
     }
-    button {
-        height: 35px;
-        border-radius: 7px;
-        width: 100%;
-    }
     .mini-flags {
         max-height: 50px;
         display: block;

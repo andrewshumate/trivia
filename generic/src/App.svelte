@@ -95,15 +95,10 @@
             --failure: #f44336;
         }
     }
-    :global(body) {
-        margin: 0;
-        padding: 0;
-    }
     main {
         margin: 0;
         padding: 0;
         height: 100%;
-        font-family: sans-serif;
         max-width: 500px;
         margin: auto;
         background: var(--background-background);
@@ -114,8 +109,7 @@
         height: calc(100% - 24px);
         padding: 12px;
     }
-    input[type="text"],
-    button {
+    input[type="text"] {
         height: 35px;
         border-radius: 7px;
     }
@@ -125,11 +119,8 @@
         margin-bottom: 12px;
         padding-left: 7px;
     }
-    button {
-        width: 100%;
-    }
     #flag {
-        max-height: calc(100% - 35px - 12px - 35px - 12px - 2px - 5px - 12px);
+        max-height: calc(100% - 114px);
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
