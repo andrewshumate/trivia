@@ -54,7 +54,11 @@
         <Settings on:settingsClosed={handleSettingsClosed} />
     {/if}
 
-    <section id="quiz-section">
+    <section
+        id="quiz-section"
+        class:success-animation={showResults && wasCorrectAnswer}
+        class:error-animation={showResults && !wasCorrectAnswer}
+    >
         <TopBar {numQuestionsAnswered} {numEligibleCountries} on:click={handleShowSettings} />
         <img id="flag" alt="Country flag" src={flags.get(currentCountry)?.imageUrl} />
         {#if showResults}
@@ -135,7 +139,7 @@
         padding-top: 0px;
         padding-bottom: 0px;
     }
-    @keyframes -global-error-animation {
+    @keyframes error-animation {
         from {
             background-color: var(--failure);
         }
@@ -143,11 +147,11 @@
             background-color: var(--background);
         }
     }
-    :global(.error-animation) {
+    .error-animation {
         animation-name: error-animation;
         animation-duration: 1.5s;
     }
-    @keyframes -global-success-animation {
+    @keyframes success-animation {
         from {
             background-color: var(--success);
         }
@@ -155,7 +159,7 @@
             background-color: var(--background);
         }
     }
-    :global(.success-animation) {
+    .success-animation {
         animation-name: success-animation;
         animation-duration: 1.5s;
     }
