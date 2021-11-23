@@ -2,8 +2,9 @@
     import { flags } from "./data";
     import { Stats } from "./storage";
 
+    export let questionType: string;
     export let wasCorrectAnswer: boolean;
-    export let currentCountry: string;
+    export let currentQuestion: string;
     export let stats: Stats | null;
 </script>
 
@@ -11,7 +12,7 @@
     {#if wasCorrectAnswer}
         Correct!
     {:else}
-        No, it's <b>{currentCountry}.</b>
+        No, it's <b>{currentQuestion}.</b>
     {/if}
 </p>
 <!-- svelte-ignore a11y-autofocus -->
@@ -30,7 +31,7 @@
                             <img class="mini-flags" src={flags.get(guess)?.imageUrl} alt="" />
                         </li>
                     {:else}
-                        <li>{guess} (not a country)</li>
+                        <li>{guess} (not a {questionType.toLowerCase()})</li>
                     {/if}
                 {/each}
             </ul>

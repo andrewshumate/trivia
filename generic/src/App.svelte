@@ -1,179 +1,88 @@
 <script lang="ts">
-    import Results from "./Results.svelte";
-    import Settings from "./Settings.svelte";
-    import TopBar from "./TopBar.svelte";
-    import * as storage from "./storage";
+    import Content from "./Content.svelte";
+    import { areStringsSimilar } from "./strings";
     import { flags } from "./data";
-    import { recalculateEligibleCountries, getNextCountry, isCorrectAnswer } from "./scripts";
+    import * as storage from "./storage";
+    import { shuffle } from "./utils";
 
-    let numQuestionsAnswered = 0;
-    let numEligibleCountries = recalculateEligibleCountries();
-    let currentCountry = getNextCountry(numQuestionsAnswered);
+    let eligibleCountries: string[];
 
-    let showSettings = false;
-    let showResults = false;
-    let stats: storage.Stats | null;
-    let wasCorrectAnswer: boolean;
+    const isCorrectAnswer = (currentCountry: string, guess: string): boolean => {
+        if (areStringsSimilar(currentCountry, guess)) return true;
 
-    const handleNext = (): void => {
-        numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries;
-        currentCountry = getNextCountry(numQuestionsAnswered, currentCountry);
-        showResults = false;
-    };
-
-    const handleSubmit = (event: Event): void => {
-        const form = event.target as HTMLFormElement;
-        const userInput = (form.input as HTMLInputElement).value;
-
-        wasCorrectAnswer = isCorrectAnswer(currentCountry, userInput);
-        storage.setStats(currentCountry, wasCorrectAnswer, userInput);
-        showResults = true;
-        stats = storage.getStats(currentCountry);
-    };
-
-    const handleSettingsClosed = (event: CustomEvent<boolean>): void => {
-        const wasSettingsUpdated = event.detail;
-
-        if (wasSettingsUpdated) {
-            numEligibleCountries = recalculateEligibleCountries();
-            currentCountry = getNextCountry(numQuestionsAnswered, currentCountry);
-            numQuestionsAnswered = 0;
-            showResults = false;
+        const alternateNames = flags.get(currentCountry)!.alternateNames;
+        for (let i = 0; i < alternateNames.length; i++) {
+            if (areStringsSimilar(alternateNames[i], guess)) return true;
         }
 
-        showSettings = false;
+        return false;
     };
 
-    const handleShowSettings = (): void => {
-        showSettings = true;
+    const getNextQuestion = (numQuestionsAnswered: number, currentCountry?: string): string => {
+        let result: string;
+
+        if (numQuestionsAnswered % 5 == 0 && storage.getShouldReshowUnknown()) {
+            const flagSet = storage.getFlagSet();
+            for (let i = 0; i < flagSet.length; i++) {
+                const stats = storage.getStats(flagSet[i]);
+                if (stats && flagSet[i] != currentCountry && stats.percentCorrect < 0.6) {
+                    result = flagSet[i];
+                    _prefetchNextImages(result);
+                    return result;
+                }
+            }
+        }
+
+        if (eligibleCountries.length == 0) recalculateEligibleQuestions();
+        result = eligibleCountries.pop()!;
+        _prefetchNextImages(result);
+        return result;
+    };
+
+    /** Returns length of new eligible countries list */
+    const recalculateEligibleQuestions = (): number => {
+        const mode = storage.getMode();
+        let flagSet = storage.getFlagSet();
+
+        if (mode == "Show unseen mode") {
+            const seenCountries = Object.keys(localStorage);
+            flagSet = flagSet.filter((country) => !seenCountries.includes(country));
+        } else if (mode == "Show unknown mode") {
+            flagSet = flagSet.filter((country) => {
+                const stats = storage.getStats(country);
+                return stats ? stats.percentCorrect < 0.6 || stats.numCorrectGuesses < 2 : true;
+            });
+        }
+
+        if (flagSet.length == 0) {
+            const allCountries = shuffle([...flags.keys()]);
+            flagSet = allCountries;
+        }
+
+        eligibleCountries = flagSet;
+        return eligibleCountries.length;
+    };
+
+    const _prefetchNextImages = (currentCountry: string): void => {
+        // Pre-fetch failure page images
+        const stats = storage.getStats(currentCountry);
+        if (stats) {
+            for (let i = 0; i < stats.incorrectGuesses.length; i++) {
+                const country = flags.get(stats.incorrectGuesses[i]);
+                if (country) {
+                    const image = new Image();
+                    image.src = country.imageUrl;
+                }
+            }
+        }
+
+        // Pre-fetch next image
+        if (eligibleCountries.length >= 1) {
+            const nextCountry = eligibleCountries[eligibleCountries.length - 1];
+            const image = new Image();
+            image.src = flags.get(nextCountry)!.imageUrl;
+        }
     };
 </script>
 
-<main>
-    {#if showSettings}
-        <Settings on:settingsClosed={handleSettingsClosed} />
-    {/if}
-
-    <section
-        id="quiz-section"
-        class:success-animation={showResults && wasCorrectAnswer}
-        class:error-animation={showResults && !wasCorrectAnswer}
-    >
-        <TopBar {numQuestionsAnswered} {numEligibleCountries} on:click={handleShowSettings} />
-        <img id="flag" alt="Country flag" src={flags.get(currentCountry)?.imageUrl} />
-        {#if showResults}
-            <Results {wasCorrectAnswer} {currentCountry} {stats} on:click={handleNext} />
-        {:else}
-            <!-- svelte-ignore a11y-autofocus -->
-            <form on:submit|preventDefault={handleSubmit}>
-                <input type="text" id="input" title="Guess the country" autocomplete="off" autofocus />
-                <button id="submit-button">Submit</button>
-            </form>
-        {/if}
-    </section>
-</main>
-
-<style>
-    :root {
-        color-scheme: light dark;
-    }
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --background-background: black;
-            --background: #272727;
-            --foreground: white;
-            --success: #1b5e20;
-            --failure: #b71c1c;
-        }
-    }
-    @media (prefers-color-scheme: light) {
-        :root {
-            --background-background: white;
-            --background: #cfd8dc;
-            --foreground: black;
-            --success: #4caf50;
-            --failure: #f44336;
-        }
-    }
-
-    :global(html),
-    :global(body) {
-        height: 100%;
-        margin: 0;
-    }
-    :global(label) {
-        display: block;
-    }
-    :global(input),
-    :global(button) {
-        box-sizing: border-box;
-        border: solid darkgray 1px;
-    }
-    :global(button) {
-        width: 100%;
-        height: 35px;
-        border-radius: 7px;
-        cursor: pointer;
-    }
-
-    main {
-        padding: 0;
-        height: 100%;
-        max-width: 500px;
-        margin: auto;
-        background: var(--background-background);
-        color: var(--foreground);
-        font-family: sans-serif;
-    }
-    #quiz-section {
-        background: var(--background);
-        height: calc(100% - 24px);
-        padding: 12px;
-    }
-    input[type="text"] {
-        height: 35px;
-        border-radius: 7px;
-    }
-    input[type="text"] {
-        width: calc(100%);
-        margin-top: 12px;
-        margin-bottom: 12px;
-        padding-left: 7px;
-    }
-    #flag {
-        max-height: calc(100% - 114px);
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-    #input {
-        padding-top: 0px;
-        padding-bottom: 0px;
-    }
-
-    @keyframes error-animation {
-        from {
-            background-color: var(--failure);
-        }
-        to {
-            background-color: var(--background);
-        }
-    }
-    .error-animation {
-        animation-name: error-animation;
-        animation-duration: 1.5s;
-    }
-    @keyframes success-animation {
-        from {
-            background-color: var(--success);
-        }
-        to {
-            background-color: var(--background);
-        }
-    }
-    .success-animation {
-        animation-name: success-animation;
-        animation-duration: 1.5s;
-    }
-</style>
+<Content {isCorrectAnswer} {recalculateEligibleQuestions} {getNextQuestion} questionType="Country" />

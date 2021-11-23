@@ -228,6 +228,12 @@ var app = (function () {
             block.o(local);
         }
     }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
     function create_component(block) {
         block && block.c();
     }
@@ -2019,58 +2025,6 @@ var app = (function () {
         "Zimbabwe",
     ];
 
-    let eligibleCountries;
-    const isCorrectAnswer = (currentCountry, guess) => {
-        if (areStringsSimilar(currentCountry, guess))
-            return true;
-        const alternateNames = flags.get(currentCountry).alternateNames;
-        for (let i = 0; i < alternateNames.length; i++) {
-            if (areStringsSimilar(alternateNames[i], guess))
-                return true;
-        }
-        return false;
-    };
-    const getNextCountry = (numQuestionsAnswered, currentCountry) => {
-        let result;
-        if (numQuestionsAnswered % 5 == 0 && getShouldReshowUnknown()) {
-            const flagSet = getFlagSet();
-            for (let i = 0; i < flagSet.length; i++) {
-                const stats = getStats(flagSet[i]);
-                if (stats && flagSet[i] != currentCountry && stats.percentCorrect < 0.6) {
-                    result = flagSet[i];
-                    prefetchNextImages(result);
-                    return result;
-                }
-            }
-        }
-        if (eligibleCountries.length == 0)
-            recalculateEligibleCountries();
-        result = eligibleCountries.pop();
-        prefetchNextImages(result);
-        return result;
-    };
-    /** Returns length of new eligible countries list */
-    const recalculateEligibleCountries = () => {
-        const mode = getMode();
-        let flagSet = getFlagSet();
-        if (mode == "Show unseen mode") {
-            const seenCountries = Object.keys(localStorage);
-            flagSet = flagSet.filter((country) => !seenCountries.includes(country));
-        }
-        else if (mode == "Show unknown mode") {
-            flagSet = flagSet.filter((country) => {
-                const stats = getStats(country);
-                return stats ? stats.percentCorrect < 0.6 || stats.numCorrectGuesses < 2 : true;
-            });
-        }
-        if (flagSet.length == 0) {
-            const allCountries = shuffle([...flags.keys()]);
-            flagSet = allCountries;
-        }
-        eligibleCountries = flagSet;
-        return eligibleCountries.length;
-    };
-
     const shuffle = (array) => {
         let currentIndex = array.length;
         let randomIndex;
@@ -2081,28 +2035,9 @@ var app = (function () {
         }
         return array;
     };
-    const prefetchNextImages = (currentCountry) => {
-        // Pre-fetch failure page images
-        const stats = getStats(currentCountry);
-        if (stats) {
-            for (let i = 0; i < stats.incorrectGuesses.length; i++) {
-                const country = flags.get(stats.incorrectGuesses[i]);
-                if (country) {
-                    const image = new Image();
-                    image.src = country.imageUrl;
-                }
-            }
-        }
-        // Pre-fetch next image
-        if (eligibleCountries.length >= 1) {
-            const nextCountry = eligibleCountries[eligibleCountries.length - 1];
-            const image = new Image();
-            image.src = flags.get(nextCountry).imageUrl;
-        }
-    };
 
-    const setStats = (country, wasGuessCorrect, guess) => {
-        const statsString = localStorage.getItem(country);
+    const setStats = (key, wasGuessCorrect, guess) => {
+        const statsString = localStorage.getItem(key);
         const stats = statsString
             ? JSON.parse(statsString)
             : {
@@ -2126,10 +2061,10 @@ var app = (function () {
             }
         }
         stats.percentCorrect = stats.numCorrectGuesses / stats.numTotalGuesses;
-        localStorage.setItem(country, JSON.stringify(stats));
+        localStorage.setItem(key, JSON.stringify(stats));
     };
-    const getStats = (country) => {
-        const statsString = localStorage.getItem(country);
+    const getStats = (key) => {
+        const statsString = localStorage.getItem(key);
         if (statsString) {
             return JSON.parse(statsString);
         }
@@ -2180,11 +2115,11 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
+    	child_ctx[5] = list[i];
     	return child_ctx;
     }
 
-    // (11:4) {:else}
+    // (12:4) {:else}
     function create_else_block_1(ctx) {
     	let t0;
     	let b;
@@ -2195,9 +2130,9 @@ var app = (function () {
     		c: function create() {
     			t0 = text("No, it's ");
     			b = element("b");
-    			t1 = text(/*currentCountry*/ ctx[1]);
+    			t1 = text(/*currentQuestion*/ ctx[2]);
     			t2 = text(".");
-    			add_location(b, file$3, 11, 17, 256);
+    			add_location(b, file$3, 12, 17, 283);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -2206,7 +2141,7 @@ var app = (function () {
     			append_dev(b, t2);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*currentCountry*/ 2) set_data_dev(t1, /*currentCountry*/ ctx[1]);
+    			if (dirty & /*currentQuestion*/ 4) set_data_dev(t1, /*currentQuestion*/ ctx[2]);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t0);
@@ -2218,14 +2153,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(11:4) {:else}",
+    		source: "(12:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (9:4) {#if wasCorrectAnswer}
+    // (10:4) {#if wasCorrectAnswer}
     function create_if_block_3(ctx) {
     	let t;
 
@@ -2246,30 +2181,30 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(9:4) {#if wasCorrectAnswer}",
+    		source: "(10:4) {#if wasCorrectAnswer}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (18:4) {#if stats}
+    // (19:4) {#if stats}
     function create_if_block$1(ctx) {
     	let t0;
     	let b0;
-    	let t1_value = /*stats*/ ctx[2].numCorrectGuesses + "";
+    	let t1_value = /*stats*/ ctx[3].numCorrectGuesses + "";
     	let t1;
     	let t2;
-    	let t3_value = /*stats*/ ctx[2].numTotalGuesses + "";
+    	let t3_value = /*stats*/ ctx[3].numTotalGuesses + "";
     	let t3;
     	let t4;
     	let b1;
-    	let t5_value = /*stats*/ ctx[2].percentCorrect * 100 + "";
+    	let t5_value = /*stats*/ ctx[3].percentCorrect * 100 + "";
     	let t5;
     	let t6;
     	let t7;
     	let if_block_anchor;
-    	let if_block = /*stats*/ ctx[2].incorrectGuesses.length > 0 && create_if_block_1$1(ctx);
+    	let if_block = /*stats*/ ctx[3].incorrectGuesses.length > 0 && create_if_block_1$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -2285,8 +2220,8 @@ var app = (function () {
     			t7 = text(") times.\r\n        ");
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
-    			add_location(b0, file$3, 18, 33, 479);
-    			add_location(b1, file$3, 19, 9, 546);
+    			add_location(b0, file$3, 19, 33, 507);
+    			add_location(b1, file$3, 20, 9, 574);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -2303,11 +2238,11 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*stats*/ 4 && t1_value !== (t1_value = /*stats*/ ctx[2].numCorrectGuesses + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*stats*/ 4 && t3_value !== (t3_value = /*stats*/ ctx[2].numTotalGuesses + "")) set_data_dev(t3, t3_value);
-    			if (dirty & /*stats*/ 4 && t5_value !== (t5_value = /*stats*/ ctx[2].percentCorrect * 100 + "")) set_data_dev(t5, t5_value);
+    			if (dirty & /*stats*/ 8 && t1_value !== (t1_value = /*stats*/ ctx[3].numCorrectGuesses + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*stats*/ 8 && t3_value !== (t3_value = /*stats*/ ctx[3].numTotalGuesses + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*stats*/ 8 && t5_value !== (t5_value = /*stats*/ ctx[3].percentCorrect * 100 + "")) set_data_dev(t5, t5_value);
 
-    			if (/*stats*/ ctx[2].incorrectGuesses.length > 0) {
+    			if (/*stats*/ ctx[3].incorrectGuesses.length > 0) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -2335,18 +2270,18 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(18:4) {#if stats}",
+    		source: "(19:4) {#if stats}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (21:8) {#if stats.incorrectGuesses.length > 0}
+    // (22:8) {#if stats.incorrectGuesses.length > 0}
     function create_if_block_1$1(ctx) {
     	let t;
     	let ul;
-    	let each_value = /*stats*/ ctx[2].incorrectGuesses;
+    	let each_value = /*stats*/ ctx[3].incorrectGuesses;
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2363,7 +2298,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(ul, file$3, 22, 12, 684);
+    			add_location(ul, file$3, 23, 12, 712);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -2374,8 +2309,8 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*flags, stats*/ 4) {
-    				each_value = /*stats*/ ctx[2].incorrectGuesses;
+    			if (dirty & /*flags, stats, questionType*/ 9) {
+    				each_value = /*stats*/ ctx[3].incorrectGuesses;
     				validate_each_argument(each_value);
     				let i;
 
@@ -2409,34 +2344,42 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(21:8) {#if stats.incorrectGuesses.length > 0}",
+    		source: "(22:8) {#if stats.incorrectGuesses.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (30:20) {:else}
+    // (31:20) {:else}
     function create_else_block$1(ctx) {
     	let li;
-    	let t0_value = /*guess*/ ctx[4] + "";
+    	let t0_value = /*guess*/ ctx[5] + "";
     	let t0;
     	let t1;
+    	let t2_value = /*questionType*/ ctx[0].toLowerCase() + "";
+    	let t2;
+    	let t3;
 
     	const block = {
     		c: function create() {
     			li = element("li");
     			t0 = text(t0_value);
-    			t1 = text(" (not a country)");
-    			add_location(li, file$3, 30, 24, 1065);
+    			t1 = text(" (not a ");
+    			t2 = text(t2_value);
+    			t3 = text(")");
+    			add_location(li, file$3, 31, 24, 1093);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
     			append_dev(li, t0);
     			append_dev(li, t1);
+    			append_dev(li, t2);
+    			append_dev(li, t3);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*stats*/ 4 && t0_value !== (t0_value = /*guess*/ ctx[4] + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*stats*/ 8 && t0_value !== (t0_value = /*guess*/ ctx[5] + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*questionType*/ 1 && t2_value !== (t2_value = /*questionType*/ ctx[0].toLowerCase() + "")) set_data_dev(t2, t2_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
@@ -2447,20 +2390,20 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(30:20) {:else}",
+    		source: "(31:20) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (25:20) {#if flags.get(guess)}
+    // (26:20) {#if flags.get(guess)}
     function create_if_block_2(ctx) {
     	let li;
-    	let t0_value = /*guess*/ ctx[4] + "";
+    	let t0_value = /*guess*/ ctx[5] + "";
     	let t0;
     	let t1;
-    	let t2_value = /*guess*/ ctx[4] + "";
+    	let t2_value = /*guess*/ ctx[5] + "";
     	let t2;
     	let t3;
     	let img;
@@ -2477,10 +2420,10 @@ var app = (function () {
     			img = element("img");
     			t4 = space();
     			attr_dev(img, "class", "mini-flags svelte-u2oqyh");
-    			if (!src_url_equal(img.src, img_src_value = flags.get(/*guess*/ ctx[4])?.imageUrl)) attr_dev(img, "src", img_src_value);
+    			if (!src_url_equal(img.src, img_src_value = flags.get(/*guess*/ ctx[5])?.imageUrl)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
-    			add_location(img, file$3, 27, 28, 913);
-    			add_location(li, file$3, 25, 24, 815);
+    			add_location(img, file$3, 28, 28, 941);
+    			add_location(li, file$3, 26, 24, 843);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -2492,10 +2435,10 @@ var app = (function () {
     			append_dev(li, t4);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*stats*/ 4 && t0_value !== (t0_value = /*guess*/ ctx[4] + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*stats*/ 4 && t2_value !== (t2_value = /*guess*/ ctx[4] + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*stats*/ 8 && t0_value !== (t0_value = /*guess*/ ctx[5] + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*stats*/ 8 && t2_value !== (t2_value = /*guess*/ ctx[5] + "")) set_data_dev(t2, t2_value);
 
-    			if (dirty & /*stats*/ 4 && !src_url_equal(img.src, img_src_value = flags.get(/*guess*/ ctx[4])?.imageUrl)) {
+    			if (dirty & /*stats*/ 8 && !src_url_equal(img.src, img_src_value = flags.get(/*guess*/ ctx[5])?.imageUrl)) {
     				attr_dev(img, "src", img_src_value);
     			}
     		},
@@ -2508,20 +2451,20 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(25:20) {#if flags.get(guess)}",
+    		source: "(26:20) {#if flags.get(guess)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (24:16) {#each stats.incorrectGuesses as guess}
+    // (25:16) {#each stats.incorrectGuesses as guess}
     function create_each_block(ctx) {
     	let show_if;
     	let if_block_anchor;
 
     	function select_block_type_1(ctx, dirty) {
-    		if (show_if == null || dirty & /*stats*/ 4) show_if = !!flags.get(/*guess*/ ctx[4]);
+    		if (show_if == null || dirty & /*stats*/ 8) show_if = !!flags.get(/*guess*/ ctx[5]);
     		if (show_if) return create_if_block_2;
     		return create_else_block$1;
     	}
@@ -2561,14 +2504,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(24:16) {#each stats.incorrectGuesses as guess}",
+    		source: "(25:16) {#each stats.incorrectGuesses as guess}",
     		ctx
     	});
 
     	return block;
     }
 
-    function create_fragment$3(ctx) {
+    function create_fragment$4(ctx) {
     	let p;
     	let t0;
     	let button;
@@ -2578,13 +2521,13 @@ var app = (function () {
     	let dispose;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*wasCorrectAnswer*/ ctx[0]) return create_if_block_3;
+    		if (/*wasCorrectAnswer*/ ctx[1]) return create_if_block_3;
     		return create_else_block_1;
     	}
 
     	let current_block_type = select_block_type(ctx);
     	let if_block0 = current_block_type(ctx);
-    	let if_block1 = /*stats*/ ctx[2] && create_if_block$1(ctx);
+    	let if_block1 = /*stats*/ ctx[3] && create_if_block$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -2598,13 +2541,13 @@ var app = (function () {
     			if (if_block1) if_block1.c();
     			attr_dev(p, "id", "results");
     			attr_dev(p, "class", "svelte-u2oqyh");
-    			add_location(p, file$3, 7, 0, 162);
+    			add_location(p, file$3, 8, 0, 189);
     			attr_dev(button, "id", "next-button");
     			button.autofocus = true;
-    			add_location(button, file$3, 15, 0, 338);
+    			add_location(button, file$3, 16, 0, 366);
     			attr_dev(section, "id", "additional-info");
     			attr_dev(section, "class", "svelte-u2oqyh");
-    			add_location(section, file$3, 16, 0, 397);
+    			add_location(section, file$3, 17, 0, 425);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2620,7 +2563,7 @@ var app = (function () {
     			button.focus();
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[3], false, false, false);
+    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[4], false, false, false);
     				mounted = true;
     			}
     		},
@@ -2637,7 +2580,7 @@ var app = (function () {
     				}
     			}
 
-    			if (/*stats*/ ctx[2]) {
+    			if (/*stats*/ ctx[3]) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
@@ -2667,7 +2610,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$3.name,
+    		id: create_fragment$4.name,
     		type: "component",
     		source: "",
     		ctx
@@ -2676,13 +2619,14 @@ var app = (function () {
     	return block;
     }
 
-    function instance$3($$self, $$props, $$invalidate) {
+    function instance$4($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Results', slots, []);
+    	let { questionType } = $$props;
     	let { wasCorrectAnswer } = $$props;
-    	let { currentCountry } = $$props;
+    	let { currentQuestion } = $$props;
     	let { stats } = $$props;
-    	const writable_props = ['wasCorrectAnswer', 'currentCountry', 'stats'];
+    	const writable_props = ['questionType', 'wasCorrectAnswer', 'currentQuestion', 'stats'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Results> was created with unknown prop '${key}'`);
@@ -2693,62 +2637,78 @@ var app = (function () {
     	}
 
     	$$self.$$set = $$props => {
-    		if ('wasCorrectAnswer' in $$props) $$invalidate(0, wasCorrectAnswer = $$props.wasCorrectAnswer);
-    		if ('currentCountry' in $$props) $$invalidate(1, currentCountry = $$props.currentCountry);
-    		if ('stats' in $$props) $$invalidate(2, stats = $$props.stats);
+    		if ('questionType' in $$props) $$invalidate(0, questionType = $$props.questionType);
+    		if ('wasCorrectAnswer' in $$props) $$invalidate(1, wasCorrectAnswer = $$props.wasCorrectAnswer);
+    		if ('currentQuestion' in $$props) $$invalidate(2, currentQuestion = $$props.currentQuestion);
+    		if ('stats' in $$props) $$invalidate(3, stats = $$props.stats);
     	};
 
     	$$self.$capture_state = () => ({
     		flags,
+    		questionType,
     		wasCorrectAnswer,
-    		currentCountry,
+    		currentQuestion,
     		stats
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('wasCorrectAnswer' in $$props) $$invalidate(0, wasCorrectAnswer = $$props.wasCorrectAnswer);
-    		if ('currentCountry' in $$props) $$invalidate(1, currentCountry = $$props.currentCountry);
-    		if ('stats' in $$props) $$invalidate(2, stats = $$props.stats);
+    		if ('questionType' in $$props) $$invalidate(0, questionType = $$props.questionType);
+    		if ('wasCorrectAnswer' in $$props) $$invalidate(1, wasCorrectAnswer = $$props.wasCorrectAnswer);
+    		if ('currentQuestion' in $$props) $$invalidate(2, currentQuestion = $$props.currentQuestion);
+    		if ('stats' in $$props) $$invalidate(3, stats = $$props.stats);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [wasCorrectAnswer, currentCountry, stats, click_handler];
+    	return [questionType, wasCorrectAnswer, currentQuestion, stats, click_handler];
     }
 
     class Results extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
 
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, {
-    			wasCorrectAnswer: 0,
-    			currentCountry: 1,
-    			stats: 2
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
+    			questionType: 0,
+    			wasCorrectAnswer: 1,
+    			currentQuestion: 2,
+    			stats: 3
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Results",
     			options,
-    			id: create_fragment$3.name
+    			id: create_fragment$4.name
     		});
 
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*wasCorrectAnswer*/ ctx[0] === undefined && !('wasCorrectAnswer' in props)) {
+    		if (/*questionType*/ ctx[0] === undefined && !('questionType' in props)) {
+    			console.warn("<Results> was created without expected prop 'questionType'");
+    		}
+
+    		if (/*wasCorrectAnswer*/ ctx[1] === undefined && !('wasCorrectAnswer' in props)) {
     			console.warn("<Results> was created without expected prop 'wasCorrectAnswer'");
     		}
 
-    		if (/*currentCountry*/ ctx[1] === undefined && !('currentCountry' in props)) {
-    			console.warn("<Results> was created without expected prop 'currentCountry'");
+    		if (/*currentQuestion*/ ctx[2] === undefined && !('currentQuestion' in props)) {
+    			console.warn("<Results> was created without expected prop 'currentQuestion'");
     		}
 
-    		if (/*stats*/ ctx[2] === undefined && !('stats' in props)) {
+    		if (/*stats*/ ctx[3] === undefined && !('stats' in props)) {
     			console.warn("<Results> was created without expected prop 'stats'");
     		}
+    	}
+
+    	get questionType() {
+    		throw new Error("<Results>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set questionType(value) {
+    		throw new Error("<Results>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get wasCorrectAnswer() {
@@ -2759,11 +2719,11 @@ var app = (function () {
     		throw new Error("<Results>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get currentCountry() {
+    	get currentQuestion() {
     		throw new Error("<Results>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set currentCountry(value) {
+    	set currentQuestion(value) {
     		throw new Error("<Results>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -2779,7 +2739,7 @@ var app = (function () {
     /* src\Settings.svelte generated by Svelte v3.44.1 */
     const file$2 = "src\\Settings.svelte";
 
-    function create_fragment$2(ctx) {
+    function create_fragment$3(ctx) {
     	let section;
     	let form;
     	let p0;
@@ -3105,7 +3065,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$2.name,
+    		id: create_fragment$3.name,
     		type: "component",
     		source: "",
     		ctx
@@ -3114,7 +3074,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$2($$self, $$props, $$invalidate) {
+    function instance$3($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Settings', slots, []);
     	let dispatch = createEventDispatcher();
@@ -3228,13 +3188,13 @@ var app = (function () {
     class Settings extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {});
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Settings",
     			options,
-    			id: create_fragment$2.name
+    			id: create_fragment$3.name
     		});
     	}
     }
@@ -3243,7 +3203,7 @@ var app = (function () {
 
     const file$1 = "src\\TopBar.svelte";
 
-    function create_fragment$1(ctx) {
+    function create_fragment$2(ctx) {
     	let section;
     	let p;
     	let t0;
@@ -3323,7 +3283,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$1.name,
+    		id: create_fragment$2.name,
     		type: "component",
     		source: "",
     		ctx
@@ -3332,7 +3292,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$1($$self, $$props, $$invalidate) {
+    function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('TopBar', slots, []);
     	let { numQuestionsAnswered } = $$props;
@@ -3373,7 +3333,7 @@ var app = (function () {
     	constructor(options) {
     		super(options);
 
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
     			numQuestionsAnswered: 0,
     			numEligibleCountries: 1
     		});
@@ -3382,7 +3342,7 @@ var app = (function () {
     			component: this,
     			tagName: "TopBar",
     			options,
-    			id: create_fragment$1.name
+    			id: create_fragment$2.name
     		});
 
     		const { ctx } = this.$$;
@@ -3414,16 +3374,15 @@ var app = (function () {
     	}
     }
 
-    /* src\App.svelte generated by Svelte v3.44.1 */
+    /* src\Content.svelte generated by Svelte v3.44.1 */
+    const file = "src\\Content.svelte";
 
-    const file = "src\\App.svelte";
-
-    // (43:4) {#if showSettings}
+    // (49:4) {#if showSettings}
     function create_if_block_1(ctx) {
     	let settings;
     	let current;
     	settings = new Settings({ $$inline: true });
-    	settings.$on("settingsClosed", /*handleSettingsClosed*/ ctx[9]);
+    	settings.$on("settingsClosed", /*handleSettingsClosed*/ ctx[10]);
 
     	const block = {
     		c: function create() {
@@ -3452,17 +3411,18 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(43:4) {#if showSettings}",
+    		source: "(49:4) {#if showSettings}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (56:8) {:else}
+    // (62:8) {:else}
     function create_else_block(ctx) {
     	let form;
     	let input;
+    	let input_title_value;
     	let t0;
     	let button;
     	let mounted;
@@ -3477,14 +3437,14 @@ var app = (function () {
     			button.textContent = "Submit";
     			attr_dev(input, "type", "text");
     			attr_dev(input, "id", "input");
-    			attr_dev(input, "title", "Guess the country");
+    			attr_dev(input, "title", input_title_value = "Guess the " + /*questionType*/ ctx[0].toLowerCase());
     			attr_dev(input, "autocomplete", "off");
     			input.autofocus = true;
     			attr_dev(input, "class", "svelte-95odf4");
-    			add_location(input, file, 58, 16, 2258);
+    			add_location(input, file, 64, 16, 2548);
     			attr_dev(button, "id", "submit-button");
-    			add_location(button, file, 59, 16, 2363);
-    			add_location(form, file, 57, 12, 2194);
+    			add_location(button, file, 71, 16, 2796);
+    			add_location(form, file, 63, 12, 2484);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, form, anchor);
@@ -3494,11 +3454,15 @@ var app = (function () {
     			input.focus();
 
     			if (!mounted) {
-    				dispose = listen_dev(form, "submit", prevent_default(/*handleSubmit*/ ctx[8]), false, true, false);
+    				dispose = listen_dev(form, "submit", prevent_default(/*handleSubmit*/ ctx[9]), false, true, false);
     				mounted = true;
     			}
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*questionType*/ 1 && input_title_value !== (input_title_value = "Guess the " + /*questionType*/ ctx[0].toLowerCase())) {
+    				attr_dev(input, "title", input_title_value);
+    			}
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -3512,28 +3476,29 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(56:8) {:else}",
+    		source: "(62:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:8) {#if showResults}
+    // (60:8) {#if showResults}
     function create_if_block(ctx) {
     	let results;
     	let current;
 
     	results = new Results({
     			props: {
-    				wasCorrectAnswer: /*wasCorrectAnswer*/ ctx[6],
-    				currentCountry: /*currentCountry*/ ctx[2],
-    				stats: /*stats*/ ctx[5]
+    				wasCorrectAnswer: /*wasCorrectAnswer*/ ctx[7],
+    				currentQuestion: /*currentQuestion*/ ctx[3],
+    				questionType: /*questionType*/ ctx[0],
+    				stats: /*stats*/ ctx[6]
     			},
     			$$inline: true
     		});
 
-    	results.$on("click", /*handleNext*/ ctx[7]);
+    	results.$on("click", /*handleNext*/ ctx[8]);
 
     	const block = {
     		c: function create() {
@@ -3545,9 +3510,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const results_changes = {};
-    			if (dirty & /*wasCorrectAnswer*/ 64) results_changes.wasCorrectAnswer = /*wasCorrectAnswer*/ ctx[6];
-    			if (dirty & /*currentCountry*/ 4) results_changes.currentCountry = /*currentCountry*/ ctx[2];
-    			if (dirty & /*stats*/ 32) results_changes.stats = /*stats*/ ctx[5];
+    			if (dirty & /*wasCorrectAnswer*/ 128) results_changes.wasCorrectAnswer = /*wasCorrectAnswer*/ ctx[7];
+    			if (dirty & /*currentQuestion*/ 8) results_changes.currentQuestion = /*currentQuestion*/ ctx[3];
+    			if (dirty & /*questionType*/ 1) results_changes.questionType = /*questionType*/ ctx[0];
+    			if (dirty & /*stats*/ 64) results_changes.stats = /*stats*/ ctx[6];
     			results.$set(results_changes);
     		},
     		i: function intro(local) {
@@ -3568,41 +3534,42 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(54:8) {#if showResults}",
+    		source: "(60:8) {#if showResults}",
     		ctx
     	});
 
     	return block;
     }
 
-    function create_fragment(ctx) {
+    function create_fragment$1(ctx) {
     	let main;
     	let t0;
     	let section;
     	let topbar;
     	let t1;
     	let img;
+    	let img_alt_value;
     	let img_src_value;
     	let t2;
     	let current_block_type_index;
     	let if_block1;
     	let current;
-    	let if_block0 = /*showSettings*/ ctx[3] && create_if_block_1(ctx);
+    	let if_block0 = /*showSettings*/ ctx[4] && create_if_block_1(ctx);
 
     	topbar = new TopBar({
     			props: {
-    				numQuestionsAnswered: /*numQuestionsAnswered*/ ctx[0],
-    				numEligibleCountries: /*numEligibleCountries*/ ctx[1]
+    				numQuestionsAnswered: /*numQuestionsAnswered*/ ctx[1],
+    				numEligibleCountries: /*numEligibleCountries*/ ctx[2]
     			},
     			$$inline: true
     		});
 
-    	topbar.$on("click", /*handleShowSettings*/ ctx[10]);
+    	topbar.$on("click", /*handleShowSettings*/ ctx[11]);
     	const if_block_creators = [create_if_block, create_else_block];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*showResults*/ ctx[4]) return 0;
+    		if (/*showResults*/ ctx[5]) return 0;
     		return 1;
     	}
 
@@ -3621,17 +3588,17 @@ var app = (function () {
     			t2 = space();
     			if_block1.c();
     			attr_dev(img, "id", "flag");
-    			attr_dev(img, "alt", "Country flag");
-    			if (!src_url_equal(img.src, img_src_value = flags.get(/*currentCountry*/ ctx[2])?.imageUrl)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", img_alt_value = "" + (/*questionType*/ ctx[0] + " flag"));
+    			if (!src_url_equal(img.src, img_src_value = flags.get(/*currentQuestion*/ ctx[3])?.imageUrl)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svelte-95odf4");
-    			add_location(img, file, 52, 8, 1916);
+    			add_location(img, file, 58, 8, 2182);
     			attr_dev(section, "id", "quiz-section");
     			attr_dev(section, "class", "svelte-95odf4");
-    			toggle_class(section, "success-animation", /*showResults*/ ctx[4] && /*wasCorrectAnswer*/ ctx[6]);
-    			toggle_class(section, "error-animation", /*showResults*/ ctx[4] && !/*wasCorrectAnswer*/ ctx[6]);
-    			add_location(section, file, 46, 4, 1635);
+    			toggle_class(section, "success-animation", /*showResults*/ ctx[5] && /*wasCorrectAnswer*/ ctx[7]);
+    			toggle_class(section, "error-animation", /*showResults*/ ctx[5] && !/*wasCorrectAnswer*/ ctx[7]);
+    			add_location(section, file, 52, 4, 1901);
     			attr_dev(main, "class", "svelte-95odf4");
-    			add_location(main, file, 41, 0, 1523);
+    			add_location(main, file, 47, 0, 1789);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3649,11 +3616,11 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*showSettings*/ ctx[3]) {
+    			if (/*showSettings*/ ctx[4]) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
 
-    					if (dirty & /*showSettings*/ 8) {
+    					if (dirty & /*showSettings*/ 16) {
     						transition_in(if_block0, 1);
     					}
     				} else {
@@ -3673,11 +3640,15 @@ var app = (function () {
     			}
 
     			const topbar_changes = {};
-    			if (dirty & /*numQuestionsAnswered*/ 1) topbar_changes.numQuestionsAnswered = /*numQuestionsAnswered*/ ctx[0];
-    			if (dirty & /*numEligibleCountries*/ 2) topbar_changes.numEligibleCountries = /*numEligibleCountries*/ ctx[1];
+    			if (dirty & /*numQuestionsAnswered*/ 2) topbar_changes.numQuestionsAnswered = /*numQuestionsAnswered*/ ctx[1];
+    			if (dirty & /*numEligibleCountries*/ 4) topbar_changes.numEligibleCountries = /*numEligibleCountries*/ ctx[2];
     			topbar.$set(topbar_changes);
 
-    			if (!current || dirty & /*currentCountry*/ 4 && !src_url_equal(img.src, img_src_value = flags.get(/*currentCountry*/ ctx[2])?.imageUrl)) {
+    			if (!current || dirty & /*questionType*/ 1 && img_alt_value !== (img_alt_value = "" + (/*questionType*/ ctx[0] + " flag"))) {
+    				attr_dev(img, "alt", img_alt_value);
+    			}
+
+    			if (!current || dirty & /*currentQuestion*/ 8 && !src_url_equal(img.src, img_src_value = flags.get(/*currentQuestion*/ ctx[3])?.imageUrl)) {
     				attr_dev(img, "src", img_src_value);
     			}
 
@@ -3707,12 +3678,12 @@ var app = (function () {
     				if_block1.m(section, null);
     			}
 
-    			if (dirty & /*showResults, wasCorrectAnswer*/ 80) {
-    				toggle_class(section, "success-animation", /*showResults*/ ctx[4] && /*wasCorrectAnswer*/ ctx[6]);
+    			if (dirty & /*showResults, wasCorrectAnswer*/ 160) {
+    				toggle_class(section, "success-animation", /*showResults*/ ctx[5] && /*wasCorrectAnswer*/ ctx[7]);
     			}
 
-    			if (dirty & /*showResults, wasCorrectAnswer*/ 80) {
-    				toggle_class(section, "error-animation", /*showResults*/ ctx[4] && !/*wasCorrectAnswer*/ ctx[6]);
+    			if (dirty & /*showResults, wasCorrectAnswer*/ 160) {
+    				toggle_class(section, "error-animation", /*showResults*/ ctx[5] && !/*wasCorrectAnswer*/ ctx[7]);
     			}
     		},
     		i: function intro(local) {
@@ -3738,6 +3709,260 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('Content', slots, []);
+    	let { isCorrectAnswer } = $$props;
+    	let { getNextQuestion } = $$props;
+    	let { recalculateEligibleQuestions } = $$props;
+    	let { questionType } = $$props;
+
+    	// Begin internal stuff //////////////////////////////////////
+    	let numQuestionsAnswered = 0;
+
+    	let numEligibleCountries = recalculateEligibleQuestions();
+    	let currentQuestion = getNextQuestion(numQuestionsAnswered);
+    	let showSettings = false;
+    	let showResults = false;
+    	let stats;
+    	let wasCorrectAnswer;
+
+    	const handleNext = () => {
+    		$$invalidate(1, numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries);
+    		$$invalidate(3, currentQuestion = getNextQuestion(numQuestionsAnswered, currentQuestion));
+    		$$invalidate(5, showResults = false);
+    	};
+
+    	const handleSubmit = event => {
+    		const form = event.target;
+    		const userInput = form.input.value;
+    		$$invalidate(7, wasCorrectAnswer = isCorrectAnswer(currentQuestion, userInput));
+    		setStats(currentQuestion, wasCorrectAnswer, userInput);
+    		$$invalidate(5, showResults = true);
+    		$$invalidate(6, stats = getStats(currentQuestion));
+    	};
+
+    	const handleSettingsClosed = event => {
+    		const wasSettingsUpdated = event.detail;
+
+    		if (wasSettingsUpdated) {
+    			$$invalidate(2, numEligibleCountries = recalculateEligibleQuestions());
+    			$$invalidate(3, currentQuestion = getNextQuestion(numQuestionsAnswered, currentQuestion));
+    			$$invalidate(1, numQuestionsAnswered = 0);
+    			$$invalidate(5, showResults = false);
+    		}
+
+    		$$invalidate(4, showSettings = false);
+    	};
+
+    	const handleShowSettings = () => {
+    		$$invalidate(4, showSettings = true);
+    	};
+
+    	const writable_props = [
+    		'isCorrectAnswer',
+    		'getNextQuestion',
+    		'recalculateEligibleQuestions',
+    		'questionType'
+    	];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Content> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('isCorrectAnswer' in $$props) $$invalidate(12, isCorrectAnswer = $$props.isCorrectAnswer);
+    		if ('getNextQuestion' in $$props) $$invalidate(13, getNextQuestion = $$props.getNextQuestion);
+    		if ('recalculateEligibleQuestions' in $$props) $$invalidate(14, recalculateEligibleQuestions = $$props.recalculateEligibleQuestions);
+    		if ('questionType' in $$props) $$invalidate(0, questionType = $$props.questionType);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		Results,
+    		Settings,
+    		TopBar,
+    		storage,
+    		flags,
+    		isCorrectAnswer,
+    		getNextQuestion,
+    		recalculateEligibleQuestions,
+    		questionType,
+    		numQuestionsAnswered,
+    		numEligibleCountries,
+    		currentQuestion,
+    		showSettings,
+    		showResults,
+    		stats,
+    		wasCorrectAnswer,
+    		handleNext,
+    		handleSubmit,
+    		handleSettingsClosed,
+    		handleShowSettings
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('isCorrectAnswer' in $$props) $$invalidate(12, isCorrectAnswer = $$props.isCorrectAnswer);
+    		if ('getNextQuestion' in $$props) $$invalidate(13, getNextQuestion = $$props.getNextQuestion);
+    		if ('recalculateEligibleQuestions' in $$props) $$invalidate(14, recalculateEligibleQuestions = $$props.recalculateEligibleQuestions);
+    		if ('questionType' in $$props) $$invalidate(0, questionType = $$props.questionType);
+    		if ('numQuestionsAnswered' in $$props) $$invalidate(1, numQuestionsAnswered = $$props.numQuestionsAnswered);
+    		if ('numEligibleCountries' in $$props) $$invalidate(2, numEligibleCountries = $$props.numEligibleCountries);
+    		if ('currentQuestion' in $$props) $$invalidate(3, currentQuestion = $$props.currentQuestion);
+    		if ('showSettings' in $$props) $$invalidate(4, showSettings = $$props.showSettings);
+    		if ('showResults' in $$props) $$invalidate(5, showResults = $$props.showResults);
+    		if ('stats' in $$props) $$invalidate(6, stats = $$props.stats);
+    		if ('wasCorrectAnswer' in $$props) $$invalidate(7, wasCorrectAnswer = $$props.wasCorrectAnswer);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		questionType,
+    		numQuestionsAnswered,
+    		numEligibleCountries,
+    		currentQuestion,
+    		showSettings,
+    		showResults,
+    		stats,
+    		wasCorrectAnswer,
+    		handleNext,
+    		handleSubmit,
+    		handleSettingsClosed,
+    		handleShowSettings,
+    		isCorrectAnswer,
+    		getNextQuestion,
+    		recalculateEligibleQuestions
+    	];
+    }
+
+    class Content extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+    			isCorrectAnswer: 12,
+    			getNextQuestion: 13,
+    			recalculateEligibleQuestions: 14,
+    			questionType: 0
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Content",
+    			options,
+    			id: create_fragment$1.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*isCorrectAnswer*/ ctx[12] === undefined && !('isCorrectAnswer' in props)) {
+    			console.warn("<Content> was created without expected prop 'isCorrectAnswer'");
+    		}
+
+    		if (/*getNextQuestion*/ ctx[13] === undefined && !('getNextQuestion' in props)) {
+    			console.warn("<Content> was created without expected prop 'getNextQuestion'");
+    		}
+
+    		if (/*recalculateEligibleQuestions*/ ctx[14] === undefined && !('recalculateEligibleQuestions' in props)) {
+    			console.warn("<Content> was created without expected prop 'recalculateEligibleQuestions'");
+    		}
+
+    		if (/*questionType*/ ctx[0] === undefined && !('questionType' in props)) {
+    			console.warn("<Content> was created without expected prop 'questionType'");
+    		}
+    	}
+
+    	get isCorrectAnswer() {
+    		throw new Error("<Content>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isCorrectAnswer(value) {
+    		throw new Error("<Content>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get getNextQuestion() {
+    		throw new Error("<Content>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set getNextQuestion(value) {
+    		throw new Error("<Content>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get recalculateEligibleQuestions() {
+    		throw new Error("<Content>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set recalculateEligibleQuestions(value) {
+    		throw new Error("<Content>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get questionType() {
+    		throw new Error("<Content>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set questionType(value) {
+    		throw new Error("<Content>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\App.svelte generated by Svelte v3.44.1 */
+
+    const { Object: Object_1 } = globals;
+
+    function create_fragment(ctx) {
+    	let content;
+    	let current;
+
+    	content = new Content({
+    			props: {
+    				isCorrectAnswer: /*isCorrectAnswer*/ ctx[0],
+    				recalculateEligibleQuestions: /*recalculateEligibleQuestions*/ ctx[2],
+    				getNextQuestion: /*getNextQuestion*/ ctx[1],
+    				questionType: "Country"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(content.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(content, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(content.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(content.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(content, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
     		id: create_fragment.name,
     		type: "component",
     		source: "",
@@ -3750,101 +3975,120 @@ var app = (function () {
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	let numQuestionsAnswered = 0;
-    	let numEligibleCountries = recalculateEligibleCountries();
-    	let currentCountry = getNextCountry(numQuestionsAnswered);
-    	let showSettings = false;
-    	let showResults = false;
-    	let stats;
-    	let wasCorrectAnswer;
+    	let eligibleCountries;
 
-    	const handleNext = () => {
-    		$$invalidate(0, numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleCountries);
-    		$$invalidate(2, currentCountry = getNextCountry(numQuestionsAnswered, currentCountry));
-    		$$invalidate(4, showResults = false);
-    	};
+    	const isCorrectAnswer = (currentCountry, guess) => {
+    		if (areStringsSimilar(currentCountry, guess)) return true;
+    		const alternateNames = flags.get(currentCountry).alternateNames;
 
-    	const handleSubmit = event => {
-    		const form = event.target;
-    		const userInput = form.input.value;
-    		$$invalidate(6, wasCorrectAnswer = isCorrectAnswer(currentCountry, userInput));
-    		setStats(currentCountry, wasCorrectAnswer, userInput);
-    		$$invalidate(4, showResults = true);
-    		$$invalidate(5, stats = getStats(currentCountry));
-    	};
-
-    	const handleSettingsClosed = event => {
-    		const wasSettingsUpdated = event.detail;
-
-    		if (wasSettingsUpdated) {
-    			$$invalidate(1, numEligibleCountries = recalculateEligibleCountries());
-    			$$invalidate(2, currentCountry = getNextCountry(numQuestionsAnswered, currentCountry));
-    			$$invalidate(0, numQuestionsAnswered = 0);
-    			$$invalidate(4, showResults = false);
+    		for (let i = 0; i < alternateNames.length; i++) {
+    			if (areStringsSimilar(alternateNames[i], guess)) return true;
     		}
 
-    		$$invalidate(3, showSettings = false);
+    		return false;
     	};
 
-    	const handleShowSettings = () => {
-    		$$invalidate(3, showSettings = true);
+    	const getNextQuestion = (numQuestionsAnswered, currentCountry) => {
+    		let result;
+
+    		if (numQuestionsAnswered % 5 == 0 && getShouldReshowUnknown()) {
+    			const flagSet = getFlagSet();
+
+    			for (let i = 0; i < flagSet.length; i++) {
+    				const stats = getStats(flagSet[i]);
+
+    				if (stats && flagSet[i] != currentCountry && stats.percentCorrect < 0.6) {
+    					result = flagSet[i];
+    					_prefetchNextImages(result);
+    					return result;
+    				}
+    			}
+    		}
+
+    		if (eligibleCountries.length == 0) recalculateEligibleQuestions();
+    		result = eligibleCountries.pop();
+    		_prefetchNextImages(result);
+    		return result;
+    	};
+
+    	/** Returns length of new eligible countries list */
+    	const recalculateEligibleQuestions = () => {
+    		const mode = getMode();
+    		let flagSet = getFlagSet();
+
+    		if (mode == "Show unseen mode") {
+    			const seenCountries = Object.keys(localStorage);
+    			flagSet = flagSet.filter(country => !seenCountries.includes(country));
+    		} else if (mode == "Show unknown mode") {
+    			flagSet = flagSet.filter(country => {
+    				const stats = getStats(country);
+
+    				return stats
+    				? stats.percentCorrect < 0.6 || stats.numCorrectGuesses < 2
+    				: true;
+    			});
+    		}
+
+    		if (flagSet.length == 0) {
+    			const allCountries = shuffle([...flags.keys()]);
+    			flagSet = allCountries;
+    		}
+
+    		eligibleCountries = flagSet;
+    		return eligibleCountries.length;
+    	};
+
+    	const _prefetchNextImages = currentCountry => {
+    		// Pre-fetch failure page images
+    		const stats = getStats(currentCountry);
+
+    		if (stats) {
+    			for (let i = 0; i < stats.incorrectGuesses.length; i++) {
+    				const country = flags.get(stats.incorrectGuesses[i]);
+
+    				if (country) {
+    					const image = new Image();
+    					image.src = country.imageUrl;
+    				}
+    			}
+    		}
+
+    		// Pre-fetch next image
+    		if (eligibleCountries.length >= 1) {
+    			const nextCountry = eligibleCountries[eligibleCountries.length - 1];
+    			const image = new Image();
+    			image.src = flags.get(nextCountry).imageUrl;
+    		}
     	};
 
     	const writable_props = [];
 
-    	Object.keys($$props).forEach(key => {
+    	Object_1.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$capture_state = () => ({
-    		Results,
-    		Settings,
-    		TopBar,
-    		storage,
+    		Content,
+    		areStringsSimilar,
     		flags,
-    		recalculateEligibleCountries,
-    		getNextCountry,
+    		storage,
+    		shuffle,
+    		eligibleCountries,
     		isCorrectAnswer,
-    		numQuestionsAnswered,
-    		numEligibleCountries,
-    		currentCountry,
-    		showSettings,
-    		showResults,
-    		stats,
-    		wasCorrectAnswer,
-    		handleNext,
-    		handleSubmit,
-    		handleSettingsClosed,
-    		handleShowSettings
+    		getNextQuestion,
+    		recalculateEligibleQuestions,
+    		_prefetchNextImages
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('numQuestionsAnswered' in $$props) $$invalidate(0, numQuestionsAnswered = $$props.numQuestionsAnswered);
-    		if ('numEligibleCountries' in $$props) $$invalidate(1, numEligibleCountries = $$props.numEligibleCountries);
-    		if ('currentCountry' in $$props) $$invalidate(2, currentCountry = $$props.currentCountry);
-    		if ('showSettings' in $$props) $$invalidate(3, showSettings = $$props.showSettings);
-    		if ('showResults' in $$props) $$invalidate(4, showResults = $$props.showResults);
-    		if ('stats' in $$props) $$invalidate(5, stats = $$props.stats);
-    		if ('wasCorrectAnswer' in $$props) $$invalidate(6, wasCorrectAnswer = $$props.wasCorrectAnswer);
+    		if ('eligibleCountries' in $$props) eligibleCountries = $$props.eligibleCountries;
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [
-    		numQuestionsAnswered,
-    		numEligibleCountries,
-    		currentCountry,
-    		showSettings,
-    		showResults,
-    		stats,
-    		wasCorrectAnswer,
-    		handleNext,
-    		handleSubmit,
-    		handleSettingsClosed,
-    		handleShowSettings
-    	];
+    	return [isCorrectAnswer, getNextQuestion, recalculateEligibleQuestions];
     }
 
     class App extends SvelteComponentDev {

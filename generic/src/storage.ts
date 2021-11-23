@@ -10,8 +10,8 @@ export interface Stats {
     incorrectGuesses: string[];
 }
 
-export const setStats = (country: string, wasGuessCorrect: boolean, guess: string): void => {
-    const statsString = localStorage.getItem(country);
+export const setStats = (key: string, wasGuessCorrect: boolean, guess: string): void => {
+    const statsString = localStorage.getItem(key);
 
     const stats = statsString
         ? (JSON.parse(statsString) as Stats)
@@ -37,11 +37,11 @@ export const setStats = (country: string, wasGuessCorrect: boolean, guess: strin
     }
     stats.percentCorrect = stats.numCorrectGuesses / stats.numTotalGuesses;
 
-    localStorage.setItem(country, JSON.stringify(stats));
+    localStorage.setItem(key, JSON.stringify(stats));
 };
 
-export const getStats = (country: string): Stats | null => {
-    const statsString = localStorage.getItem(country);
+export const getStats = (key: string): Stats | null => {
+    const statsString = localStorage.getItem(key);
     if (statsString) {
         return JSON.parse(statsString) as Stats;
     } else {
