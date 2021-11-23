@@ -95,14 +95,35 @@
             --failure: #f44336;
         }
     }
-    main {
+
+    :global(html),
+    :global(body) {
+        height: 100%;
         margin: 0;
+    }
+    :global(label) {
+        display: block;
+    }
+    :global(input),
+    :global(button) {
+        box-sizing: border-box;
+        border: solid darkgray 1px;
+    }
+    :global(button) {
+        width: 100%;
+        height: 35px;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+
+    main {
         padding: 0;
         height: 100%;
         max-width: 500px;
         margin: auto;
         background: var(--background-background);
         color: var(--foreground);
+        font-family: sans-serif;
     }
     #quiz-section {
         background: var(--background);
@@ -130,6 +151,7 @@
         padding-top: 0px;
         padding-bottom: 0px;
     }
+
     @keyframes error-animation {
         from {
             background-color: var(--failure);

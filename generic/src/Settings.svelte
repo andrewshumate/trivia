@@ -105,26 +105,25 @@
 <style>
     #settings-section {
         background: var(--background);
-        padding: 12px;
-        height: calc(100% - 24px);
+        height: 100%;
         width: 100%;
-        max-width: calc(500px - 24px);
+        max-width: calc(500px - 1px);
         position: absolute;
         left: 50%;
         transform: translate(-50%, 0);
         z-index: 999;
-    }
-    #settings-section form {
-        margin-bottom: 12px;
     }
     input[type="radio"],
     input[type="checkbox"] {
         margin: 0 6px;
     }
     label {
-        height: 35px;
+        padding-bottom: 16px;
     }
     .settings-category {
         margin: 0 0 5px 5px;
+    }
+    form {
+        padding: 12px;
     }
 </style>
