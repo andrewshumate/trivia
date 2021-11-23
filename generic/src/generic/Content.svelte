@@ -3,7 +3,7 @@
     import Settings from "./Settings.svelte";
     import TopBar from "./TopBar.svelte";
     import * as storage from "./storage";
-    import { flags } from "./data";
+    import { flags } from "../data";
 
     // Begin imported generic stuff //////////////////////////////////////
 

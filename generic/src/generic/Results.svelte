@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { flags } from "./data";
+    import { flags } from "../data";
     import { Stats } from "./storage";
 
     export let questionType: string;

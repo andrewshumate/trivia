@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Content from "./Content.svelte";
-    import { areStringsSimilar } from "./strings";
+    import Content from "./generic/Content.svelte";
+    import { areStringsSimilar } from "./generic/strings";
     import { flags } from "./data";
-    import * as storage from "./storage";
-    import { shuffle } from "./utils";
+    import * as storage from "./generic/storage";
+    import { shuffle } from "./generic/utils";
 
     let eligibleCountries: string[];
 

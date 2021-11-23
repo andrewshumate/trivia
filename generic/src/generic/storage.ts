@@ -1,4 +1,4 @@
-import * as data from "./data";
+import * as data from "../data";
 import { standardizeString } from "./strings";
 import { shuffle } from "./utils";
 
