@@ -73,10 +73,10 @@
         class:error-animation={showResults && !wasCorrectAnswer}
     >
         <TopBar {numQuestionsAnswered} {numEligibleCountries} on:click={handleShowSettings} />
-        <slot name="question" {currentQuestion} />
+        <slot name="question" {currentQuestion} isResult={false} />
         {#if showResults}
             <Results {wasCorrectAnswer} {currentQuestion} {questionType} {stats} let:guess on:click={handleNext}>
-                <slot name="question" slot="question" currentQuestion={guess} />
+                <slot name="question" slot="question" currentQuestion={guess} isResult={true} />
             </Results>
         {:else}
             <!-- svelte-ignore a11y-autofocus -->

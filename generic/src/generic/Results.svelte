@@ -49,8 +49,4 @@
         padding-top: 0px;
         padding-bottom: 0px;
     }
-    .mini-flags {
-        max-height: 50px;
-        display: block;
-    }
 </style>

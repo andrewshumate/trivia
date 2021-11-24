@@ -89,18 +89,35 @@
     recalculateEligibleQuestions();
 </script>
 
-<Content {isCorrectAnswer} {recalculateEligibleQuestions} {getNextQuestion} questionType="Country" let:currentQuestion>
+<!-- Ignore this error: https://stackoverflow.com/questions/65906478/ -->
+<Content
+    {isCorrectAnswer}
+    {recalculateEligibleQuestions}
+    {getNextQuestion}
+    questionType="Country"
+    let:currentQuestion
+    let:isResult
+>
     <span slot="question">
-        <img id="flag" alt="{questionType} flag" src={flags.get(currentQuestion)?.imageUrl} />
+        <img
+            class:flag={!isResult}
+            class:mini-flags={isResult}
+            alt="{questionType} flag"
+            src={flags.get(currentQuestion)?.imageUrl}
+        />
     </span>
 </Content>
 
 <style>
-    #flag {
+    .flag {
         max-height: calc(100% - 114px);
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+        display: block;
+    }
+    .mini-flags {
+        max-height: 50px;
         display: block;
     }
 </style>
