@@ -1,6 +1,7 @@
 <script lang="ts">
-    import { flags } from "../data";
     import { Stats } from "./storage";
+
+    export let doesGuessExist: (guess: string) => boolean;
 
     export let questionType: string;
     export let wasCorrectAnswer: boolean;
@@ -25,7 +26,7 @@
             Previous guesses:
             <ul>
                 {#each stats.incorrectGuesses as guess}
-                    {#if flags.get(guess)}
+                    {#if doesGuessExist(guess)}
                         <li>
                             {guess}. This is the {guess}
                             {questionType.toLowerCase()}:

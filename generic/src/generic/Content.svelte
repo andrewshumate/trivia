@@ -11,6 +11,7 @@
     export let isCorrectAnswer: (expected: string, actual: string) => boolean;
     export let getNextQuestion: (numQuestionsAnswered: number, currentQuestion?: string) => string;
     export let recalculateEligibleQuestions: () => number;
+    export let doesGuessExist: (guess: string) => boolean;
 
     /** Represents what the user is trying to guess. e.g. "Guess the `questionType`" */
     export let questionType: string;
@@ -75,7 +76,15 @@
         <TopBar {numQuestionsAnswered} {numEligibleCountries} on:click={handleShowSettings} />
         <slot name="question" {currentQuestion} isResult={false} />
         {#if showResults}
-            <Results {wasCorrectAnswer} {currentQuestion} {questionType} {stats} let:guess on:click={handleNext}>
+            <Results
+                {doesGuessExist}
+                {wasCorrectAnswer}
+                {currentQuestion}
+                {questionType}
+                {stats}
+                let:guess
+                on:click={handleNext}
+            >
                 <slot name="question" slot="question" currentQuestion={guess} isResult={true} />
             </Results>
         {:else}

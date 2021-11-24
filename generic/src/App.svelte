@@ -5,6 +5,7 @@
     import * as storage from "./generic/storage";
     import { shuffle } from "./generic/utils";
 
+    const questionType = "Country";
     let eligibleCountries: string[];
 
     const isCorrectAnswer = (currentQuestion: string, guess: string): boolean => {
@@ -63,7 +64,9 @@
         return eligibleCountries.length;
     };
 
-    const questionType = "country";
+    const doesGuessExist = (guess: string): boolean => {
+        return flags.get(guess) != undefined;
+    };
 
     const _prefetchNextImages = (currentQuestion: string): void => {
         // Pre-fetch failure page images
@@ -94,7 +97,8 @@
     {isCorrectAnswer}
     {recalculateEligibleQuestions}
     {getNextQuestion}
-    questionType="Country"
+    {doesGuessExist}
+    {questionType}
     let:currentQuestion
     let:isResult
 >
