@@ -3,9 +3,10 @@
     import Settings from "./Settings.svelte";
     import TopBar from "./TopBar.svelte";
     import * as storage from "./storage";
-    import { flags } from "../data";
 
-    // Begin imported generic stuff //////////////////////////////////////
+    ///////////////////////////////////////////////////////
+    // BEGIN GENERIC //////////////////////////////////////
+    ///////////////////////////////////////////////////////
 
     export let isCorrectAnswer: (expected: string, actual: string) => boolean;
     export let getNextQuestion: (numQuestionsAnswered: number, currentQuestion?: string) => string;
@@ -14,7 +15,9 @@
     /** Represents what the user is trying to guess. e.g. "Guess the `questionType`" */
     export let questionType: string;
 
-    // Begin internal stuff //////////////////////////////////////
+    ///////////////////////////////////////////////////////
+    // END ////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////
 
     let numQuestionsAnswered = 0;
     let numEligibleCountries = recalculateEligibleQuestions();
@@ -70,7 +73,7 @@
         class:error-animation={showResults && !wasCorrectAnswer}
     >
         <TopBar {numQuestionsAnswered} {numEligibleCountries} on:click={handleShowSettings} />
-        <img id="flag" alt="{questionType} flag" src={flags.get(currentQuestion)?.imageUrl} />
+        <slot {currentQuestion} />
         {#if showResults}
             <Results {wasCorrectAnswer} {currentQuestion} {questionType} {stats} on:click={handleNext} />
         {:else}
@@ -155,13 +158,6 @@
         margin-top: 12px;
         margin-bottom: 12px;
         padding-left: 7px;
-    }
-    #flag {
-        max-height: calc(100% - 114px);
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
     }
     #input {
         padding-top: 0px;

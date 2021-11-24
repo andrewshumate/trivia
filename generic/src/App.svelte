@@ -7,10 +7,10 @@
 
     let eligibleCountries: string[];
 
-    const isCorrectAnswer = (currentCountry: string, guess: string): boolean => {
-        if (areStringsSimilar(currentCountry, guess)) return true;
+    const isCorrectAnswer = (currentQuestion: string, guess: string): boolean => {
+        if (areStringsSimilar(currentQuestion, guess)) return true;
 
-        const alternateNames = flags.get(currentCountry)!.alternateNames;
+        const alternateNames = flags.get(currentQuestion)!.alternateNames;
         for (let i = 0; i < alternateNames.length; i++) {
             if (areStringsSimilar(alternateNames[i], guess)) return true;
         }
@@ -18,14 +18,14 @@
         return false;
     };
 
-    const getNextQuestion = (numQuestionsAnswered: number, currentCountry?: string): string => {
+    const getNextQuestion = (numQuestionsAnswered: number, currentQuestion?: string): string => {
         let result: string;
 
         if (numQuestionsAnswered % 5 == 0 && storage.getShouldReshowUnknown()) {
             const flagSet = storage.getFlagSet();
             for (let i = 0; i < flagSet.length; i++) {
                 const stats = storage.getStats(flagSet[i]);
-                if (stats && flagSet[i] != currentCountry && stats.percentCorrect < 0.6) {
+                if (stats && flagSet[i] != currentQuestion && stats.percentCorrect < 0.6) {
                     result = flagSet[i];
                     _prefetchNextImages(result);
                     return result;
@@ -63,9 +63,11 @@
         return eligibleCountries.length;
     };
 
-    const _prefetchNextImages = (currentCountry: string): void => {
+    const questionType = "country";
+
+    const _prefetchNextImages = (currentQuestion: string): void => {
         // Pre-fetch failure page images
-        const stats = storage.getStats(currentCountry);
+        const stats = storage.getStats(currentQuestion);
         if (stats) {
             for (let i = 0; i < stats.incorrectGuesses.length; i++) {
                 const country = flags.get(stats.incorrectGuesses[i]);
@@ -83,6 +85,20 @@
             image.src = flags.get(nextCountry)!.imageUrl;
         }
     };
+
+    recalculateEligibleQuestions();
 </script>
 
-<Content {isCorrectAnswer} {recalculateEligibleQuestions} {getNextQuestion} questionType="Country" />
+<Content {isCorrectAnswer} {recalculateEligibleQuestions} {getNextQuestion} questionType="Country" let:currentQuestion>
+    <img id="flag" alt="{questionType} flag" src={flags.get(currentQuestion)?.imageUrl} />
+</Content>
+
+<style>
+    #flag {
+        max-height: calc(100% - 114px);
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+</style>
