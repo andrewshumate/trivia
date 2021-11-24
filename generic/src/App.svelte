@@ -90,7 +90,9 @@
 </script>
 
 <Content {isCorrectAnswer} {recalculateEligibleQuestions} {getNextQuestion} questionType="Country" let:currentQuestion>
-    <img id="flag" alt="{questionType} flag" src={flags.get(currentQuestion)?.imageUrl} />
+    <span slot="question">
+        <img id="flag" alt="{questionType} flag" src={flags.get(currentQuestion)?.imageUrl} />
+    </span>
 </Content>
 
 <style>

@@ -27,8 +27,9 @@
                 {#each stats.incorrectGuesses as guess}
                     {#if flags.get(guess)}
                         <li>
-                            {guess}. This is the {guess} flag:
-                            <img class="mini-flags" src={flags.get(guess)?.imageUrl} alt="" />
+                            {guess}. This is the {guess}
+                            {questionType.toLowerCase()}:
+                            <slot name="question" {guess} />
                         </li>
                     {:else}
                         <li>{guess} (not a {questionType.toLowerCase()})</li>
