@@ -1,10 +1,10 @@
 <script lang="ts">
     export let numQuestionsAnswered: number;
-    export let numEligibleCountries: number;
+    export let numEligibleQuestions: number;
 </script>
 
 <section id="top-bar">
-    <p id="counter">{numQuestionsAnswered}/{numEligibleCountries}</p>
+    <p id="counter">{numQuestionsAnswered}/{numEligibleQuestions}</p>
 
     <svg id="settings-icon" on:click height="24px" viewBox="0 0 24 24" width="24px">
         <g>

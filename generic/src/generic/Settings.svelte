@@ -2,21 +2,29 @@
     import { createEventDispatcher } from "svelte";
     import * as storage from "./storage";
 
+    interface QuestionSet {
+        description: string;
+        questions: string[];
+    }
+
+    export let getQuestionSets: () => QuestionSet[];
+
     let dispatch = createEventDispatcher();
 
-    let oldFlagSet = storage.getFlagSetString();
-    let oldFlagsToFilterOut = storage.getMode();
+    let oldQuestionSet = storage.getQuestionSetString();
+    let oldQuestionsToFilterOut = storage.getMode();
 
-    let flagSet = oldFlagSet;
-    let flagsToFilterOut = oldFlagsToFilterOut;
-    let reshowFlags = storage.getShouldReshowUnknown();
+    let questionSetValue = oldQuestionSet;
+    let questionsToFilterOut = oldQuestionsToFilterOut;
+    let reshowQuestions = storage.getShouldReshowUnknown();
 
     const handleSaveSettings = (): void => {
-        const wasSettingsUpdated = flagSet != oldFlagSet || flagsToFilterOut != oldFlagsToFilterOut;
+        const wasSettingsUpdated =
+            questionSetValue != oldQuestionSet || questionsToFilterOut != oldQuestionsToFilterOut;
 
         if (wasSettingsUpdated) {
-            localStorage.setItem("flag-set", flagSet);
-            localStorage.setItem("mode", flagsToFilterOut);
+            localStorage.setItem("question-set", questionSetValue);
+            localStorage.setItem("mode", questionsToFilterOut);
         }
 
         dispatch("settingsClosed", wasSettingsUpdated);
@@ -25,46 +33,30 @@
 
 <section id="settings-section">
     <form>
-        <p class="settings-category"><b>Flag set</b></p>
-        <label for="all-flags">
-            <input type="radio" id="all-flags" name="flag-set" value="All flags" bind:group={flagSet} />
-            All flags (195)
-        </label>
-        <label for="nordic-cross-flags">
-            <input
-                type="radio"
-                id="nordic-cross-flags"
-                name="flag-set"
-                value="Nordic cross flags"
-                bind:group={flagSet}
-            />
-            Nordic cross flags (5)
-        </label>
-        <label for="three-stripe-flags">
-            <input
-                type="radio"
-                id="three-stripe-flags"
-                name="flag-set"
-                value="Three stripe flags"
-                bind:group={flagSet}
-            />
-            Three equal stripes flags (66)
-        </label>
-        <label for="hoist-triangle-flags">
-            <input
-                type="radio"
-                id="hoist-triangle-flags"
-                name="flag-set"
-                value="Hoist triangle flags"
-                bind:group={flagSet}
-            />
-            Triangle on hoist flags (18)
-        </label>
+        <p class="settings-category"><b>Question set</b></p>
+        {#each getQuestionSets() as questionSet}
+            <label for={questionSet.description}>
+                <input
+                    type="radio"
+                    id={questionSet.description}
+                    name="question-set"
+                    value={questionSet.description}
+                    bind:group={questionSetValue}
+                />
+                {questionSet.description} ({questionSet.questions.length})
+            </label>
+        {/each}
 
         <p class="settings-category"><b>Filter out</b></p>
         <label for="show-all-mode">
-            <input type="radio" id="show-all-mode" name="mode" value="Show all mode" bind:group={flagsToFilterOut} />
-            Do not hide any flags
+            <input
+                type="radio"
+                id="show-all-mode"
+                name="mode"
+                value="Show all mode"
+                bind:group={questionsToFilterOut}
+            />
+            Do not hide any questions
         </label>
         <label for="show-unseen-mode">
             <input
@@ -72,9 +64,9 @@
                 id="show-unseen-mode"
                 name="mode"
                 value="Show unseen mode"
-                bind:group={flagsToFilterOut}
+                bind:group={questionsToFilterOut}
             />
-            Hide flags I've already seen
+            Hide questions I've already seen
         </label>
         <label for="show-unknown-mode">
             <input
@@ -82,9 +74,9 @@
                 id="show-unknown-mode"
                 name="mode"
                 value="Show unknown mode"
-                bind:group={flagsToFilterOut}
+                bind:group={questionsToFilterOut}
             />
-            Hide flags I've gotten right >60% of the time
+            Hide questions I've gotten right >60% of the time
         </label>
 
         <p class="settings-category"><b>Extra settings</b></p>
@@ -94,9 +86,9 @@
                 id="reshow-unknown"
                 name="reshow-unknwon"
                 value="Re-show unknown"
-                bind:checked={reshowFlags}
+                bind:checked={reshowQuestions}
             />
-            Show flags I've gotten wrong more often
+            Show questions I've gotten wrong more often
         </label>
         <button on:click|preventDefault={handleSaveSettings} id="exit">Exit</button>
     </form>

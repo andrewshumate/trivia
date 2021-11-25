@@ -1,6 +1,5 @@
 import * as data from "../data";
 import { standardizeString } from "./strings";
-import { shuffle } from "./utils";
 
 export interface Stats {
     numCorrectGuesses: number;
@@ -49,24 +48,8 @@ export const getStats = (key: string): Stats | null => {
     }
 };
 
-export const getFlagSetString = (): string => {
-    return localStorage.getItem("flag-set") || "All flags";
-};
-
-export const getFlagSet = (): string[] => {
-    const flagSetString = getFlagSetString();
-
-    if (flagSetString == "All flags") {
-        return shuffle(Array.from(data.flags.keys()));
-    } else if (flagSetString == "Nordic cross flags") {
-        return shuffle([...data.nordicCrossFlags]);
-    } else if (flagSetString == "Three stripe flags") {
-        return shuffle([...data.threeStripeFlags]);
-    } else if (flagSetString == "Hoist triangle flags") {
-        return shuffle([...data.triangleOnHoistFlags]);
-    } else {
-        return [];
-    }
+export const getQuestionSetString = (): string => {
+    return localStorage.getItem("question-set") || "All flags";
 };
 
 export const getMode = (): string => {
