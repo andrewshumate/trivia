@@ -1,3 +1,8 @@
+export interface QuestionSet {
+    description: string;
+    questions: string[];
+}
+
 export const shuffle = <T>(array: Array<T>): Array<T> => {
     let currentIndex = array.length;
     let randomIndex: number;

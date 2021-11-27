@@ -1,11 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import * as storage from "./storage";
-
-    interface QuestionSet {
-        description: string;
-        questions: string[];
-    }
+    import { QuestionSet } from "./utils";
 
     export let getQuestionSets: () => QuestionSet[];
 
@@ -43,6 +39,7 @@
                     value={questionSet.description}
                     bind:group={questionSetValue}
                 />
+                <!-- Ignore this error -->
                 {questionSet.description} ({questionSet.questions.length})
             </label>
         {/each}

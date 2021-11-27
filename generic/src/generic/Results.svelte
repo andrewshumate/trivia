@@ -1,9 +1,9 @@
 <script lang="ts">
     import { Stats } from "./storage";
+    import { QuestionSetHandler } from "./QuestionSetHandler";
 
-    export let doesGuessExist: (guess: string) => boolean;
+    export let questionSetHandler: QuestionSetHandler;
 
-    export let questionType: string;
     export let wasCorrectAnswer: boolean;
     export let currentQuestion: string;
     export let stats: Stats | null;
@@ -26,14 +26,14 @@
             Previous guesses:
             <ul>
                 {#each stats.incorrectGuesses as guess}
-                    {#if doesGuessExist(guess)}
+                    {#if questionSetHandler.doesGuessExist(guess)}
                         <li>
                             {guess}. This is the {guess}
-                            {questionType.toLowerCase()}:
+                            {questionSetHandler.questionType.toLowerCase()}:
                             <slot name="question" {guess} />
                         </li>
                     {:else}
-                        <li>{guess} (not a {questionType.toLowerCase()})</li>
+                        <li>{guess} (not a {questionSetHandler.questionType.toLowerCase()})</li>
                     {/if}
                 {/each}
             </ul>
