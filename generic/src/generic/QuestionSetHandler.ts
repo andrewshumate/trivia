@@ -1,5 +1,5 @@
 import { shuffle } from "./utils";
-import { QuestionSet } from "./utils";
+import type { QuestionSet } from "./utils";
 import * as storage from "./storage";
 
 export abstract class QuestionSetHandler {
@@ -9,7 +9,16 @@ export abstract class QuestionSetHandler {
     abstract allQuestions: string[];
 
     abstract isCorrectAnswer: (expected: string, actual: string) => boolean;
+
     abstract getQuestionSets: () => QuestionSet[];
+
+    /** Returns an "offical" version of `guess` used for standardization purposes. For example:
+     * "us" => "United States"
+     * "usa" => "United States"
+     * "Canada" => "Canada"
+     * "asdf" => undefined
+     */
+    abstract getOfficialName: (guess: string) => string | undefined;
 
     doesGuessExist = (guess: string): boolean => {
         return this.allQuestions.includes(guess);

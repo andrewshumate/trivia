@@ -1,7 +1,7 @@
 <script lang="ts">
     import { flags } from "./data";
     import { questionSetHandler as x } from "./FlagQuestionSetHandler";
-    import Content from "./generic/Content.svelte";
+    import Content from "../generic/Content.svelte";
 
     const questionSetHandler = x;
 </script>

@@ -27,7 +27,7 @@
         const userInput = (form.input as HTMLInputElement).value;
 
         wasCorrectAnswer = questionSetHandler.isCorrectAnswer(currentQuestion, userInput);
-        storage.setStats(currentQuestion, wasCorrectAnswer, userInput);
+        storage.setStats(currentQuestion, wasCorrectAnswer, userInput, questionSetHandler.getOfficialName);
         showResults = true;
         stats = storage.getStats(currentQuestion);
     };

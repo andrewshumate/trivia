@@ -1,7 +1,7 @@
-import { flags, nordicCrossFlags, threeStripeFlags, triangleOnHoistFlags } from "./data";
-import { QuestionSet } from "./generic/utils";
-import { QuestionSetHandler } from "./generic/QuestionSetHandler";
-import { areStringsSimilar } from "./generic/strings";
+import { flags, nordicCrossFlags, threeStripeFlags, triangleOnHoistFlags, possibleNameToOfficalName } from "./data";
+import type { QuestionSet } from "../generic/utils";
+import { QuestionSetHandler } from "../generic/QuestionSetHandler";
+import { areStringsSimilar } from "../generic/strings";
 
 export const questionSetHandler = new (class extends QuestionSetHandler {
     questionType = "Country";
@@ -16,6 +16,10 @@ export const questionSetHandler = new (class extends QuestionSetHandler {
         }
 
         return false;
+    };
+
+    getOfficialName = (guess: string): string | undefined => {
+        return possibleNameToOfficalName.get(guess);
     };
 
     getQuestionSets = (): QuestionSet[] => {

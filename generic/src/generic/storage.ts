@@ -1,4 +1,3 @@
-import * as data from "../data";
 import { standardizeString } from "./strings";
 
 export interface Stats {
@@ -9,7 +8,12 @@ export interface Stats {
     incorrectGuesses: string[];
 }
 
-export const setStats = (key: string, wasGuessCorrect: boolean, guess: string): void => {
+export const setStats = (
+    key: string,
+    wasGuessCorrect: boolean,
+    guess: string,
+    getOfficialName: (guess: string) => string | undefined
+): void => {
     const statsString = localStorage.getItem(key);
 
     const stats = statsString
@@ -28,7 +32,7 @@ export const setStats = (key: string, wasGuessCorrect: boolean, guess: string): 
     } else {
         stats.numIncorrectGuesses += 1;
 
-        let standardizedGuess = data.possibleNameToOfficalName.get(standardizeString(guess));
+        let standardizedGuess = getOfficialName(standardizeString(guess));
         if (standardizedGuess == null) standardizedGuess = guess.trim();
         if (standardizedGuess && !stats.incorrectGuesses.includes(standardizedGuess)) {
             stats.incorrectGuesses.push(standardizedGuess);
