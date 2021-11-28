@@ -23,6 +23,11 @@ export const questionSetHandler = new (class extends QuestionSetHandler {
         return false;
     };
 
+    getKeysFromGuess = (guess: string): string[] => {
+        // TODO
+        return [];
+    };
+
     getOfficialGuess = (guess: string): string | undefined => {
         return possibleNameToOfficalName.get(guess);
     };

@@ -1,5 +1,6 @@
 <script lang="ts">
     import StadiumsApp from "./stadiums/StadiumsApp.svelte";
+    import CarLogosApp from "./carlogos/CarLogos.svelte";
 
     const nflStadiums = "NFL stadiums";
     const carLogos = "Car logos";
@@ -25,7 +26,7 @@
         <StadiumsApp />
     {:else if currentTab == carLogos}
         <span>
-            {carLogos}
+            <CarLogosApp />
         </span>
     {/if}
 </main>
