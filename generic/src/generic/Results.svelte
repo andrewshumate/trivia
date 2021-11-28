@@ -5,15 +5,15 @@
     export let questionSetHandler: QuestionSetHandler;
 
     export let wasCorrectAnswer: boolean;
-    export let currentQuestion: string;
+    export let currentKey: string;
     export let stats: Stats | null;
 </script>
 
 <p id="results">
     {#if wasCorrectAnswer}
-        Correct!
+        Correct! <slot name="answer" guess={currentKey} />
     {:else}
-        No, it's <b>{currentQuestion}.</b>
+        Wrong! <slot name="answer" guess={currentKey} />
     {/if}
 </p>
 <!-- svelte-ignore a11y-autofocus -->
@@ -28,9 +28,10 @@
                 {#each stats.incorrectGuesses as guess}
                     {#if questionSetHandler.doesGuessExist(guess)}
                         <li>
-                            {guess}. This is the {guess}
-                            {questionSetHandler.questionType.toLowerCase()}:
-                            <slot name="question" {guess} />
+                            {guess}:
+                            {#each questionSetHandler.getKeysFromGuess(guess) as key}
+                                <slot name="answer" guess={key} />
+                            {/each}
                         </li>
                     {:else}
                         <li>{guess} (not a {questionSetHandler.questionType.toLowerCase()})</li>

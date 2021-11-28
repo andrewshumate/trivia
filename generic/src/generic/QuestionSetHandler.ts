@@ -6,7 +6,7 @@ export abstract class QuestionSetHandler {
     eligibleQuestions!: string[];
 
     abstract questionType: string;
-    abstract allQuestions: string[];
+    abstract allKeys: string[];
 
     abstract isCorrectAnswer: (expected: string, actual: string) => boolean;
 
@@ -18,10 +18,19 @@ export abstract class QuestionSetHandler {
      * "Canada" => "Canada"
      * "asdf" => undefined
      */
-    abstract getOfficialName: (guess: string) => string | undefined;
+    abstract getOfficialGuess: (guess: string) => string | undefined;
+
+    /** Returns the key from a guess. The key and guess may be the same depending
+     * on implementation. For example:
+     * "United States" => ["United States"] (when the question is a flag image)
+     * "Lumen Field" => ["Seattle Seahawks"]
+     * "MetLife Stadium" => ["New York Giants", "New York Jets"]
+     * "asdf" => []
+     */
+    abstract getKeysFromGuess: (guess: string) => string[];
 
     doesGuessExist = (guess: string): boolean => {
-        return this.allQuestions.includes(guess);
+        return this.allKeys.includes(guess);
     };
 
     getQuestionSet = (questionSetString: string): string[] => {

@@ -12,7 +12,7 @@ export const setStats = (
     key: string,
     wasGuessCorrect: boolean,
     guess: string,
-    getOfficialName: (guess: string) => string | undefined
+    getOfficialGuess: (guess: string) => string | undefined
 ): void => {
     const statsString = localStorage.getItem(key);
 
@@ -32,7 +32,7 @@ export const setStats = (
     } else {
         stats.numIncorrectGuesses += 1;
 
-        let standardizedGuess = getOfficialName(standardizeString(guess));
+        let standardizedGuess = getOfficialGuess(standardizeString(guess));
         if (standardizedGuess == null) standardizedGuess = guess.trim();
         if (standardizedGuess && !stats.incorrectGuesses.includes(standardizedGuess)) {
             stats.incorrectGuesses.push(standardizedGuess);

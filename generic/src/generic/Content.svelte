@@ -9,7 +9,7 @@
 
     let numQuestionsAnswered = 0;
     let numEligibleQuestions = questionSetHandler.recalculateEligibleQuestions();
-    let currentQuestion = questionSetHandler.getNextQuestion(numQuestionsAnswered);
+    let currentKey = questionSetHandler.getNextQuestion(numQuestionsAnswered);
 
     let showSettings = false;
     let showResults = false;
@@ -18,7 +18,7 @@
 
     const handleNext = (): void => {
         numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleQuestions;
-        currentQuestion = questionSetHandler.getNextQuestion(numQuestionsAnswered, currentQuestion);
+        currentKey = questionSetHandler.getNextQuestion(numQuestionsAnswered, currentKey);
         showResults = false;
     };
 
@@ -26,10 +26,10 @@
         const form = event.target as HTMLFormElement;
         const userInput = (form.input as HTMLInputElement).value;
 
-        wasCorrectAnswer = questionSetHandler.isCorrectAnswer(currentQuestion, userInput);
-        storage.setStats(currentQuestion, wasCorrectAnswer, userInput, questionSetHandler.getOfficialName);
+        wasCorrectAnswer = questionSetHandler.isCorrectAnswer(currentKey, userInput);
+        storage.setStats(currentKey, wasCorrectAnswer, userInput, questionSetHandler.getOfficialGuess);
         showResults = true;
-        stats = storage.getStats(currentQuestion);
+        stats = storage.getStats(currentKey);
     };
 
     const handleSettingsClosed = (event: CustomEvent<boolean>): void => {
@@ -37,7 +37,7 @@
 
         if (wasSettingsUpdated) {
             numEligibleQuestions = questionSetHandler.recalculateEligibleQuestions();
-            currentQuestion = questionSetHandler.getNextQuestion(numQuestionsAnswered, currentQuestion);
+            currentKey = questionSetHandler.getNextQuestion(numQuestionsAnswered, currentKey);
             numQuestionsAnswered = 0;
             showResults = false;
         }
@@ -63,10 +63,11 @@
         class:error-animation={showResults && !wasCorrectAnswer}
     >
         <TopBar {numQuestionsAnswered} {numEligibleQuestions} on:click={handleShowSettings} />
-        <slot name="question" {currentQuestion} isResult={false} />
+        <slot name="question" {currentKey} isResult={false} />
         {#if showResults}
-            <Results {questionSetHandler} {wasCorrectAnswer} {currentQuestion} {stats} let:guess on:click={handleNext}>
-                <slot name="question" slot="question" currentQuestion={guess} isResult={true} />
+            <Results {questionSetHandler} {wasCorrectAnswer} {currentKey} {stats} let:guess on:click={handleNext}>
+                <slot name="question" slot="question" currentKey={guess} isResult={true} />
+                <slot name="answer" slot="answer" currentKey={guess} />
             </Results>
         {:else}
             <!-- svelte-ignore a11y-autofocus -->

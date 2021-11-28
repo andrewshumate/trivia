@@ -3,9 +3,14 @@ import type { QuestionSet } from "../generic/utils";
 import { QuestionSetHandler } from "../generic/QuestionSetHandler";
 import { areStringsSimilar } from "../generic/strings";
 
+/**
+ * Key = Official team name
+ * Question = "What stadium does `short team name` play at?"
+ * Answer/guess = Stadium name
+ */
 export const questionSetHandler = new (class extends QuestionSetHandler {
     questionType = "Country";
-    allQuestions = Array.from(flags.keys());
+    allKeys = Array.from(flags.keys());
 
     isCorrectAnswer = (expected: string, actual: string): boolean => {
         if (areStringsSimilar(expected, actual)) return true;
@@ -18,7 +23,7 @@ export const questionSetHandler = new (class extends QuestionSetHandler {
         return false;
     };
 
-    getOfficialName = (guess: string): string | undefined => {
+    getOfficialGuess = (guess: string): string | undefined => {
         return possibleNameToOfficalName.get(guess);
     };
 
