@@ -52,37 +52,35 @@
     questionSetHandler.recalculateEligibleQuestions();
 </script>
 
-<main>
-    {#if showSettings}
-        <Settings on:settingsClosed={handleSettingsClosed} getQuestionSets={questionSetHandler.getQuestionSets} />
-    {/if}
+{#if showSettings}
+    <Settings on:settingsClosed={handleSettingsClosed} getQuestionSets={questionSetHandler.getQuestionSets} />
+{/if}
 
-    <section
-        id="quiz-section"
-        class:success-animation={showResults && wasCorrectAnswer}
-        class:error-animation={showResults && !wasCorrectAnswer}
-    >
-        <TopBar {numQuestionsAnswered} {numEligibleQuestions} on:click={handleShowSettings} />
-        <slot name="question" {currentKey} isResult={false} />
-        {#if showResults}
-            <Results {questionSetHandler} {wasCorrectAnswer} {currentKey} {stats} let:keys on:click={handleNext}>
-                <slot name="answer" slot="answer" currentKey={keys} />
-            </Results>
-        {:else}
-            <!-- svelte-ignore a11y-autofocus -->
-            <form on:submit|preventDefault={handleSubmit}>
-                <input
-                    type="text"
-                    id="input"
-                    title="Guess the {questionSetHandler.questionType.toLowerCase()}"
-                    autocomplete="off"
-                    autofocus
-                />
-                <button id="submit-button">Submit</button>
-            </form>
-        {/if}
-    </section>
-</main>
+<section
+    id="quiz-section"
+    class:success-animation={showResults && wasCorrectAnswer}
+    class:error-animation={showResults && !wasCorrectAnswer}
+>
+    <TopBar {numQuestionsAnswered} {numEligibleQuestions} on:click={handleShowSettings} />
+    <slot name="question" {currentKey} isResult={false} />
+    {#if showResults}
+        <Results {questionSetHandler} {wasCorrectAnswer} {currentKey} {stats} let:keys on:click={handleNext}>
+            <slot name="answer" slot="answer" currentKey={keys} />
+        </Results>
+    {:else}
+        <!-- svelte-ignore a11y-autofocus -->
+        <form on:submit|preventDefault={handleSubmit}>
+            <input
+                type="text"
+                id="input"
+                title="Guess the {questionSetHandler.questionType.toLowerCase()}"
+                autocomplete="off"
+                autofocus
+            />
+            <button id="submit-button">Submit</button>
+        </form>
+    {/if}
+</section>
 
 <style>
     :root {
@@ -127,15 +125,6 @@
         cursor: pointer;
     }
 
-    main {
-        padding: 0;
-        height: 100%;
-        max-width: 500px;
-        margin: auto;
-        background: var(--background-background);
-        color: var(--foreground);
-        font-family: sans-serif;
-    }
     #quiz-section {
         background: var(--background);
         height: calc(100% - 24px);

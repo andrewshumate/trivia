@@ -1,7 +1,4 @@
-// TODO Do this with command line arg or something
-
-// import App from "./flags/App.svelte";
-import App from "./stadiums/App.svelte";
+import App from "./App.svelte";
 
 const app = new App({
     target: document.body,

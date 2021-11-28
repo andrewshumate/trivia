@@ -21,6 +21,7 @@
         float: right;
         margin: -2px -3px 0 0;
         height: 18px;
+        cursor: pointer;
     }
     svg {
         fill: var(--foreground);
@@ -33,6 +34,6 @@
         float: left;
     }
     #top-bar {
-        height: 24px;
+        height: 26px;
     }
 </style>
