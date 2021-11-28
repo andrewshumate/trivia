@@ -33,6 +33,11 @@ export enum NflTeam {
     ARIZONA_CARDINALS,
     JACKSONVILLE_JAGUARS,
     MINNESOTA_VIKINGS,
+    // Not really "teams", but we need to show them
+    NFL_MEXICO_GAME,
+    HALL_OF_FAME_GAME,
+    NFL_LONDON_GAME,
+    NFL_LONDON_GAME2,
 }
 
 interface TeamInfo {
@@ -240,6 +245,30 @@ export function getTeamInfo(teamName: NflTeam): TeamInfo {
                 stadiumNames: ["U.S. Bank Stadium", "U.S. Bank"],
                 cityNames: ["Minneapolis, Minnesota"],
                 teamNames: ["Minnesota Vikings", "Vikings"],
+            };
+        case NflTeam.NFL_MEXICO_GAME:
+            return {
+                stadiumNames: ["Estadio Azteca"],
+                cityNames: ["Mexico City, Mexico"],
+                teamNames: ["NFL Mexico Games", "NFL Mexico Games"],
+            };
+        case NflTeam.HALL_OF_FAME_GAME:
+            return {
+                stadiumNames: ["Tom Benson Hall of Fame Stadium", "Tom Benson Hall of Fame", "Tom Benson"],
+                cityNames: ["Canton Ohio"],
+                teamNames: ["Hall of Fame Games", "Hall of Fame Games"],
+            };
+        case NflTeam.NFL_LONDON_GAME:
+            return {
+                stadiumNames: ["Wembley Stadium", "Wembley"],
+                cityNames: ["London, England"],
+                teamNames: ["old NFL London Games", "old NFL London Games"],
+            };
+        case NflTeam.NFL_LONDON_GAME2:
+            return {
+                stadiumNames: ["Tottenham Hotspur Stadium", "Tottenham Hotspur"],
+                cityNames: ["London, England"],
+                teamNames: ["new NFL London Games", "new NFL London Games"],
             };
     }
 }
