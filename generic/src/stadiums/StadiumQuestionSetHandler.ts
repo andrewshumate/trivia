@@ -20,6 +20,16 @@ export const questionSetHandler = new (class extends QuestionSetHandler {
         }
     };
 
+    getAllAssociatedKeys = (key: string): string[] => {
+        if (key === "New York Jets" || key === "New York Giants") {
+            return ["New York Jets", "New York Giants"];
+        } else if (key === "Los Angeles Rams" || key === "Los Angeles Chargers") {
+            return ["Los Angeles Rams", "Los Angeles Chargers"];
+        } else {
+            return [key];
+        }
+    };
+
     isCorrectAnswer = (currentKey: string, userInput: string): boolean => {
         const team = NflTeam[currentKey as keyof typeof NflTeam];
         const stadiumNames = getTeamInfo(team).stadiumNames;

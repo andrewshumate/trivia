@@ -53,7 +53,7 @@ export const getStats = (key: string): Stats | null => {
 };
 
 export const getQuestionSetString = (): string => {
-    return localStorage.getItem("question-set") || "All flags";
+    return localStorage.getItem("question-set") || "All";
 };
 
 export const getMode = (): string => {

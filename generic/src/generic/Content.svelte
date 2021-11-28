@@ -65,9 +65,8 @@
         <TopBar {numQuestionsAnswered} {numEligibleQuestions} on:click={handleShowSettings} />
         <slot name="question" {currentKey} isResult={false} />
         {#if showResults}
-            <Results {questionSetHandler} {wasCorrectAnswer} {currentKey} {stats} let:guess on:click={handleNext}>
-                <slot name="question" slot="question" currentKey={guess} isResult={true} />
-                <slot name="answer" slot="answer" currentKey={guess} />
+            <Results {questionSetHandler} {wasCorrectAnswer} {currentKey} {stats} let:keys on:click={handleNext}>
+                <slot name="answer" slot="answer" currentKey={keys} />
             </Results>
         {:else}
             <!-- svelte-ignore a11y-autofocus -->

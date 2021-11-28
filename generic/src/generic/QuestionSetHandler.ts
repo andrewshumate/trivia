@@ -29,6 +29,18 @@ export abstract class QuestionSetHandler {
      */
     abstract getKeysFromGuess: (guess: string) => string[];
 
+    /**
+     * Given a key `K`, returns a list [K, K_1, ..., K_n] where each
+     * element is associated with K. Usually, this should just be [K],
+     * but if there are multiple keys with the same value, this function
+     * may be useful:
+     * "Washington State" => "Olympia" (state capitals)
+     * "New York Jets" -> ["New York Jets", "New York Giants"] (stadium names)
+     */
+    getAllAssociatedKeys = (key: string): string[] => {
+        return [key];
+    };
+
     doesGuessExist = (guess: string): boolean => {
         return this.allKeys.includes(guess);
     };

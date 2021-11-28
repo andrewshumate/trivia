@@ -11,9 +11,9 @@
 
 <p id="results">
     {#if wasCorrectAnswer}
-        Correct! <slot name="answer" guess={currentKey} />
+        Correct! <slot name="answer" keys={questionSetHandler.getAllAssociatedKeys(currentKey)} />
     {:else}
-        Wrong! <slot name="answer" guess={currentKey} />
+        Wrong! <slot name="answer" keys={questionSetHandler.getAllAssociatedKeys(currentKey)} />
     {/if}
 </p>
 <!-- svelte-ignore a11y-autofocus -->
@@ -28,10 +28,7 @@
                 {#each stats.incorrectGuesses as guess}
                     {#if questionSetHandler.doesGuessExist(guess)}
                         <li>
-                            {guess}:
-                            {#each questionSetHandler.getKeysFromGuess(guess) as key}
-                                <slot name="answer" guess={key} />
-                            {/each}
+                            <slot name="answer" keys={questionSetHandler.getKeysFromGuess(guess)} />
                         </li>
                     {:else}
                         <li>{guess} (not a {questionSetHandler.questionType.toLowerCase()})</li>
