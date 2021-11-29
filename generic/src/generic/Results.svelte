@@ -21,7 +21,7 @@
 <section id="additional-info">
     {#if stats}
         You've gotten this right <b>{stats.numCorrectGuesses}/{stats.numTotalGuesses}</b>
-        (<b>{stats.percentCorrect * 100}%</b>) times.
+        (<b>{(stats.percentCorrect * 100).toFixed()}%</b>) times.
         {#if stats.incorrectGuesses.length > 0}
             Previous guesses:
             <ul>
