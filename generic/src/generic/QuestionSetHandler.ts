@@ -59,7 +59,7 @@ export abstract class QuestionSetHandler {
     /** Returns length of new eligible questions list */
     recalculateEligibleQuestions = (): number => {
         const mode = storage.getMode();
-        let questionSet = this.getQuestionSet(storage.getQuestionSetString());
+        let questionSet = this.getQuestionSet(storage.getQuestionSetString(this.triviaCategory));
 
         if (mode == "Show unseen mode") {
             const seenQuestions = Object.keys(localStorage);
@@ -84,7 +84,7 @@ export abstract class QuestionSetHandler {
         let result: string;
 
         if (numQuestionsAnswered % 5 == 0 && storage.getShouldReshowUnknown()) {
-            const questionSet = this.getQuestionSet(storage.getQuestionSetString());
+            const questionSet = this.getQuestionSet(storage.getQuestionSetString(this.triviaCategory));
             for (let i = 0; i < questionSet.length; i++) {
                 const stats = storage.getStats(questionSet[i]);
                 if (stats && questionSet[i] != currentQuestion && stats.percentCorrect < 0.6) {
