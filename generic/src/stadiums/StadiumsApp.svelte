@@ -38,6 +38,13 @@
         {/if}are at <span class="stadium-name">{getStadiumNameFromKey(currentKey[0])}</span>
         in <span class="city-name">{getStadiumLocationFromKey(currentKey[0])}</span>.
     </span>
+    <span slot="previous-answer">
+        <span class="team-name">The {getLongTeamNameFromKey(currentKey[0])}</span>
+        {#if currentKey[1]}
+            and <span class="team-name">the {getLongTeamNameFromKey(currentKey[1])}</span>
+        {/if}are at <span class="stadium-name">{getStadiumNameFromKey(currentKey[0])}</span>
+        in <span class="city-name">{getStadiumLocationFromKey(currentKey[0])}</span>.
+    </span>
 </Content>
 
 <style>
