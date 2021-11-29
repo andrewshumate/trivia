@@ -22,6 +22,7 @@
         margin: -2px -3px 0 0;
         height: 18px;
         cursor: pointer;
+        opacity: 50%;
     }
     svg {
         fill: var(--foreground);
