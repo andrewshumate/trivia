@@ -5,6 +5,7 @@ import * as storage from "./storage";
 export abstract class QuestionSetHandler {
     eligibleQuestions!: string[];
 
+    abstract triviaCategory: string;
     abstract questionType: string;
     abstract allKeys: string[];
 

@@ -1,13 +1,13 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
+    import { QuestionSetHandler } from "./QuestionSetHandler";
     import * as storage from "./storage";
-    import { QuestionSet } from "./utils";
 
-    export let getQuestionSets: () => QuestionSet[];
+    export let questionSetHandler: QuestionSetHandler;
 
     let dispatch = createEventDispatcher();
 
-    let oldQuestionSet = storage.getQuestionSetString();
+    let oldQuestionSet = storage.getQuestionSetString(questionSetHandler.triviaCategory);
     let oldQuestionsToFilterOut = storage.getMode();
 
     let questionSetValue = oldQuestionSet;
@@ -19,9 +19,11 @@
             questionSetValue != oldQuestionSet || questionsToFilterOut != oldQuestionsToFilterOut;
 
         if (wasSettingsUpdated) {
-            localStorage.setItem("question-set", questionSetValue);
+            localStorage.setItem(`${questionSetHandler.triviaCategory}-question-set`, questionSetValue);
             localStorage.setItem("mode", questionsToFilterOut);
         }
+
+        localStorage.setItem("shouldReshowUnknown", reshowQuestions.toString());
 
         dispatch("settingsClosed", wasSettingsUpdated);
     };
@@ -30,7 +32,7 @@
 <section id="settings-section">
     <form>
         <p class="settings-category"><b>Question set</b></p>
-        {#each getQuestionSets() as questionSet}
+        {#each questionSetHandler.getQuestionSets() as questionSet}
             <label for={questionSet.description}>
                 <input
                     type="radio"

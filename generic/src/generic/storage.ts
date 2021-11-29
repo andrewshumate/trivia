@@ -52,8 +52,8 @@ export const getStats = (key: string): Stats | null => {
     }
 };
 
-export const getQuestionSetString = (): string => {
-    return localStorage.getItem("question-set") || "All";
+export const getQuestionSetString = (triviaCategory: string): string => {
+    return localStorage.getItem(`${triviaCategory}-question-set`) || "All";
 };
 
 export const getMode = (): string => {

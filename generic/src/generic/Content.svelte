@@ -53,7 +53,7 @@
 </script>
 
 {#if showSettings}
-    <Settings on:settingsClosed={handleSettingsClosed} getQuestionSets={questionSetHandler.getQuestionSets} />
+    <Settings on:settingsClosed={handleSettingsClosed} {questionSetHandler} />
 {/if}
 
 <section

@@ -4,6 +4,7 @@ import { QuestionSetHandler } from "../generic/QuestionSetHandler";
 import { areStringsSimilar, standardizeString } from "../generic/strings";
 
 export const questionSetHandler = new (class extends QuestionSetHandler {
+    triviaCategory = "Car logos";
     questionType = "Car brand";
     allKeys = files;
 
