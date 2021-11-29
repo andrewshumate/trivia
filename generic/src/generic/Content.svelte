@@ -66,6 +66,7 @@
     {#if showResults}
         <Results {questionSetHandler} {wasCorrectAnswer} {currentKey} {stats} let:keys on:click={handleNext}>
             <slot name="answer" slot="answer" currentKey={keys} />
+            <slot name="previous-answer" slot="previous-answer" currentKey={keys} />
         </Results>
     {:else}
         <!-- svelte-ignore a11y-autofocus -->

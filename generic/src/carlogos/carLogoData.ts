@@ -1,12 +1,36 @@
-import * as fs from "fs";
+import { standardizeString } from "../generic/strings";
 
-export const files = fs.readdirSync("/images");
+export const files = (CAR_LOGO_FILES as string[]).map((fileName) => `carlogos/images/${fileName}`);
 console.log(files);
 
-/*
+function x(): Map<string, string> {
+    const result: Map<string, string> = new Map();
 
+    for (let i = 0; i < files.length; i++) {
+        const fileName = files[i];
+        const possibleNames = fileName.split("/")[2].split(".")[0].split(",");
+        possibleNames.forEach((name) => result.set(standardizeString(name), possibleNames[0]));
+    }
 
+    return result;
+}
 
-.\src\carlogos\carLogoData.ts .\src\carlogos\carLogoData2.ts
+export const possibleGuessToOfficialGuess = x();
 
-*/
+export const convertKeyToOfficialGuess = (key: string): string => {
+    return key.split("/")[2].split(".")[0].split(",")[0];
+};
+
+function y(): Map<string, string> {
+    const result: Map<string, string> = new Map();
+
+    for (let i = 0; i < files.length; i++) {
+        const fileName = files[i];
+        const possibleNames = fileName.split("/")[2].split(".")[0].split(",");
+        result.set(possibleNames[0], fileName);
+    }
+
+    return result;
+}
+
+export const officalGuessToKey = y();

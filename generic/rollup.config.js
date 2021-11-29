@@ -7,8 +7,10 @@ import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
 import css from "rollup-plugin-css-only";
 import autoProcess from "svelte-preprocess";
+import fs from "fs";
 
 const production = !process.env.ROLLUP_WATCH;
+const carLogoFiles = fs.readdirSync("./public/carlogos/images");
 
 function serve() {
     let server;
@@ -38,6 +40,7 @@ export default {
         format: "iife",
         name: "app",
         file: "public/build/bundle.js",
+        intro: `const CAR_LOGO_FILES = ${JSON.stringify(carLogoFiles)};`,
     },
     plugins: [
         svelte({

@@ -28,7 +28,7 @@
                 {#each stats.incorrectGuesses as guess}
                     {#if questionSetHandler.doesGuessExist(guess)}
                         <li>
-                            <slot name="answer" keys={questionSetHandler.getKeysFromGuess(guess)} />
+                            <slot name="previous-answer" keys={questionSetHandler.getKeysFromGuess(guess)} />
                         </li>
                     {:else}
                         <li>{guess} (not a {questionSetHandler.questionType.toLowerCase()})</li>
