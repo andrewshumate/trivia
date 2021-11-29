@@ -5,7 +5,7 @@
     const nflStadiums = "NFL stadiums";
     const carLogos = "Car logos";
 
-    let currentTab = nflStadiums;
+    let currentTab = localStorage.getItem("trivia-category") ?? nflStadiums;
     const tabs = [nflStadiums, carLogos];
 </script>
 
@@ -16,6 +16,7 @@
                 class:active-tab={tab === currentTab}
                 on:click={() => {
                     currentTab = tab;
+                    localStorage.setItem("trivia-category", currentTab);
                 }}
             >
                 {tab}

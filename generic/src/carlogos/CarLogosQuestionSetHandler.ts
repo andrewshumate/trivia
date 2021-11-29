@@ -6,7 +6,6 @@ import { areStringsSimilar, standardizeString } from "../generic/strings";
 export const questionSetHandler = new (class extends QuestionSetHandler {
     questionType = "Car brand";
     allKeys = files;
-    allKeysAsOfficialGuess = this.allKeys.map((fileName) => convertKeyToOfficialGuess(fileName));
 
     doesGuessExist = (guess: string): boolean => {
         return this.getOfficialGuess(guess) != undefined;
