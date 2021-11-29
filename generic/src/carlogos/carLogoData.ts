@@ -34,3 +34,14 @@ function y(): Map<string, string> {
 }
 
 export const officalGuessToKey = y();
+
+export function preload(imageArray: string[], index: number): void {
+    index = index || 0;
+    if (imageArray && imageArray.length > index) {
+        const img = new Image();
+        img.onload = function (): void {
+            preload(imageArray, index + 1);
+        };
+        img.src = imageArray[index];
+    }
+}

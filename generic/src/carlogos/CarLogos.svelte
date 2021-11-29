@@ -1,9 +1,10 @@
 <script lang="ts">
     import { questionSetHandler as x } from "./CarLogosQuestionSetHandler";
     import Content from "../generic/Content.svelte";
-    import { convertKeyToOfficialGuess } from "./carLogoData";
+    import { convertKeyToOfficialGuess, preload, files } from "./carLogoData";
 
     const questionSetHandler = x;
+    preload(files, 0);
 </script>
 
 <Content {questionSetHandler} let:currentKey>
