@@ -7,9 +7,16 @@
 
     export let questionSetHandler: QuestionSetHandler;
 
-    let numQuestionsAnswered = 0;
-    let numEligibleQuestions = questionSetHandler.recalculateEligibleQuestions();
-    let currentKey = questionSetHandler.getNextQuestion(numQuestionsAnswered);
+    questionSetHandler.recalculateEligibleQuestions();
+    let currentKey = questionSetHandler.getNextQuestion();
+
+    let numQuestionsAnswered: number;
+    let numEligibleQuestions: number;
+    $: {
+        currentKey;
+        numQuestionsAnswered = questionSetHandler.numNonReshownQuestionsAnswered;
+        numEligibleQuestions = questionSetHandler.numEligibleQuestions;
+    }
 
     let showSettings = false;
     let showResults = false;
@@ -17,8 +24,7 @@
     let wasCorrectAnswer: boolean;
 
     const handleNext = (): void => {
-        numQuestionsAnswered = (numQuestionsAnswered + 1) % numEligibleQuestions;
-        currentKey = questionSetHandler.getNextQuestion(numQuestionsAnswered, currentKey);
+        currentKey = questionSetHandler.getNextQuestion(currentKey);
         showResults = false;
     };
 
@@ -36,9 +42,8 @@
         const wasSettingsUpdated = event.detail;
 
         if (wasSettingsUpdated) {
-            numEligibleQuestions = questionSetHandler.recalculateEligibleQuestions();
-            currentKey = questionSetHandler.getNextQuestion(numQuestionsAnswered, currentKey);
-            numQuestionsAnswered = 0;
+            questionSetHandler.recalculateEligibleQuestions();
+            currentKey = questionSetHandler.getNextQuestion(currentKey);
             showResults = false;
         }
 
@@ -48,8 +53,6 @@
     const handleShowSettings = (): void => {
         showSettings = true;
     };
-
-    questionSetHandler.recalculateEligibleQuestions();
 </script>
 
 {#if showSettings}

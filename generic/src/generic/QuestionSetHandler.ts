@@ -5,6 +5,11 @@ import * as storage from "./storage";
 export abstract class QuestionSetHandler {
     eligibleQuestions!: string[];
 
+    numNonReshownQuestionsAnswered!: number;
+    numEligibleQuestions!: number;
+
+    private numAllQuestionsAnswered!: number;
+
     abstract triviaCategory: string;
     abstract questionType: string;
     abstract allKeys: string[];
@@ -57,7 +62,7 @@ export abstract class QuestionSetHandler {
     };
 
     /** Returns length of new eligible questions list */
-    recalculateEligibleQuestions = (): number => {
+    recalculateEligibleQuestions = (): void => {
         const mode = storage.getMode();
         let questionSet = this.getQuestionSet(storage.getQuestionSetString(this.triviaCategory));
 
@@ -77,18 +82,21 @@ export abstract class QuestionSetHandler {
         }
 
         this.eligibleQuestions = questionSet;
-        return this.eligibleQuestions.length;
+        this.numNonReshownQuestionsAnswered = -1;
+        this.numAllQuestionsAnswered = -1;
+        this.numEligibleQuestions = this.eligibleQuestions.length;
     };
 
-    getNextQuestion = (numQuestionsAnswered: number, currentQuestion?: string): string => {
+    getNextQuestion = (currentQuestion?: string): string => {
         let result: string;
 
-        if (numQuestionsAnswered % 5 == 0 && storage.getShouldReshowUnknown()) {
+        if (this.numAllQuestionsAnswered % 5 == 0 && storage.getShouldReshowUnknown()) {
             const questionSet = this.getQuestionSet(storage.getQuestionSetString(this.triviaCategory));
             for (let i = 0; i < questionSet.length; i++) {
                 const stats = storage.getStats(questionSet[i]);
                 if (stats && questionSet[i] != currentQuestion && stats.percentCorrect < 0.6) {
                     result = questionSet[i];
+                    this.numAllQuestionsAnswered++;
                     return result;
                 }
             }
@@ -96,6 +104,8 @@ export abstract class QuestionSetHandler {
 
         if (this.eligibleQuestions.length == 0) this.recalculateEligibleQuestions();
         result = this.eligibleQuestions.pop()!;
+        this.numNonReshownQuestionsAnswered = (this.numNonReshownQuestionsAnswered + 1) % this.numEligibleQuestions;
+        this.numAllQuestionsAnswered++;
         return result;
     };
 }
