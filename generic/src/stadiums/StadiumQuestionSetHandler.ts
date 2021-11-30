@@ -103,6 +103,15 @@ export const questionSetHandler = new (class extends QuestionSetHandler {
                     NflTeam.SEATTLE_SEAHAWKS,
                 ].map((team) => NflTeam[team]),
             },
+            {
+                description: "Banks",
+                questions: [
+                    NflTeam.CAROLINA_PANTHERS,
+                    NflTeam.BALTIMORE_RAVENS,
+                    NflTeam.JACKSONVILLE_JAGUARS,
+                    NflTeam.MINNESOTA_VIKINGS,
+                ].map((team) => NflTeam[team]),
+            },
         ];
     };
 })();
