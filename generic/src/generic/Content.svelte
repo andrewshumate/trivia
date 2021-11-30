@@ -6,25 +6,22 @@
     import { QuestionSetHandler } from "./QuestionSetHandler";
 
     export let questionSetHandler: QuestionSetHandler;
-
-    questionSetHandler.recalculateEligibleQuestions();
-    let currentKey = questionSetHandler.getNextQuestion();
-
     let numQuestionsAnswered: number;
     let numEligibleQuestions: number;
-    $: {
-        currentKey;
-        numQuestionsAnswered = questionSetHandler.numNonReshownQuestionsAnswered;
-        numEligibleQuestions = questionSetHandler.numEligibleQuestions;
-    }
-
+    let currentKey: string;
     let showSettings = false;
     let showResults = false;
     let stats: storage.Stats | null;
     let wasCorrectAnswer: boolean;
 
+    const updateQuestion = (): void => {
+        currentKey = questionSetHandler.getNextQuestion();
+        numQuestionsAnswered = questionSetHandler.numNonReshownQuestionsAnswered;
+        numEligibleQuestions = questionSetHandler.numEligibleQuestions;
+    };
+
     const handleNext = (): void => {
-        currentKey = questionSetHandler.getNextQuestion(currentKey);
+        updateQuestion();
         showResults = false;
     };
 
@@ -43,7 +40,7 @@
 
         if (wasSettingsUpdated) {
             questionSetHandler.recalculateEligibleQuestions();
-            currentKey = questionSetHandler.getNextQuestion(currentKey);
+            updateQuestion();
             showResults = false;
         }
 
@@ -53,6 +50,9 @@
     const handleShowSettings = (): void => {
         showSettings = true;
     };
+
+    questionSetHandler.recalculateEligibleQuestions();
+    updateQuestion();
 </script>
 
 {#if showSettings}

@@ -90,7 +90,11 @@ export abstract class QuestionSetHandler {
     getNextQuestion = (currentQuestion?: string): string => {
         let result: string;
 
-        if (this.numAllQuestionsAnswered % 5 == 0 && storage.getShouldReshowUnknown()) {
+        if (
+            this.numAllQuestionsAnswered % 5 == 0 &&
+            this.eligibleQuestions.length > 5 &&
+            storage.getShouldReshowUnknown()
+        ) {
             const questionSet = this.getQuestionSet(storage.getQuestionSetString(this.triviaCategory));
             for (let i = 0; i < questionSet.length; i++) {
                 const stats = storage.getStats(questionSet[i]);
