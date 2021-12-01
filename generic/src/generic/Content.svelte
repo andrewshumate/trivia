@@ -97,6 +97,13 @@
             --foreground: white;
             --success: #1b5e20;
             --failure: #b71c1c;
+            --border-color: #555555;
+        }
+
+        :global(input),
+        :global(button) {
+            background-color: #3b3b3b;
+            color: var(--foreground);
         }
     }
     @media (prefers-color-scheme: light) {
@@ -106,6 +113,7 @@
             --foreground: black;
             --success: #4caf50;
             --failure: #f44336;
+            --border-color: darkgray;
         }
     }
 
@@ -120,7 +128,7 @@
     :global(input),
     :global(button) {
         box-sizing: border-box;
-        border: solid darkgray 1px;
+        border: solid var(--border-color) 1px;
     }
     :global(button) {
         width: 100%;

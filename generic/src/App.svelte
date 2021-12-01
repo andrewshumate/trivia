@@ -33,14 +33,16 @@
 </main>
 
 <style>
+    :global(body) {
+        background: var(--background-background);
+        color: var(--foreground);
+        font-family: sans-serif;
+    }
     main {
         padding: 0;
         height: 100%;
         max-width: 500px;
         margin: auto;
-        background: var(--background-background);
-        color: var(--foreground);
-        font-family: sans-serif;
     }
     ul {
         position: fixed;
