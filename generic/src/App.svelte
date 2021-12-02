@@ -3,9 +3,9 @@
     import CarLogosApp from "./carlogos/CarLogos.svelte";
     import PlaneMoviesApp from "./planemovies/PlaneMoviesApp.svelte";
 
-    const nflStadiums = "NFL stadiums";
+    const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
-    const planeMovies = "Plane movies";
+    const planeMovies = "Movies";
 
     let currentTab = localStorage.getItem("trivia-category") ?? nflStadiums;
     const tabs = [nflStadiums, carLogos, planeMovies];
@@ -25,16 +25,12 @@
             </li>
         {/each}
     </ul>
-    {#if currentTab == nflStadiums}
-        <StadiumsApp />
-    {:else if currentTab == carLogos}
-        <span>
-            <CarLogosApp />
-        </span>
+    {#if currentTab == carLogos}
+        <CarLogosApp />
     {:else if currentTab == planeMovies}
-        <span>
-            <PlaneMoviesApp />
-        </span>
+        <PlaneMoviesApp />
+    {:else}
+        <StadiumsApp />
     {/if}
 </main>
 
