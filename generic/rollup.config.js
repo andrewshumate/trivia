@@ -11,6 +11,7 @@ import fs from "fs";
 
 const production = !process.env.ROLLUP_WATCH;
 const carLogoFiles = fs.readdirSync("./public/carlogos/images");
+const planeMovieFiles = fs.readdirSync("./public/planemovies/images");
 
 function serve() {
     let server;
@@ -40,7 +41,10 @@ export default {
         format: "iife",
         name: "app",
         file: "public/build/bundle.js",
-        intro: `const CAR_LOGO_FILES = ${JSON.stringify(carLogoFiles)};`,
+        intro: `
+            const CAR_LOGO_FILES = ${JSON.stringify(carLogoFiles)};
+            const PLANE_MOVIE_FILES = ${JSON.stringify(planeMovieFiles)};
+        `,
     },
     plugins: [
         svelte({
