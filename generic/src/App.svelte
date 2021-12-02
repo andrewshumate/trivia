@@ -52,11 +52,12 @@
         left: 50%;
         transform: translate(-50%, 0);
         padding-left: 0px;
+        white-space: nowrap;
     }
     li {
         list-style: none;
         display: inline;
-        margin-right: 1em;
+        margin: 0 0.5em;
         font-size: 12px;
         opacity: 50%;
         cursor: pointer;
