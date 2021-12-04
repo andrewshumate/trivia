@@ -36,7 +36,7 @@
         display: block;
     }
     .mini-image {
-        max-height: 50px;
+        max-width: 75px;
         display: block;
     }
 </style>
