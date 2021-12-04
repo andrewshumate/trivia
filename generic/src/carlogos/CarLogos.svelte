@@ -1,35 +1,12 @@
 <script lang="ts">
-    import { questionSetHandler as x } from "./CarLogosQuestionSetHandler";
-    import Content from "../generic/Content.svelte";
-    import { convertKeyToOfficialGuess, preload, files } from "./carLogoData";
+    import GenericImageApp from "../generic/generichandlers/GenericImageApp.svelte";
 
-    const questionSetHandler = x;
-    preload(files, 0);
+    let triviaCategory = "Car logos";
+    let questionType = "Car brand";
+    /* eslint-disable no-undef */
+    // @ts-expect-error This is a global defined in rollup.
+    const files = (CAR_LOGO_FILES as string[]).map((fileName) => `carlogos/images/${fileName}`);
+    /* eslint-enable no-undef */
 </script>
 
-<Content {questionSetHandler} let:currentKey>
-    <span slot="question">
-        <img class="logo" src={currentKey} alt="Car logo" />
-    </span>
-    <span slot="answer">
-        The answer is <b>{convertKeyToOfficialGuess(currentKey[0])}</b>
-    </span>
-    <span slot="previous-answer">
-        {convertKeyToOfficialGuess(currentKey[0])}:
-        <img class="mini-logo" src={currentKey[0]} alt="Car logo" />
-    </span>
-</Content>
-
-<style>
-    .logo {
-        max-height: calc(100% - 114px);
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-    .mini-logo {
-        max-height: 50px;
-        display: block;
-    }
-</style>
+<GenericImageApp {triviaCategory} {questionType} {files} />
