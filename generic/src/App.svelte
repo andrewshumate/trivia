@@ -12,19 +12,22 @@
 </script>
 
 <main>
-    <ul>
-        {#each tabs as tab}
-            <li
-                class:active-tab={tab === currentTab}
-                on:click={() => {
-                    currentTab = tab;
-                    localStorage.setItem("trivia-category", currentTab);
-                }}
-            >
-                {tab}
-            </li>
-        {/each}
-    </ul>
+    <nav>
+        <ul>
+            {#each tabs as tab}
+                <li
+                    class:active-tab={tab === currentTab}
+                    on:click={() => {
+                        currentTab = tab;
+                        localStorage.setItem("trivia-category", currentTab);
+                    }}
+                >
+                    {tab}
+                </li>
+            {/each}
+        </ul>
+    </nav>
+
     {#if currentTab == carLogos}
         <CarLogosApp />
     {:else if currentTab == planeMovies}
@@ -46,18 +49,30 @@
         max-width: 500px;
         margin: auto;
     }
-    ul {
+    nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 500px;
         position: fixed;
-        margin-top: 8px;
-        left: 50%;
-        transform: translate(-50%, 0);
-        padding-left: 0px;
+    }
+    ul {
+        margin: 8px 34px 0px 44px;
+        padding: 0;
+        list-style-type: none;
         white-space: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scrollbar-width: none;
+    }
+    ul::-webkit-scrollbar {
+        background: transparent;
+        width: 0px;
     }
     li {
         list-style: none;
         display: inline;
-        margin: 0 0.5em;
+        margin: 0 3px;
         font-size: 12px;
         opacity: 50%;
         cursor: pointer;
