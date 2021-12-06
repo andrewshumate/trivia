@@ -2,13 +2,15 @@
     import StadiumsApp from "./stadiums/StadiumsApp.svelte";
     import CarLogosApp from "./carlogos/CarLogos.svelte";
     import PlaneMoviesApp from "./planemovies/PlaneMoviesApp.svelte";
+    import FivesomesApp from "./fivesomes/FivesomesApp.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
     const planeMovies = "Movies";
+    const fivesomes = "Fivesomes";
 
     let currentTab = localStorage.getItem("trivia-category") ?? nflStadiums;
-    const tabs = [nflStadiums, carLogos, planeMovies];
+    const tabs = [planeMovies, fivesomes, nflStadiums, carLogos];
 
     const handleTabClick = (event: Event): void => {
         const li = event.target as HTMLLIElement;
@@ -32,8 +34,10 @@
         <CarLogosApp />
     {:else if currentTab == planeMovies}
         <PlaneMoviesApp />
-    {:else}
+    {:else if currentTab == nflStadiums}
         <StadiumsApp />
+    {:else}
+        <FivesomesApp />
     {/if}
 </main>
 
