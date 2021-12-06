@@ -5,7 +5,7 @@
     const questionType = "Famous fivesome";
     const answerType = "Name of group";
     const allData = new Map([
-        ["Frank Sinatra, Dean Martin, Sammy Davis Jr, Peter Lawford, Joey Bishop", ["The Rat Pack", "Rat Pack"]],
+        ["Frank Sinatra, Dean Martin, Sammy Davis Jr, Peter Lawford, Joey Bishop", ["The Rat Pack"]],
         ["Dave Foley, Kevin McDonald, Bruce McCulloch, Mark McKinney, Scott Thompson", ["Kids in the Hall"]],
         [
             "Jason Lee Scott, Kimberly Hart, Zack Taylor, Trini Kwan, Billy Cranston",
@@ -56,6 +56,28 @@
             "Sonny, Fredo, Michael, Connie, Tom",
             ["The Corleone kids from The Godfather", "The Corleone kids", "The Corleones"],
         ],
+        ["Muno, Foofa, Brobee, Toodee, Plex", ["The Yo Gabba Gabba! gang", "Yo Gabba Gabba"]],
+        [
+            "Dorothy, The Scarecrow, The Tin Man, The Cowardly Lion, Toto",
+            ["The Wizard of Oz travelers", "Wizard of Oz"],
+        ],
+        [
+            "Francis, Reese, Malcolm, Dewey, Jamie",
+            ["The Wilkerson boys from Malcolm in the Middle", "Wilkerson boys", "Malcolm in the Middle"],
+        ],
+        ["Todd Hockney, Michael McManus, Fred Fenster, Dean Keaton, Roger 'Verbal' Kint", ["The Unusual Suspects"]],
+        ["Homer, Marge, Bart, Lisa, Maggie", ["The Simpsons"]],
+        ["Bailey, Charlie, Julia, Claudia, Owen", ["The Salingers from 'Party of Five'", "Party of Five"]],
+        ["Mick Jagger, Keith Richards, Charlie Watts, Bill Wyman, Brian Jones", ["The Rolling Stones"]],
+        ["Father, Mother, Fritz, Ernest, Francis", ["The Swiss Robinson Family", "Swiss Family Robinson"]],
+        ["John, Maureen, Judy, Penny, Will", ["The Robinsons from 'Lost in Space'"]],
+        ["Alan, Merrill, Wayne, Jay, Donny", ["The Osmonds"]],
+        ["Jane, Lisbon, Cho, Rigsby, Van Pelt", ["The original Mentalist team", "Mentalist"]],
+        ["Chico, Harpo, Groucho, Zeppo, Gummo", ["The Marx Brothers"]],
+        ["Sondra, Denise, Theo, Vanessa, Rudy", ["The Huxtable kids from 'The Cosby Show'", "Huxtables"]],
+        ["Frankie, Mike, Axl, Sue, Brick", ["The Hecks from 'The Middle'", "Hecks"]],
+        ["Ty, Claire, Haley, Alex, Luke", ["The Dunphys from 'Modern Family'", "Dunphys", "Dunphies"]],
+        ["Howard, Marion, Richie, Joanie, The Fonz", ["The Cunninghams from 'Happy Days'", "Cunninghams"]],
     ]);
 
     const listifyString = (key: string): string[] => {
