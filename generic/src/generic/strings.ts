@@ -10,8 +10,14 @@ const getStringSimilarity = (s1: string, s2: string): number => {
     return 1 - (levenshteinDistance(s1, s2) * 1.0) / s1.length;
 };
 
+const wordsToIgnore = ["the", "and", "of", "an", "a"];
 export const standardizeString = (s: string): string => {
-    return s.replace(/[^0-9a-zA-Z]/g, "").toLowerCase();
+    return s
+        .toLowerCase()
+        .split(" ")
+        .filter((word) => !wordsToIgnore.includes(word))
+        .join("")
+        .replace(/[^0-9a-zA-Z]/g, "");
 };
 
 /*

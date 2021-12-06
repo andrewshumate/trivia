@@ -11,17 +11,14 @@
             "Jason Lee Scott, Kimberly Hart, Zack Taylor, Trini Kwan, Billy Cranston",
             ["Original Mighty Morphin Power Rangers", "Mighty Morphin Power Rangers"],
         ],
-        [
-            "Iron Man, Hulk, Thor, Ant-Man, Wasp",
-            ["Original Marvel Avengers", "Marvel Avengers", "The Avengers", "Avengers"],
-        ],
+        ["Iron Man, Hulk, Thor, Ant-Man, Wasp", ["Original Marvel Avengers", "Marvel Avengers", "Avengers"]],
         [
             "Jackie Jaskon, Tito Jackson, Jermaine Jackson, Marlon Jackson, Michael Jackson",
-            ["The Jackson Five", "Jackson Five", "The Jackson 5", "Jackson 5"],
+            ["The Jackson Five", "Jackson Five", "Jackson 5"],
         ],
-        ["Sight, Smell, Touch, Taste, Hearing", ["The five senses", "Five senses", "The senses", "Senses"]],
+        ["Sight, Smell, Touch, Taste, Hearing", ["The five senses", "Senses"]],
         ["Atlantic, Arctic, Indian, Pacific, Southern", ["Oceans"]],
-        ["Genesis, Exodus, Leviticus, Numbers, Deuteronomy", ["Books of the Torah", "The Torah", "Torah"]],
+        ["Genesis, Exodus, Leviticus, Numbers, Deuteronomy", ["Books of the Torah", "Torah"]],
         ["Red, Blue, Green, Yellow, Black", ["Colors of the Olympic Rings", "Olympic Ring colors"]],
         [
             "Scooby-Doo, Norville 'Shaggy' Rogers, Fred Jones, Daphne Blake, Velma Dinkley",
