@@ -9,19 +9,19 @@
 
     let currentTab = localStorage.getItem("trivia-category") ?? nflStadiums;
     const tabs = [nflStadiums, carLogos, planeMovies];
+
+    const handleTabClick = (event: Event): void => {
+        const li = event.target as HTMLLIElement;
+        currentTab = li.innerText.trim();
+        localStorage.setItem("trivia-category", currentTab);
+    };
 </script>
 
 <main>
     <nav>
         <ul>
             {#each tabs as tab}
-                <li
-                    class:active-tab={tab === currentTab}
-                    on:click={() => {
-                        currentTab = tab;
-                        localStorage.setItem("trivia-category", currentTab);
-                    }}
-                >
+                <li class:active-tab={tab === currentTab} on:click={handleTabClick}>
                     {tab}
                 </li>
             {/each}
