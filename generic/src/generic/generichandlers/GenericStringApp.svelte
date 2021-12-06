@@ -15,7 +15,7 @@
 
 <Content {questionSetHandler} let:currentKey>
     <slot name="question" slot="question" {currentKey} isResult={false}>
-        <p>{currentKey[0]}</p>
+        <p>{currentKey}</p>
     </slot>
     <slot name="answer" slot="answer">
         The answer is <b>{getAnswer(currentKey)}</b>
