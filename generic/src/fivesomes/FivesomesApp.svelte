@@ -34,7 +34,7 @@
         ],
         ["Donnie Wahlberg,Danny Wood,Joey McIntyre,Jordan Knight,Jonathan Knight", ["New Kids on the Block"]],
         ["Point Guard,Shooting Guard,Small Forward,Power Forward,Center", ["Basketball positions"]],
-        ["Exosphere,Thermosphere,Mesosphere,Stratosphere,Troposphere", []],
+        ["Exosphere,Thermosphere,Mesosphere,Stratosphere,Troposphere", ["Layers of the atmosphere"]],
         ["Huron,Ontario,Michigan,Erie,Superior", ["Great Lakes"]],
         [
             "Main Street USA,Adventureland,Frontierland,Fantasyland,Tomorrowland",
