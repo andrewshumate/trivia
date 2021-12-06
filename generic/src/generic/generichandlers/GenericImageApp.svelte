@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { GenericQuestionSetHandler } from "./GenericQuestionSetHandler";
+    import { GenericImageQuestionSetHandler } from "./GenericImageQuestionSetHandler";
     import Content from "../Content.svelte";
 
     export let triviaCategory: string;
@@ -8,18 +8,6 @@
 
     const getAnswer = (keys: string[]): string => {
         return questionSetHandler.convertKeyToOfficialGuess(keys[0]);
-    };
-
-    const preload = (imageArray: string[], index: number): void => {
-        index = index || 0;
-        if (imageArray && imageArray.length > index) {
-            const img = new Image();
-            img.onload = (): void => {
-                preload(imageArray, index + 1);
-            };
-
-            img.src = imageArray[index];
-        }
     };
 
     const allData = ((): Map<string, string[]> => {
@@ -34,8 +22,8 @@
         return result;
     })();
 
-    const questionSetHandler = new GenericQuestionSetHandler(triviaCategory, questionType, allData);
-    preload(files, 0);
+    const questionSetHandler = new GenericImageQuestionSetHandler(triviaCategory, questionType, allData);
+    questionSetHandler.preload(files, 0);
 </script>
 
 <Content {questionSetHandler} let:currentKey>

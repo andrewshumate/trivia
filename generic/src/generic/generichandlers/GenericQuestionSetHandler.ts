@@ -55,7 +55,7 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
     };
 
     convertKeyToOfficialGuess = (key: string): string => {
-        return key.split("/")[2].split(".")[0].split(",")[0];
+        return this.allData.get(key)![0];
     };
 
     possibleGuessToOfficialGuess = ((): Map<string, string> => {
