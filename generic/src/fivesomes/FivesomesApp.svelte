@@ -2,7 +2,7 @@
     import GenericStringApp from "../generic/generichandlers/GenericStringApp.svelte";
     import { shuffle } from "../generic/utils";
 
-    const questionType = "Five related things";
+    const questionType = "Famous fivesome";
     const answerType = "Name of group";
     const allData = new Map([
         ["Frank Sinatra, Dean Martin, Sammy Davis Jr, Peter Lawford, Joey Bishop", ["The Rat Pack", "Rat Pack"]],
@@ -43,6 +43,21 @@
         [
             "Stadion (Foot Race),Wrestling,Long Jump,Javelin Throw,Discus Throw",
             ["Original Olympic Pentathlon Events", "Olympic Pentathlon Events", "Pentathlon Events"],
+        ],
+        ["Steven Tyler, Tom Hamilton, Joey Kramer, Joe Perry, Brad Whitford", ["Aerosmith"]],
+        ["Sheldon, Leonard, Penny, Howard, Raj", ["Big Bang Theory"]],
+        [
+            "The Radio, Lampy, Blanky, Kirby, Toaster",
+            ["The appliances from The Brave Little Toaster", "The Brave Little Toaster"],
+        ],
+        [
+            "Matt, Mary, Lucy, Simon, Ruthie",
+            ["The Camden kids from 7th Heaven", "7th Heaven", "Seventh Heaven", "The Camden kids"],
+        ],
+        ["Roseanne, Dan, Becky, Darlene, DJ", ["The Conners"]],
+        [
+            "Sonny, Fredo, Michael, Connie, Tom",
+            ["The Corleone kids from The Godfather", "The Corleone kids", "The Corleones"],
         ],
     ]);
 
