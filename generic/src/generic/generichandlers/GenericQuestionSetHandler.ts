@@ -2,8 +2,24 @@ import type { QuestionSet } from "../utils";
 import { QuestionSetHandler } from "../QuestionSetHandler";
 import { areStringsSimilar, standardizeString } from "../strings";
 
-export class GenericImageQuestionSetHandler extends QuestionSetHandler {
-    constructor(public triviaCategory: string, public questionType: string, public allKeys: string[]) {
+export class GenericQuestionSetHandler extends QuestionSetHandler {
+    constructor(
+        public questionType: string,
+        public answerType: string,
+
+        /**
+         * key = A key representing the question shown to the user
+         *
+         * value = A list of possible answers. NOTE: The first string in this list
+         *         will be used to display the answer to the user in the results page.
+         *
+         * e.g.
+         *      key = URL of image of flag of the United States
+         *
+         *      value = ["United States of America", "United States", "USA", "US"]
+         */
+        public allData: Map<string, string[]>
+    ) {
         super();
     }
 
@@ -33,48 +49,38 @@ export class GenericImageQuestionSetHandler extends QuestionSetHandler {
         return [
             {
                 description: "All",
-                questions: this.allKeys,
+                questions: [...this.allData.keys()],
             },
         ];
     };
-
-    possibleGuessToOfficialGuess = ((): Map<string, string> => {
-        const result: Map<string, string> = new Map();
-
-        for (let i = 0; i < this.allKeys.length; i++) {
-            const fileName = this.allKeys[i];
-            const possibleNames = fileName.split("/")[2].split(".")[0].split(",");
-            possibleNames.forEach((name) => result.set(standardizeString(name), possibleNames[0]));
-        }
-
-        return result;
-    })();
 
     convertKeyToOfficialGuess = (key: string): string => {
         return key.split("/")[2].split(".")[0].split(",")[0];
     };
 
-    officalGuessToKey = ((): Map<string, string> => {
+    possibleGuessToOfficialGuess = ((): Map<string, string> => {
         const result: Map<string, string> = new Map();
+        const allKeys = [...this.allData.keys()];
 
-        for (let i = 0; i < this.allKeys.length; i++) {
-            const fileName = this.allKeys[i];
-            const possibleNames = fileName.split("/")[2].split(".")[0].split(",");
-            result.set(possibleNames[0], fileName);
+        for (let i = 0; i < allKeys.length; i++) {
+            const questionKey = allKeys[i];
+            const possibleAnswers = this.allData.get(questionKey)!;
+            possibleAnswers.forEach((answer) => result.set(standardizeString(answer), possibleAnswers[0]));
         }
 
         return result;
     })();
 
-    preload = (imageArray: string[], index: number): void => {
-        index = index || 0;
-        if (imageArray && imageArray.length > index) {
-            const img = new Image();
-            img.onload = (): void => {
-                this.preload(imageArray, index + 1);
-            };
+    officalGuessToKey = ((): Map<string, string> => {
+        const result: Map<string, string> = new Map();
+        const allKeys = [...this.allData.keys()];
 
-            img.src = imageArray[index];
+        for (let i = 0; i < allKeys.length; i++) {
+            const questionKey = allKeys[i];
+            const possibleAnswers = this.allData.get(questionKey)!;
+            result.set(possibleAnswers[0], questionKey);
         }
-    };
+
+        return result;
+    })();
 }

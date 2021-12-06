@@ -1,17 +1,41 @@
 <script lang="ts">
-    import { GenericImageQuestionSetHandler } from "./GenericImageQuestionSetHandler";
+    import { GenericQuestionSetHandler } from "./GenericQuestionSetHandler";
     import Content from "../Content.svelte";
 
     export let triviaCategory: string;
     export let questionType: string;
     export let files: string[];
 
-    const questionSetHandler = new GenericImageQuestionSetHandler(triviaCategory, questionType, files);
-    questionSetHandler.preload(files, 0);
-
     const getAnswer = (keys: string[]): string => {
         return questionSetHandler.convertKeyToOfficialGuess(keys[0]);
     };
+
+    const preload = (imageArray: string[], index: number): void => {
+        index = index || 0;
+        if (imageArray && imageArray.length > index) {
+            const img = new Image();
+            img.onload = (): void => {
+                preload(imageArray, index + 1);
+            };
+
+            img.src = imageArray[index];
+        }
+    };
+
+    const allData = ((): Map<string, string[]> => {
+        const result: Map<string, string[]> = new Map();
+
+        for (let i = 0; i < files.length; i++) {
+            const questionKey = files[i];
+            const possibleAnswers = questionKey.split("/")[2].split(".")[0].split(",");
+            result.set(questionKey, possibleAnswers);
+        }
+
+        return result;
+    })();
+
+    const questionSetHandler = new GenericQuestionSetHandler(triviaCategory, questionType, allData);
+    preload(files, 0);
 </script>
 
 <Content {questionSetHandler} let:currentKey>

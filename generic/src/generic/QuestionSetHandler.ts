@@ -10,9 +10,19 @@ export abstract class QuestionSetHandler {
 
     private numAllQuestionsAnswered!: number;
 
-    abstract triviaCategory: string;
+    /** A description of what is shown to the user as the question. Contrast with `answerType`.
+     * e.g.
+     *  `questionType` = "Flag image"
+     *  `answerType` = "Country name"
+     */
     abstract questionType: string;
-    abstract allKeys: string[];
+
+    /** A description of what the user types in to guess. Contrast with `questionType`.
+     * e.g.
+     *  `questionType` = "Flag image"
+     *  `answerType` = "Country name"
+     */
+    abstract answerType: string;
 
     abstract isCorrectAnswer: (expected: string, actual: string) => boolean;
 
@@ -47,9 +57,7 @@ export abstract class QuestionSetHandler {
         return [key];
     };
 
-    doesGuessExist = (guess: string): boolean => {
-        return this.allKeys.includes(guess);
-    };
+    abstract doesGuessExist: (guess: string) => boolean;
 
     getQuestionSet = (questionSetString: string): string[] => {
         const questionSets = this.getQuestionSets();
@@ -64,7 +72,7 @@ export abstract class QuestionSetHandler {
     /** Returns length of new eligible questions list */
     recalculateEligibleQuestions = (): void => {
         const mode = storage.getMode();
-        let questionSet = this.getQuestionSet(storage.getQuestionSetString(this.triviaCategory));
+        let questionSet = this.getQuestionSet(storage.getQuestionSetString(this.questionType));
 
         if (mode == "Show unseen mode") {
             const seenQuestions = Object.keys(localStorage);
@@ -95,7 +103,7 @@ export abstract class QuestionSetHandler {
             this.eligibleQuestions.length > 5 &&
             storage.getShouldReshowUnknown()
         ) {
-            const questionSet = this.getQuestionSet(storage.getQuestionSetString(this.triviaCategory));
+            const questionSet = this.getQuestionSet(storage.getQuestionSetString(this.questionType));
             for (let i = 0; i < questionSet.length; i++) {
                 const stats = storage.getStats(questionSet[i]);
                 if (stats && questionSet[i] != currentQuestion && stats.percentCorrect < 0.6) {

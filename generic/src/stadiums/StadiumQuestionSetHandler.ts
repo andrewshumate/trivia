@@ -4,8 +4,8 @@ import { QuestionSetHandler } from "../generic/QuestionSetHandler";
 import { areStringsSimilar, standardizeString } from "../generic/strings";
 
 export const questionSetHandler = new (class extends QuestionSetHandler {
-    triviaCategory = "NFL stadiums";
-    questionType = "Stadium";
+    questionType = "NFL stadiums";
+    answerType = "Stadium";
     allKeys = allKeys;
 
     doesGuessExist = (guess: string): boolean => {
