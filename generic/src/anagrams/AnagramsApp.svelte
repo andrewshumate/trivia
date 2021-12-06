@@ -20,6 +20,7 @@
         ["Someone in a lot of THIS might say 'A Rope Ends It'", ["Desperation"]],
         ["It is 'Docile, as a Man Tamed it'", ["A Domesticated Animal"]],
         ["It's equal to 'Twelve plus one'", ["Eleven plus two"]],
+        ["Politician: 'He bugs Gore'", ["George Bush"]],
         ["This celebrity looks 'Fine in Torn Jeans'", ["Jennifer Aniston"]],
         ["He hasn't made a song called 'I am a jerk, but listen.' yet", ["Justin Timberlake"]],
         ["You probably wouldn't describe her as a 'Gay kinky Hitler'", ["Keira Knightley"]],
