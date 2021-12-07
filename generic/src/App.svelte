@@ -11,8 +11,8 @@
     const fivesomes = "Fivesomes";
     const anagrams = "Anagrams";
 
-    let currentTab = localStorage.getItem("trivia-category") ?? nflStadiums;
     const tabs = [anagrams, planeMovies, fivesomes, nflStadiums, carLogos];
+    let currentTab = localStorage.getItem("trivia-category") ?? tabs[0];
 
     const handleTabClick = (event: Event): void => {
         const li = event.target as HTMLLIElement;

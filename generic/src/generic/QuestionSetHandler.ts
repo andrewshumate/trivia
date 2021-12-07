@@ -99,8 +99,9 @@ export abstract class QuestionSetHandler {
         let result: string;
 
         if (
+            this.numAllQuestionsAnswered > 1 && // Don't immediately reshow first incorrect answer
             this.numAllQuestionsAnswered % 5 == 0 &&
-            this.eligibleQuestions.length > 5 &&
+            this.eligibleQuestions.length > 5 && // Avoid excessive repeats when not a lot of questions
             storage.getShouldReshowUnknown()
         ) {
             const questionSet = this.getQuestionSet(storage.getQuestionSetString(this.questionType));

@@ -111,3 +111,9 @@
         </ul>
     </span>
 </GenericStringApp>
+
+<style>
+    ul {
+        margin: 0;
+    }
+</style>
