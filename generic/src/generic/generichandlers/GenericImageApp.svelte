@@ -41,7 +41,7 @@
 
 <style>
     .image {
-        max-height: calc(100% - 114px);
+        max-height: min(400px, calc(100% - 114px));
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;

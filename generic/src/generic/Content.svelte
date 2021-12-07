@@ -61,6 +61,7 @@
 
 <section
     id="quiz-section"
+    class:quiz-section-input={!showResults}
     class:success-animation={showResults && wasCorrectAnswer}
     class:error-animation={showResults && !wasCorrectAnswer}
 >
@@ -139,8 +140,10 @@
 
     #quiz-section {
         background: var(--background);
-        height: calc(100% - 24px);
         padding: 12px;
+    }
+    .quiz-section-input {
+        height: calc(100% - 24px);
     }
     input[type="text"] {
         height: 35px;
@@ -159,26 +162,26 @@
 
     @keyframes error-animation {
         from {
-            background-color: var(--failure);
+            color: var(--failure);
         }
         to {
-            background-color: var(--background);
+            color: unset;
         }
     }
     .error-animation {
         animation-name: error-animation;
-        animation-duration: 1.5s;
+        animation-duration: 3s;
     }
     @keyframes success-animation {
         from {
-            background-color: var(--success);
+            color: var(--success);
         }
         to {
-            background-color: var(--background);
+            color: unset;
         }
     }
     .success-animation {
         animation-name: success-animation;
-        animation-duration: 1.5s;
+        animation-duration: 3s;
     }
 </style>

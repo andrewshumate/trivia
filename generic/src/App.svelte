@@ -52,6 +52,7 @@
         font-family: sans-serif;
     }
     main {
+        background: var(--background);
         padding: 0;
         height: 100%;
         max-width: 500px;
