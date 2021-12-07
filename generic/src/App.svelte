@@ -62,7 +62,7 @@
         justify-content: center;
         width: 100%;
         max-width: 500px;
-        position: fixed;
+        position: absolute;
     }
     ul {
         margin: 8px 34px 0px 44px;
