@@ -10,7 +10,7 @@ const getStringSimilarity = (s1: string, s2: string): number => {
     return 1 - (levenshteinDistance(s1, s2) * 1.0) / s1.length;
 };
 
-const wordsToIgnore = ["the", "and", "of", "an", "a", "from"];
+const wordsToIgnore = ["the", "and", "of", "an", "a", "from", "in"];
 export const standardizeString = (s: string): string => {
     return s
         .toLowerCase()

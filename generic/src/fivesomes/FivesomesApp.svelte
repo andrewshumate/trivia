@@ -12,17 +12,14 @@
             ["Original Mighty Morphin Power Rangers", "Mighty Morphin Power Rangers"],
         ],
         ["Iron Man, Hulk, Thor, Ant-Man, Wasp", ["Original Marvel Avengers", "Marvel Avengers", "Avengers"]],
-        [
-            "Jackie Jaskon, Tito Jackson, Jermaine Jackson, Marlon Jackson, Michael Jackson",
-            ["The Jackson Five", "Jackson Five", "Jackson 5"],
-        ],
+        ["Jackie, Tito, Jermaine, Marlon, Michael", ["The Jackson Five", "Jackson Five", "Jackson 5"]],
         ["Sight, Smell, Touch, Taste, Hearing", ["The five senses", "Senses"]],
         ["Atlantic, Arctic, Indian, Pacific, Southern", ["Oceans"]],
         ["Genesis, Exodus, Leviticus, Numbers, Deuteronomy", ["Books of the Torah", "Torah"]],
         ["Red, Blue, Green, Yellow, Black", ["Colors of the Olympic Rings", "Olympic Ring colors"]],
         [
             "Scooby-Doo, Norville 'Shaggy' Rogers, Fred Jones, Daphne Blake, Velma Dinkley",
-            ["Gang in the 'Mystery Machine'"],
+            ["Gang in the 'Mystery Machine'", "Mystery Machine gang", "Mystery Machine"],
         ],
         ["Denial, Anger, Bargaining, Depression, Acceptance", ["Stages of Grief"]],
         [
@@ -39,7 +36,12 @@
         ],
         [
             "Stadion (Foot Race),Wrestling,Long Jump,Javelin Throw,Discus Throw",
-            ["Original Olympic Pentathlon Events", "Olympic Pentathlon Events", "Pentathlon Events"],
+            [
+                "Original Olympic Pentathlon Events",
+                "Olympic Pentathlon Events",
+                "Pentathlon Events",
+                "Olympic Pentathlon",
+            ],
         ],
         ["Steven Tyler, Tom Hamilton, Joey Kramer, Joe Perry, Brad Whitford", ["Aerosmith"]],
         ["Sheldon, Leonard, Penny, Howard, Raj", ["Big Bang Theory"]],
@@ -69,7 +71,10 @@
         ["Homer, Marge, Bart, Lisa, Maggie", ["The Simpsons"]],
         ["Bailey, Charlie, Julia, Claudia, Owen", ["The Salingers from 'Party of Five'", "Party of Five"]],
         ["Mick Jagger, Keith Richards, Charlie Watts, Bill Wyman, Brian Jones", ["The Rolling Stones"]],
-        ["Father, Mother, Fritz, Ernest, Francis", ["The Swiss Robinson Family", "Swiss Family Robinson"]],
+        [
+            "Father, Mother, Fritz, Ernest, Francis",
+            ["The Swiss Robinson Family", "Swiss Family Robinson", "Swiss Robinsons"],
+        ],
         ["John, Maureen, Judy, Penny, Will", ["The Robinsons from 'Lost in Space'"]],
         ["Alan, Merrill, Wayne, Jay, Donny", ["The Osmonds"]],
         ["Jane, Lisbon, Cho, Rigsby, Van Pelt", ["The original Mentalist team", "Mentalist"]],
