@@ -26,9 +26,9 @@
     questionSetHandler.preload(files, 0);
 </script>
 
-<Content {questionSetHandler} let:currentKey>
+<Content {questionSetHandler} let:currentKey let:isResult>
     <span slot="question">
-        <img class="image" src={currentKey} alt={questionSetHandler.questionType} />
+        <img class="image" class:medium-image={isResult} src={currentKey} alt={questionSetHandler.questionType} />
     </span>
     <span slot="answer">
         The answer is <b>{getAnswer(currentKey)}</b>
@@ -41,11 +41,14 @@
 
 <style>
     .image {
-        max-height: min(400px, calc(100% - 114px));
+        max-height: calc(100% - 114px);
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
         display: block;
+    }
+    .medium-image {
+        max-height: 300px;
     }
     .mini-image {
         max-width: 75px;

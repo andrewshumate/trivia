@@ -66,7 +66,7 @@
     class:error-animation={showResults && !wasCorrectAnswer}
 >
     <TopBar {numQuestionsAnswered} {numEligibleQuestions} on:click={handleShowSettings} />
-    <slot name="question" {currentKey} isResult={false} />
+    <slot name="question" {currentKey} isResult={showResults} />
     {#if showResults}
         <Results {questionSetHandler} {wasCorrectAnswer} {currentKey} {stats} let:keys on:click={handleNext}>
             <slot name="answer" slot="answer" currentKey={keys} />
