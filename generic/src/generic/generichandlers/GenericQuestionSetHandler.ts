@@ -37,8 +37,14 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
     };
 
     isCorrectAnswer = (currentKey: string, userInput: string): boolean => {
-        const correctAnswer = this.convertKeyToOfficialGuess(currentKey);
-        return areStringsSimilar(correctAnswer, this.getOfficialGuess(userInput) ?? "");
+        const possibleAnswers = this.allData.get(currentKey)!;
+
+        for (let i = 0; i < possibleAnswers.length; i++) {
+            if (areStringsSimilar(possibleAnswers[i], userInput)) {
+                return true;
+            }
+        }
+        return false;
     };
 
     getOfficialGuess = (guess: string): string | undefined => {
