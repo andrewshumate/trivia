@@ -4,7 +4,6 @@
         "watch": true,
         "lib": ["dom", "es2021"],
         "noImplicitReturns": true,
-        "noUnusedLocals":true,
         "strict": true,
         "outDir": "js"
     }
