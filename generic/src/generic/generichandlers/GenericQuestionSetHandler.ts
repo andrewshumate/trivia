@@ -27,15 +27,6 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
         return this.getOfficialGuess(guess) != undefined;
     };
 
-    getKeysFromGuess = (guess: string): string[] => {
-        const officializedGuess = this.getOfficialGuess(guess);
-        if (officializedGuess) {
-            return [this.officalGuessToKey.get(officializedGuess)!];
-        } else {
-            return [];
-        }
-    };
-
     isCorrectAnswer = (currentKey: string, userInput: string): boolean => {
         const possibleAnswers = this.allData.get(currentKey)!;
 
@@ -47,10 +38,6 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
         return false;
     };
 
-    getOfficialGuess = (guess: string): string | undefined => {
-        return this.possibleGuessToOfficialGuess.get(standardizeString(guess));
-    };
-
     getQuestionSets = (): QuestionSet[] => {
         return [
             {
@@ -60,11 +47,23 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
         ];
     };
 
+    /* ##################################
+     * CONVERTERS
+     * TODO make this nicer later
+     * ##################################
+     */
+    /** Used to convert a key (question) into an answer shown in the results screen */
     convertKeyToOfficialGuess = (key: string): string => {
         return this.allData.get(key)![0];
     };
 
-    possibleGuessToOfficialGuess = ((): Map<string, string> => {
+    /** Used to determine if a guess exists, and also used to standardize a guess when
+     * storing incorrect guesses in local storage
+     */
+    getOfficialGuess = (guess: string): string | undefined => {
+        return this.possibleGuessToOfficialGuess.get(standardizeString(guess));
+    };
+    private possibleGuessToOfficialGuess = ((): Map<string, string> => {
         const result: Map<string, string> = new Map();
         const allKeys = [...this.allData.keys()];
 
@@ -77,7 +76,16 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
         return result;
     })();
 
-    officalGuessToKey = ((): Map<string, string> => {
+    /** Used to show the actual question for whatever the user guessed */
+    getKeysFromGuess = (guess: string): string[] => {
+        const officializedGuess = this.getOfficialGuess(guess);
+        if (officializedGuess) {
+            return [this.officalGuessToKey.get(officializedGuess)!];
+        } else {
+            return [];
+        }
+    };
+    private officalGuessToKey = ((): Map<string, string> => {
         const result: Map<string, string> = new Map();
         const allKeys = [...this.allData.keys()];
 

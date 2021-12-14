@@ -57,6 +57,9 @@ export abstract class QuestionSetHandler {
         return [key];
     };
 
+    /** Used in the results screen to determine if we should show the correct
+     * answer for an incorrect guess, or instead say "(not a `questionType`)"
+     */
     abstract doesGuessExist: (guess: string) => boolean;
 
     getQuestionSet = (questionSetString: string): string[] => {
