@@ -80,7 +80,7 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
     getKeysFromGuess = (guess: string): string[] => {
         const officializedGuess = this.getOfficialGuess(guess);
         if (officializedGuess) {
-            return [this.officalGuessToKey.get(officializedGuess)!];
+            return this.getAllAssociatedKeys(this.officalGuessToKey.get(officializedGuess)!);
         } else {
             return [];
         }

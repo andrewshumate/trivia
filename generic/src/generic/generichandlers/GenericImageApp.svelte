@@ -31,11 +31,21 @@
         <img class="image" class:medium-image={isResult} src={currentKey} alt={questionSetHandler.questionType} />
     </span>
     <span slot="answer">
-        The answer is <b>{getAnswer(currentKey)}</b>
+        The answer is <b>{getAnswer(currentKey)}</b>.
+        {#if currentKey.length > 1}
+            More photos:<br />
+            {#each currentKey as imageSrc}
+                {#if imageSrc !== currentKey[0]}
+                    <img class="mini-image" src={imageSrc} alt={questionSetHandler.questionType} />
+                {/if}
+            {/each}
+        {/if}
     </span>
     <span slot="previous-answer">
-        {getAnswer(currentKey)}:
-        <img class="mini-image" src={currentKey[0]} alt={questionSetHandler.questionType} />
+        {getAnswer(currentKey)}:<br />
+        {#each currentKey as imageSrc}
+            <img class="mini-image" src={imageSrc} alt={questionSetHandler.questionType} />
+        {/each}
     </span>
 </Content>
 
@@ -52,6 +62,6 @@
     }
     .mini-image {
         max-width: 75px;
-        display: block;
+        margin-right: 1em;
     }
 </style>
