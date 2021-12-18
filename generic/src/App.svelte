@@ -5,6 +5,7 @@
     import FivesomesApp from "./fivesomes/FivesomesApp.svelte";
     import AnagramsApp from "./anagrams/AnagramsApp.svelte";
     import SportsTwoFirstNamesApp from "./sports-two-first-names/SportsTwoFirstNamesApp.svelte";
+    import CelebritySantasApp from "./celebrity-santas/CelebritySantasApp.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
@@ -12,8 +13,9 @@
     const fivesomes = "Fivesomes";
     const anagrams = "Anagrams";
     const sportsTwoFirstNames = "Sports: Two first names";
+    const celebritySantas = "Celebrity santas";
 
-    const tabs = [sportsTwoFirstNames, anagrams, planeMovies, fivesomes, nflStadiums, carLogos];
+    const tabs = [celebritySantas, sportsTwoFirstNames, anagrams, planeMovies, fivesomes, nflStadiums, carLogos];
     let currentTab = localStorage.getItem("trivia-category") ?? tabs[0];
 
     const handleTabClick = (event: Event): void => {
@@ -44,8 +46,10 @@
         <AnagramsApp />
     {:else if currentTab === fivesomes}
         <FivesomesApp />
-    {:else}
+    {:else if currentTab === sportsTwoFirstNames}
         <SportsTwoFirstNamesApp />
+    {:else}
+        <CelebritySantasApp />
     {/if}
 </main>
 
