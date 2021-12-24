@@ -29,10 +29,7 @@
 
 <Content {questionSetHandler} let:currentKey let:isResult>
     <span slot="question">
-        <audio controls>
-            <source src={currentKey} type="audio/ogg" />
-            Your browser does not support the audio element.
-        </audio>
+        <audio controls src={currentKey}>Your browser does not support the audio element.</audio>
     </span>
     <span slot="answer">
         The answer is <b>{getAnswer(currentKey)}</b>.
