@@ -1,11 +1,11 @@
 <script lang="ts">
-    import StadiumsApp from "./stadiums/StadiumsApp.svelte";
-    import CarLogosApp from "./carlogos/CarLogos.svelte";
-    import PlaneMoviesApp from "./planemovies/PlaneMoviesApp.svelte";
-    import FivesomesApp from "./fivesomes/FivesomesApp.svelte";
-    import AnagramsApp from "./anagrams/AnagramsApp.svelte";
-    import SportsTwoFirstNamesApp from "./sports-two-first-names/SportsTwoFirstNamesApp.svelte";
-    import CelebritySantasApp from "./celebrity-santas/CelebritySantasApp.svelte";
+    import StadiumsApp from "./categories/stadiums/StadiumsApp.svelte";
+    import CarLogosApp from "./categories/CarLogos.svelte";
+    import PlaneMoviesApp from "./categories/PlaneMoviesApp.svelte";
+    import FivesomesApp from "./categories/FivesomesApp.svelte";
+    import AnagramsApp from "./categories/AnagramsApp.svelte";
+    import SportsTwoFirstNamesApp from "./categories/SportsTwoFirstNamesApp.svelte";
+    import CelebritySantasApp from "./categories/CelebritySantasApp.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";

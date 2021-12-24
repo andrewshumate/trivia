@@ -1,4 +1,4 @@
-import { standardizeString } from "../generic/strings";
+import { standardizeString } from "../../generic/strings";
 
 export enum NflTeam {
     LAS_VEGAS_RAIDERS,

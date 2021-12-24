@@ -1,7 +1,7 @@
 import { NflTeam, getTeamInfo, allKeys, possibleGuessToOfficialGuess, guessToKeys } from "./data";
-import type { QuestionSet } from "../generic/utils";
-import { QuestionSetHandler } from "../generic/QuestionSetHandler";
-import { areStringsSimilar, standardizeString } from "../generic/strings";
+import type { QuestionSet } from "../../generic/utils";
+import { QuestionSetHandler } from "../../generic/QuestionSetHandler";
+import { areStringsSimilar, standardizeString } from "../../generic/strings";
 
 export const questionSetHandler = new (class extends QuestionSetHandler {
     questionType = "NFL stadiums";

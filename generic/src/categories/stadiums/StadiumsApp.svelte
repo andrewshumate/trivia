@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getTeamInfo, NflTeam } from "./data";
     import { questionSetHandler as x } from "./StadiumQuestionSetHandler";
-    import Content from "../generic/Content.svelte";
+    import Content from "../../generic/Content.svelte";
 
     const questionSetHandler = x;
 
