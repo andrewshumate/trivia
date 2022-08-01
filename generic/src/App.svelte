@@ -67,6 +67,11 @@
 </main>
 
 <style>
+    :global(html, body) {
+        -webkit-overflow-scrolling: touch !important;
+        overflow: auto !important;
+        height: 100% !important;
+    }
     :global(body) {
         background: var(--background-background);
         color: var(--foreground);
