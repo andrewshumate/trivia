@@ -75,6 +75,9 @@
     {:else}
         <!-- svelte-ignore a11y-autofocus -->
         <form on:submit|preventDefault={handleSubmit}>
+            <!-- TODO Safari is putting up a "Autofill contact" bar here -->
+            <!-- TODO and is scrolling the page down -->
+            <!-- TODO Also, flag height is too tall -->
             <input
                 type="text"
                 id="input"
