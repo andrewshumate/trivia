@@ -31,7 +31,7 @@
                             <slot name="previous-answer" keys={questionSetHandler.getKeysFromGuess(guess)} />
                         </li>
                     {:else}
-                        <li>{guess} (not a {questionSetHandler.questionType.toLowerCase()})</li>
+                        <li>{guess} (not a {questionSetHandler.answerType.toLowerCase()})</li>
                     {/if}
                 {/each}
             </ul>

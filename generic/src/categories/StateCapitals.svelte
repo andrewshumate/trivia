@@ -6,7 +6,7 @@
 
     const allData = new Map([
         ["Alabama", ["Montgomery"]],
-        ["Alaska", ["Juneau"]],
+        ["Alaska", ["Juneau", "Juno"]],
         ["Arizona", ["Phoenix"]],
         ["Arkansas", ["Little Rock"]],
         ["California", ["Sacramento"]],
