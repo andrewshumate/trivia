@@ -7,6 +7,7 @@
     import SportsTwoFirstNamesApp from "./categories/SportsTwoFirstNamesApp.svelte";
     import CelebritySantasApp from "./categories/CelebritySantasApp.svelte";
     import StateFlags from "./categories/StateFlags.svelte";
+    import StateCapitals from "./categories/StateCapitals.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
@@ -16,8 +17,10 @@
     const sportsTwoFirstNames = "Sports: Two first names";
     const celebritySantas = "Celebrity santas";
     const stateFlags = "State flags";
+    const stateCapitals = "State capitals";
 
     const tabs = [
+        stateCapitals,
         stateFlags,
         celebritySantas,
         sportsTwoFirstNames,
@@ -63,6 +66,8 @@
         <CelebritySantasApp />
     {:else if currentTab === stateFlags}
         <StateFlags />
+    {:else if currentTab === stateCapitals}
+        <StateCapitals />
     {/if}
 </main>
 
