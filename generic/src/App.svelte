@@ -8,6 +8,7 @@
     import CelebritySantasApp from "./categories/CelebritySantasApp.svelte";
     import StateFlags from "./categories/StateFlags.svelte";
     import StateCapitals from "./categories/StateCapitals.svelte";
+    import EuropeanOutlines from "./categories/EuropeanOutlines.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
@@ -18,8 +19,10 @@
     const celebritySantas = "Celebrity santas";
     const stateFlags = "State flags";
     const stateCapitals = "State capitals";
+    const europeanOutlines = "European outlines";
 
     const tabs = [
+        europeanOutlines,
         stateCapitals,
         stateFlags,
         celebritySantas,
@@ -68,6 +71,8 @@
         <StateFlags />
     {:else if currentTab === stateCapitals}
         <StateCapitals />
+    {:else if currentTab === europeanOutlines}
+        <EuropeanOutlines />
     {/if}
 </main>
 
