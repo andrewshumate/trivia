@@ -39,8 +39,8 @@
 <Content {questionSetHandler} let:currentKey let:isResult>
     <span slot="question">
         <img
-            class="image"
             style={`max-height: calc(${visualViewportHeight}px - 145px)`}
+            class="image"
             class:medium-image={isResult}
             src={currentKey}
             alt={questionSetHandler.questionType}
