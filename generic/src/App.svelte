@@ -9,6 +9,7 @@
     import StateFlags from "./categories/StateFlags.svelte";
     import StateCapitals from "./categories/StateCapitals.svelte";
     import EuropeanOutlines from "./categories/EuropeanOutlines.svelte";
+    import StateSlogans from "./categories/StateSlogans.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
@@ -20,8 +21,10 @@
     const stateFlags = "State flags";
     const stateCapitals = "State capitals";
     const europeanOutlines = "European outlines";
+    const stateSlogans = "State slogans";
 
     const tabs = [
+        stateSlogans,
         europeanOutlines,
         stateCapitals,
         stateFlags,
@@ -73,6 +76,8 @@
         <StateCapitals />
     {:else if currentTab === europeanOutlines}
         <EuropeanOutlines />
+    {:else if currentTab === stateSlogans}
+        <StateSlogans />
     {/if}
 </main>
 
