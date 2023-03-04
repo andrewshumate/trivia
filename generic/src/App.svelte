@@ -10,6 +10,7 @@
     import StateCapitals from "./categories/StateCapitals.svelte";
     import EuropeanOutlines from "./categories/EuropeanOutlines.svelte";
     import StateSlogans from "./categories/StateSlogans.svelte";
+    import MovieAliens from "./categories/MovieAliens.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
@@ -22,8 +23,10 @@
     const stateCapitals = "State capitals";
     const europeanOutlines = "European outlines";
     const stateSlogans = "State slogans";
+    const movieAliens = "Movie aliens";
 
     const tabs = [
+        movieAliens,
         stateSlogans,
         europeanOutlines,
         stateCapitals,
@@ -78,6 +81,8 @@
         <EuropeanOutlines />
     {:else if currentTab === stateSlogans}
         <StateSlogans />
+    {:else if currentTab === movieAliens}
+        <MovieAliens />
     {/if}
 </main>
 

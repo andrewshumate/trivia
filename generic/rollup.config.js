@@ -16,6 +16,7 @@ const sportsTwoFirstNames = fs.readdirSync("./public/sports-two-first-names/imag
 const celebritySantas = fs.readdirSync("./public/celebrity-santas/images");
 const stateFlags = fs.readdirSync("./public/state-flags/images");
 const europeanOutlines = fs.readdirSync("./public/european-outlines/images");
+const movieAliens = fs.readdirSync("./public/movie-aliens/images");
 
 function serve() {
     let server;
@@ -52,6 +53,7 @@ export default {
             const CELEBRITY_SANTAS = ${JSON.stringify(celebritySantas)};
             const STATE_FLAG_FILES = ${JSON.stringify(stateFlags)};
             const EUROPEAN_OUTLINE_FILES = ${JSON.stringify(europeanOutlines)};
+            const MOVIE_ALIENS_FILES = ${JSON.stringify(movieAliens)};
         `,
     },
     plugins: [
