@@ -57,6 +57,10 @@ export class GenericQuestionSetHandler extends QuestionSetHandler {
         return this.allData.get(key)![0];
     };
 
+    convertKeyToOfficialGuesses = (key: string): string[] => {
+        return this.allData.get(key)!;
+    };
+
     /** Used to determine if a guess exists, and also used to standardize a guess when
      * storing incorrect guesses in local storage
      */

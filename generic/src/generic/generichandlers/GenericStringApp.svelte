@@ -8,8 +8,14 @@
 
     const questionSetHandler = new GenericQuestionSetHandler(questionType, answerType, allData);
 
-    const getAnswer = (keys: string[]): string => {
-        return questionSetHandler.convertKeyToOfficialGuess(keys[0]);
+    const getAnswers = (keys: string[]): string[] => {
+        return questionSetHandler.convertKeyToOfficialGuesses(keys[0]);
+    };
+
+    // TODO make this not bad. Behavior may or may not be correct for all categories.
+    const getPreviousAnswers = (currentKey: string[]): string[] => {
+        const question = getAnswers(currentKey)[0];
+        return allData.get(question);
     };
 </script>
 
@@ -18,10 +24,19 @@
         <p>{currentKey}</p>
     </slot>
     <slot name="answer" slot="answer">
-        The answer is <b>{getAnswer(currentKey)}</b>
+        The answer is:
+        <ul>
+            {#each getAnswers(currentKey) as answer}
+                <li>{answer}</li>
+            {/each}
+        </ul>
     </slot>
     <slot name="previous-answer" slot="previous-answer" {currentKey}>
-        {getAnswer(currentKey)}:
-        {currentKey[0]}
+        {getAnswers(currentKey)[0]}:
+        <ul>
+            {#each getPreviousAnswers(currentKey) as answer}
+                <li>{answer}</li>
+            {/each}
+        </ul>
     </slot>
 </Content>
