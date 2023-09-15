@@ -501,7 +501,7 @@ const flags = {
     },
     Nicaragua: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/nu-flag.gif",
+        imageUrl: "https://andrewshumate.github.io/trivia/flags/Nicaragua.png",
     },
     Niger: {
         alternateNames: [],
