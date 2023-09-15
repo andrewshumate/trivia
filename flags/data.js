@@ -213,7 +213,7 @@ const flags = {
     },
     "El Salvador": {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/es-flag.gif",
+        imageUrl: "https://andrewshumate.github.io/trivia/flags/El Salvador.png",
     },
     "Equatorial Guinea": {
         alternateNames: [],
