@@ -541,7 +541,7 @@ const flags = {
     },
     Paraguay: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/pa-flag.gif",
+        imageUrl: "https://andrewshumate.github.io/trivia/flags/paraguay.png",
     },
     Peru: {
         alternateNames: [],
