@@ -736,7 +736,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/uk-flag.gif",
     },
     "U.S.": {
-        alternateNames: ["United States"],
+        alternateNames: ["United States", "USA"],
         imageUrl: "https://www.worldometers.info/img/flags/us-flag.gif",
     },
     Uganda: {
