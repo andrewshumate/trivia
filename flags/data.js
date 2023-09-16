@@ -456,7 +456,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/md-flag.gif",
     },
     Monaco: {
-        alternateNames: [],
+        alternateNames: ["Poland"],
         imageUrl: "https://www.worldometers.info/img/flags/mn-flag.gif",
     },
     Mongolia: {
@@ -552,7 +552,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/rp-flag.gif",
     },
     Poland: {
-        alternateNames: [],
+        alternateNames: ["Monaco"],
         imageUrl: "https://www.worldometers.info/img/flags/pl-flag.gif",
     },
     Portugal: {
