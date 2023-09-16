@@ -136,7 +136,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/ct-flag.gif",
     },
     Chad: {
-        alternateNames: [],
+        alternateNames: ["Romania"],
         imageUrl: "https://www.worldometers.info/img/flags/cd-flag.gif",
     },
     Chile: {
@@ -564,7 +564,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/qa-flag.gif",
     },
     Romania: {
-        alternateNames: [],
+        alternateNames: ["Chad"],
         imageUrl: "https://www.worldometers.info/img/flags/ro-flag.gif",
     },
     Russia: {
