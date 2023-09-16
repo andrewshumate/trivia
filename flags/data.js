@@ -316,7 +316,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/in-flag.gif",
     },
     Indonesia: {
-        alternateNames: [],
+        alternateNames: ["Monaco"],
         imageUrl: "https://www.worldometers.info/img/flags/id-flag.gif",
     },
     Iran: {
@@ -456,7 +456,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/md-flag.gif",
     },
     Monaco: {
-        alternateNames: ["Poland"],
+        alternateNames: ["Indonesia"],
         imageUrl: "https://www.worldometers.info/img/flags/mn-flag.gif",
     },
     Mongolia: {
@@ -552,7 +552,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/rp-flag.gif",
     },
     Poland: {
-        alternateNames: ["Monaco"],
+        alternateNames: [],
         imageUrl: "https://www.worldometers.info/img/flags/pl-flag.gif",
     },
     Portugal: {
