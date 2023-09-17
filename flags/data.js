@@ -112,7 +112,7 @@ const flags = {
         imageUrl: "https://www.worldometers.info/img/flags/by-flag.gif",
     },
     "Côte d'Ivoire": {
-        alternateNames: ["Cote d'Ivoire"],
+        alternateNames: ["Cote d'Ivoire", "Ivory Coast"],
         imageUrl: "https://www.worldometers.info/img/flags/iv-flag.gif",
     },
     "Cabo Verde": {
