@@ -157,7 +157,7 @@ const flags = {
     },
     Congo: {
         alternateNames: [],
-        imageUrl: "https://www.worldometers.info/img/flags/cg-flag.gif",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Flag_of_the_Republic_of_the_Congo.svg/250px-Flag_of_the_Republic_of_the_Congo.svg.png",
     },
     "Costa Rica": {
         alternateNames: [],
