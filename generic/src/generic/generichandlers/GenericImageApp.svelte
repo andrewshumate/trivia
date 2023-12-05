@@ -71,6 +71,8 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+        width: 100%;
+        height: 100%;
     }
     .medium-image {
         max-height: 300px !important;
