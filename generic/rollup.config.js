@@ -18,6 +18,7 @@ const stateFlags = fs.readdirSync("./public/state-flags/images");
 const europeanOutlines = fs.readdirSync("./public/european-outlines/images");
 const movieAliens = fs.readdirSync("./public/movie-aliens/images");
 const stateOutlines = fs.readdirSync("./public/state-outlines/images");
+const twoStateOutlines = fs.readdirSync("./public/two-state-outlines/images");
 
 function serve() {
     let server;
@@ -56,6 +57,7 @@ export default {
             const EUROPEAN_OUTLINE_FILES = ${JSON.stringify(europeanOutlines)};
             const MOVIE_ALIENS_FILES = ${JSON.stringify(movieAliens)};
             const STATE_OUTLINES_FILES = ${JSON.stringify(stateOutlines)};
+            const TWO_STATE_OUTLINES_FILES = ${JSON.stringify(twoStateOutlines)};
         `,
     },
     plugins: [

@@ -13,6 +13,7 @@
     import MovieAliens from "./categories/MovieAliens.svelte";
     import FamousAddresses from "./categories/FamousAddresses.svelte";
     import StateOutlines from "./categories/StateOutlines.svelte";
+    import TwoStateOutlines from "./categories/TwoStateOutlines.svelte";
 
     const nflStadiums = "Stadiums";
     const carLogos = "Car logos";
@@ -28,8 +29,11 @@
     const movieAliens = "Movie aliens";
     const famousAddresses = "Famous addresses";
     const stateOutlines = "State outlines";
+    const twoStateOutlines = "Two state outlines";
 
     const tabs = [
+        twoStateOutlines,
+        stateOutlines,
         famousAddresses,
         movieAliens,
         stateSlogans,
@@ -43,7 +47,6 @@
         fivesomes,
         nflStadiums,
         carLogos,
-        stateOutlines,
     ];
     let currentTab = localStorage.getItem("trivia-category") ?? tabs[0];
 
@@ -93,6 +96,8 @@
         <FamousAddresses />
     {:else if currentTab === stateOutlines}
         <StateOutlines />
+    {:else if currentTab === twoStateOutlines}
+        <TwoStateOutlines />
     {/if}
 </main>
 

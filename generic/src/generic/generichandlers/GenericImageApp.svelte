@@ -73,6 +73,7 @@
         display: block;
         width: 100%;
         height: 100%;
+        object-fit: contain;
     }
     .medium-image {
         max-height: 300px !important;
